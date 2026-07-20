@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/atomicwork-public-api-openapi.yaml
+docs: https://developers.atomicwork.com/api-reference/introduction
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-Api-Key
+  description: >
+    Every request must include a workspace-scoped API key in the X-Api-Key header.
+    Keys are generated from Settings > Integrations > API Keys in the Atomicwork
+    workspace; a key created in one workspace cannot access another.
+  sources:
+  - openapi/atomicwork-public-api-openapi.yaml
+workspace_scoping:
+  header: X-Workspace-Id
+  description: >
+    Most endpoints are workspace-scoped and require the numeric workspace ID in the
+    X-Workspace-Id header. The workspace ID is visible in Settings > Workspace or
+    returned by GET /api/v1/workspaces.
+notes: >
+  No OAuth 2.0 / OIDC surface is documented — authentication is API-key only, so
+  no scopes/ artifact applies. The same API key authenticates the hosted MCP server.
