@@ -1,0 +1,252 @@
+openapi: 3.1.0
+info:
+  title: Atomicwork Public accessManagement auditLogs API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: auditLogs
+paths:
+  /api/v1/audit-logs:
+    get:
+      operationId: getapi-v-1-audit-logs
+      summary: Get all audit logs
+      description: Get all audit logs
+      tags:
+      - auditLogs
+      parameters:
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: next_page_token
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audit Logs_getapi_v1_audit_logs_Response_200'
+  /api/v1/audit-logs/export:
+    post:
+      operationId: postapi-v-1-audit-logs-export
+      summary: Export audit logs to CSV
+      description: "Triggers an export of audit logs to CSV file. The export is processed asynchronously and an email with download link is sent upon completion.\n### Filtering\n\nUse the `filters` field to narrow results. Pass an empty array or omit the field to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `event_at` | `IS_BETWEEN` | Event timestamp. Requires exactly **two** values: `[start, end]` (both inclusive). Accepts ISO 8601 (`2024-01-01T00:00:00Z`) or date-only (`2024-01-01` — end date is automatically extended to `T23:59:59Z`). On export, defaults to the last 6 months if omitted. |\n| `actor_id` | `IS_ANY_OF` | Numeric user ID of the person who performed the action (the `id` field from `GET /api/v1/users`). |\n| `module` | `IS_ANY_OF` | Module **integer ID** (not the name). See the Module IDs reference table below. |\n| `event_type` | `IS_ANY_OF` | Event type **integer ID** (not the name). See the Event Type IDs reference table below. Not every event type is valid for every module — unsupported combinations return zero results. |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n\n**Module IDs** (use with `attribute: \"module\"`)\n\n| ID | Module | What it covers |\n|---|---|---|\n| `0` | APPS | Third-party app connections (connect / disconnect / update) |\n| `1` | USERS | User creation and profile updates |\n| `2` | WORKFLOWS | Automation workflow changes |\n| `3` | SERVICE_CATALOG | Service catalog items |\n| `4` | SECURITY | Login, logout, API key creation / deletion |\n| `5` | SKILL | AI skill changes |\n| `6` | WORKSPACES | Workspace settings changes |\n| `7` | TENANT_MIGRATION | Sandbox import / export |\n| `8` | AGENT_GROUPS | Agent group changes |\n| `9` | ACCESS_MANAGEMENT | Role and access control changes |\n| `10` | AI_AGENTS | AI agent changes |\n| `11` | AGENT_AVAILABILITY | Agent availability updates |\n| `12` | CUSTOM_OBJECTS | Custom object type changes |\n\n**Event Type IDs** (use with `attribute: \"event_type\"`)\n\n| ID | Event Type |\n|---|---|\n| `0` | CONNECTED |\n| `1` | DISCONNECTED |\n| `2` | CREATED |\n| `3` | UPDATED |\n| `4` | ENABLED |\n| `5` | DISABLED |\n| `6` | DELETED |\n| `7` | IMPORT |\n| `8` | EXPORT |\n| `9` | RESTORED |\n| `10` | LOGIN |\n| `12` | LOGOUT |\n\n**Module → valid event types**\n\n| Module | Valid event type IDs |\n|---|---|\n| APPS (0) | 0 (CONNECTED), 1 (DISCONNECTED), 3 (UPDATED) |\n| USERS (1) | 2 (CREATED), 3 (UPDATED) |\n| WORKFLOWS (2) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| SERVICE_CATALOG (3) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| SECURITY (4) | 2 (CREATED), 6 (DELETED), 10 (LOGIN), 12 (LOGOUT) |\n| SKILL (5) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| WORKSPACES (6) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| TENANT_MIGRATION (7) | 7 (IMPORT), 8 (EXPORT) |\n| AGENT_GROUPS (8) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| ACCESS_MANAGEMENT (9) | 2 (CREATED), 3 (UPDATED), 6 (DELETED), 9 (RESTORED) |\n| AI_AGENTS (10) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| AGENT_AVAILABILITY (11) | 3 (UPDATED) |\n| CUSTOM_OBJECTS (12) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"event_at\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": \"2024-01-01T00:00:00Z\"\n      },\n      {\n        \"value\": \"2024-12-31T23:59:59Z\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"module\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 1\n      },\n      {\n        \"value\": 9\n      }\n    ]\n  },\n  {\n    \"attribute\": \"event_type\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 2\n      },\n      {\n        \"value\": 3\n      }\n    ]\n  },\n  {\n    \"attribute\": \"actor_id\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 123\n      }\n    ]\n  }\n]\n```\n"
+      tags:
+      - auditLogs
+      parameters:
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audit Logs_postapi_v1_audit_logs_export_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                search_key:
+                  type: string
+                  description: Text search across log text, actor name, email, source IP, and event data
+                filters:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems'
+                  description: 'Structured filters (same shape as /audit-logs/list). Supported attributes - actor_id, module, event_type, event_at. If event_at is not supplied, defaults to the last 6 months.
+
+                    '
+                cc_emails:
+                  type: array
+                  items:
+                    type: string
+                  description: CC email addresses for the export notification
+  /api/v1/audit-logs/list:
+    post:
+      operationId: postapi-v-1-audit-logs-list
+      summary: List audit logs with filters
+      description: "List audit logs with structured filters for actor, module, and event type\n### Filtering\n\nUse the `filters` field to narrow results. Pass an empty array or omit the field to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `event_at` | `IS_BETWEEN` | Event timestamp. Requires exactly **two** values: `[start, end]` (both inclusive). Accepts ISO 8601 (`2024-01-01T00:00:00Z`) or date-only (`2024-01-01` — end date is automatically extended to `T23:59:59Z`). On export, defaults to the last 6 months if omitted. |\n| `actor_id` | `IS_ANY_OF` | Numeric user ID of the person who performed the action (the `id` field from `GET /api/v1/users`). |\n| `module` | `IS_ANY_OF` | Module **integer ID** (not the name). See the Module IDs reference table below. |\n| `event_type` | `IS_ANY_OF` | Event type **integer ID** (not the name). See the Event Type IDs reference table below. Not every event type is valid for every module — unsupported combinations return zero results. |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n\n**Module IDs** (use with `attribute: \"module\"`)\n\n| ID | Module | What it covers |\n|---|---|---|\n| `0` | APPS | Third-party app connections (connect / disconnect / update) |\n| `1` | USERS | User creation and profile updates |\n| `2` | WORKFLOWS | Automation workflow changes |\n| `3` | SERVICE_CATALOG | Service catalog items |\n| `4` | SECURITY | Login, logout, API key creation / deletion |\n| `5` | SKILL | AI skill changes |\n| `6` | WORKSPACES | Workspace settings changes |\n| `7` | TENANT_MIGRATION | Sandbox import / export |\n| `8` | AGENT_GROUPS | Agent group changes |\n| `9` | ACCESS_MANAGEMENT | Role and access control changes |\n| `10` | AI_AGENTS | AI agent changes |\n| `11` | AGENT_AVAILABILITY | Agent availability updates |\n| `12` | CUSTOM_OBJECTS | Custom object type changes |\n\n**Event Type IDs** (use with `attribute: \"event_type\"`)\n\n| ID | Event Type |\n|---|---|\n| `0` | CONNECTED |\n| `1` | DISCONNECTED |\n| `2` | CREATED |\n| `3` | UPDATED |\n| `4` | ENABLED |\n| `5` | DISABLED |\n| `6` | DELETED |\n| `7` | IMPORT |\n| `8` | EXPORT |\n| `9` | RESTORED |\n| `10` | LOGIN |\n| `12` | LOGOUT |\n\n**Module → valid event types**\n\n| Module | Valid event type IDs |\n|---|---|\n| APPS (0) | 0 (CONNECTED), 1 (DISCONNECTED), 3 (UPDATED) |\n| USERS (1) | 2 (CREATED), 3 (UPDATED) |\n| WORKFLOWS (2) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| SERVICE_CATALOG (3) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| SECURITY (4) | 2 (CREATED), 6 (DELETED), 10 (LOGIN), 12 (LOGOUT) |\n| SKILL (5) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| WORKSPACES (6) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| TENANT_MIGRATION (7) | 7 (IMPORT), 8 (EXPORT) |\n| AGENT_GROUPS (8) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| ACCESS_MANAGEMENT (9) | 2 (CREATED), 3 (UPDATED), 6 (DELETED), 9 (RESTORED) |\n| AI_AGENTS (10) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| AGENT_AVAILABILITY (11) | 3 (UPDATED) |\n| CUSTOM_OBJECTS (12) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"event_at\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": \"2024-01-01T00:00:00Z\"\n      },\n      {\n        \"value\": \"2024-12-31T23:59:59Z\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"module\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 1\n      },\n      {\n        \"value\": 9\n      }\n    ]\n  },\n  {\n    \"attribute\": \"event_type\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 2\n      },\n      {\n        \"value\": 3\n      }\n    ]\n  },\n  {\n    \"attribute\": \"actor_id\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 123\n      }\n    ]\n  }\n]\n```\n"
+      tags:
+      - auditLogs
+      parameters:
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audit Logs_postapi_v1_audit_logs_list_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                search_key:
+                  type: string
+                page:
+                  type: integer
+                  default: 1
+                per_page:
+                  type: integer
+                  default: 25
+                next_page_token:
+                  type: string
+                filters:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItems'
+                sort_order:
+                  $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder'
+components:
+  schemas:
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator:
+      type: string
+      enum:
+      - LIKE
+      - EQUALS
+      - IN
+      - NOT_EQUALS
+      - IS_BETWEEN
+      - IS_ANY_OF
+      - IS_NOT_ANY_OF
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator:
+      type: string
+      enum:
+      - LIKE
+      - EQUALS
+      - IN
+      - NOT_EQUALS
+      - IS_BETWEEN
+      - IS_ANY_OF
+      - IS_NOT_ANY_OF
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
+    Audit Logs_postapi_v1_audit_logs_list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Audit Logs_postapi_v1_audit_logs_list_Response_200
+    Audit Logs_getapi_v1_audit_logs_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Audit Logs_getapi_v1_audit_logs_Response_200
+    Audit Logs_postapi_v1_audit_logs_export_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Audit Logs_postapi_v1_audit_logs_export_Response_200
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItems
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder:
+      type: string
+      enum:
+      - EVENT_AT_DESC
+      - EVENT_AT_ASC
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

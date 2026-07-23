@@ -1,0 +1,291 @@
+openapi: 3.1.0
+info:
+  title: Atomicwork Public accessManagement tags API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: tags
+paths:
+  /api/v1/tags:
+    get:
+      operationId: getapi-v-1-tags
+      summary: Get tags
+      tags:
+      - tags
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: context_type
+        in: query
+        description: The type of tag entity
+        required: false
+        schema:
+          type: string
+      - name: context_id
+        in: query
+        description: The workspace Id
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: search_key
+        in: query
+        description: Search query
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tags_getapi_v1_tags_Response_200'
+    post:
+      operationId: postapi-v-1-tags
+      summary: Create Tag Option
+      tags:
+      - tags
+      parameters:
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tags_postapi_v1_tags_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                context_type:
+                  $ref: '#/components/schemas/ApiV1TagsPostRequestBodyContentApplicationJsonSchemaContextType'
+                context_id:
+                  type: integer
+                  format: int64
+                color_code:
+                  type: string
+              required:
+              - name
+  /api/v1/tags/{id}:
+    get:
+      operationId: getapi-v-1-tags-id
+      summary: Get tag
+      tags:
+      - tags
+      parameters:
+      - name: id
+        in: path
+        description: The tag ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: context_id
+        in: query
+        description: The workspace id
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: context_type
+        in: query
+        description: The type of tag entity
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tags_getapi_v1_tags__id_Response_200'
+    put:
+      operationId: putapi-v-1-tags-id
+      summary: Update Tag Option
+      tags:
+      - tags
+      parameters:
+      - name: id
+        in: path
+        description: The tag ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tags_putapi_v1_tags__id_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                name:
+                  type: string
+                context_type:
+                  $ref: '#/components/schemas/ApiV1TagsIdPutRequestBodyContentApplicationJsonSchemaContextType'
+                color_code:
+                  type: string
+                context_id:
+                  type: integer
+                  format: int64
+              required:
+              - id
+              - name
+    delete:
+      operationId: deleteapi-v-1-tags-id
+      summary: Delete Tag Option
+      tags:
+      - tags
+      parameters:
+      - name: id
+        in: path
+        description: The tag ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: context_id
+        in: query
+        description: ID of the workspace
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: context_type
+        in: query
+        description: The type of Tag entity
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tags_deleteapi_v1_tags__id_Response_200'
+components:
+  schemas:
+    Tags_getapi_v1_tags_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_getapi_v1_tags_Response_200
+    ApiV1TagsIdPutRequestBodyContentApplicationJsonSchemaContextType:
+      type: string
+      enum:
+      - COMMON
+      - ASSET
+      - WORKSPACE
+      title: ApiV1TagsIdPutRequestBodyContentApplicationJsonSchemaContextType
+    Tags_getapi_v1_tags__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_getapi_v1_tags__id_Response_200
+    Tags_deleteapi_v1_tags__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_deleteapi_v1_tags__id_Response_200
+    Tags_postapi_v1_tags_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_postapi_v1_tags_Response_200
+    ApiV1TagsPostRequestBodyContentApplicationJsonSchemaContextType:
+      type: string
+      enum:
+      - COMMON
+      - ASSET
+      - WORKSPACE
+      title: ApiV1TagsPostRequestBodyContentApplicationJsonSchemaContextType
+    Tags_putapi_v1_tags__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_putapi_v1_tags__id_Response_200
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

@@ -1,0 +1,42 @@
+generated: '2026-07-18'
+method: searched
+source:
+- openapi/atomicwork-public-api-openapi.yaml
+- https://www.atomicwork.com/security
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: openapi/atomicwork-public-api-openapi.yaml is OpenAPI 3.1.0
+- id: api-key-auth
+  conforms: true
+  evidence: securityScheme type apiKey in header (X-Api-Key)
+- id: oauth2
+  conforms: false
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a custom {error, code} envelope, not application/problem+json
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404
+- id: rfc9727-api-catalog
+  conforms: true
+  evidence: /.well-known/api-catalog returns 200 with an OpenAPI linkset
+- id: scim
+  conforms: false
+- id: soc2-type2
+  conforms: true
+  evidence: SOC 2 Type 2 attested (trust.atomicwork.com)
+- id: iso-27001
+  conforms: true
+  evidence: ISO/IEC 27001 certified
+- id: iso-42001
+  conforms: true
+  evidence: ISO/IEC 42001 (AI Management System) certified
+- id: hipaa
+  conforms: true
+  evidence: HIPAA compliance for PHI in ITSM workflows
+- id: gdpr
+  conforms: true
+  evidence: GDPR compliance

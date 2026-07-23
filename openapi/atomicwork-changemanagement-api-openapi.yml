@@ -1,0 +1,896 @@
+openapi: 3.1.0
+info:
+  title: Atomicwork Public accessManagement changeManagement API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: changeManagement
+paths:
+  /api/v1/agent/change-management/change-templates:
+    get:
+      operationId: getapi-v-1-agent-change-management-change-templates
+      summary: Retrieve all the templates a logged in user can raise changes from (scoped to the workspaces the user is a member of); when for_user_id is supplied the list is curated for that profile user
+      tags:
+      - changeManagement
+      parameters:
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: workspace_id
+        in: query
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: status
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1AgentChangeManagementChangeTemplatesGetParametersStatus'
+      - name: is_active
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      - name: for_user_id
+        in: query
+        description: Optional profile user the template list should be curated for (people-profile on-behalf-of context). When set, the list is narrowed to templates both the calling agent can raise and this user is allowed to access. When absent, behaviour is unchanged.
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Change Management_getapi_v1_agent_change_management_change_templates_Response_200'
+  /api/v1/change-management/changes:
+    post:
+      operationId: postapi-v-1-change-management-changes
+      summary: Create Change in workspace
+      tags:
+      - changeManagement
+      parameters:
+      - name: problem_display_id
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Change Management_postapi_v1_change_management_changes_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                created_by:
+                  type: integer
+                  format: int64
+                requester:
+                  type: integer
+                  format: int64
+                owner:
+                  type: integer
+                  format: int64
+                agent_group:
+                  type: integer
+                  format: int64
+                assignee:
+                  type: integer
+                  format: int64
+                change_type:
+                  type: string
+                change_template:
+                  type: integer
+                  format: int64
+                change_start_date:
+                  type: string
+                  format: date-time
+                change_completion_date:
+                  type: string
+                  format: date-time
+                planned_change_start_date:
+                  type: string
+                  format: date-time
+                planned_change_completion_date:
+                  type: string
+                  format: date-time
+                actual_change_start_date:
+                  type: string
+                  format: date-time
+                actual_change_completion_date:
+                  type: string
+                  format: date-time
+                subject:
+                  type: string
+                priority:
+                  type: string
+                status:
+                  type: string
+                impact:
+                  type: string
+                urgency:
+                  type: string
+                parent_change_id:
+                  type: integer
+                  format: int64
+                parent_display_id:
+                  type: string
+                  description: Formatted display ID of the parent (e.g. CHG-5 or REQ-123)
+                parent_request_type:
+                  type: string
+                  description: Entity type of the parent (CHANGE or REQUEST)
+                description:
+                  type: string
+                attachments:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                tags:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                workspace_id:
+                  type: integer
+                  format: int64
+                assets:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                linked_requests:
+                  type: array
+                  items:
+                    type: string
+                custom_fields:
+                  $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaCustomFields'
+                template_fields:
+                  $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaTemplateFields'
+                notes:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItems'
+                conversation_info:
+                  $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaConversationInfo'
+                created_at:
+                  type: string
+                  format: date-time
+                updated_at:
+                  type: string
+                  format: date-time
+                external_id:
+                  type: string
+                external_source:
+                  $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSource'
+                external_system_entity_reference:
+                  $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference'
+              required:
+              - change_template
+              - subject
+  /api/v1/change-management/changes/create-with-files:
+    post:
+      operationId: postapi-v-1-change-management-changes-create-with-files
+      summary: Create Change with File Uploads
+      tags:
+      - changeManagement
+      parameters:
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Change Management_postapi_v1_change_management_changes_create_with_files_Response_200'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                requester:
+                  type: integer
+                  format: int64
+                agent_group:
+                  type: integer
+                  format: int64
+                change_type:
+                  type: string
+                change_template:
+                  type: integer
+                  format: int64
+                planned_change_start_date:
+                  type: string
+                  format: date-time
+                planned_change_completion_date:
+                  type: string
+                  format: date-time
+                actual_change_start_date:
+                  type: string
+                  format: date-time
+                actual_change_completion_date:
+                  type: string
+                  format: date-time
+                subject:
+                  type: string
+                priority:
+                  type: string
+                status:
+                  type: string
+                impact:
+                  type: string
+                urgency:
+                  type: string
+                parent_change_id:
+                  type: integer
+                  format: int64
+                description:
+                  type: string
+                assignee:
+                  type: integer
+                  format: int64
+                data_json:
+                  description: Any type
+                attachments:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Upload multiple files as attachments.
+                tags:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                workspace_id:
+                  type: integer
+                  format: int64
+                assets:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                linked_requests:
+                  type: array
+                  items:
+                    type: string
+                external_id:
+                  type: string
+                external_source:
+                  description: Any type
+                external_system_entity_reference:
+                  description: Any type
+              required:
+              - change_template
+              - subject
+  /api/v1/change-management/changes/{display_id}:
+    get:
+      operationId: getapi-v-1-change-management-changes-display-id
+      summary: Get Change by display ID
+      tags:
+      - changeManagement
+      parameters:
+      - name: display_id
+        in: path
+        description: Display ID of the change
+        required: true
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Change Management_getapi_v1_change_management_changes__display_id_Response_200'
+    patch:
+      operationId: patchapi-v-1-change-management-changes-display-id
+      summary: Patch Change by display ID
+      tags:
+      - changeManagement
+      parameters:
+      - name: display_id
+        in: path
+        description: Display ID of the change
+        required: true
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Change Management_patchapi_v1_change_management_changes__display_id_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+  /api/v1/change-management/changes/{display_id}/notes:
+    get:
+      operationId: getapi-v-1-change-management-changes-display-id-notes
+      summary: Get notes for change by display ID
+      tags:
+      - changeManagement
+      parameters:
+      - name: display_id
+        in: path
+        description: Display ID of the change
+        required: true
+        schema:
+          type: string
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: next_page_token
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Change Management_getapi_v1_change_management_changes__display_id__notes_Response_200'
+    post:
+      operationId: postapi-v-1-change-management-changes-display-id-notes
+      summary: Create note for change by display ID
+      tags:
+      - changeManagement
+      parameters:
+      - name: display_id
+        in: path
+        description: Display ID of the change
+        required: true
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Change Management_postapi_v1_change_management_changes__display_id__notes_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  format: int64
+                description:
+                  type: string
+                mentions:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                is_private:
+                  type: boolean
+                  default: false
+                source:
+                  $ref: '#/components/schemas/ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaSource'
+                type:
+                  $ref: '#/components/schemas/ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaType'
+                attachments:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+  /api/v1/change-management/changes/{display_id}/activity-notes:
+    get:
+      operationId: getapi-v-1-change-management-changes-display-id-activity-notes
+      summary: Get Change Notes and activities
+      tags:
+      - changeManagement
+      parameters:
+      - name: display_id
+        in: path
+        description: Display ID of the change
+        required: true
+        schema:
+          type: string
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: next_page_token
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Change Management_getapi_v1_change_management_changes__display_id__activity_notes_Response_200'
+  /api/v1/workspaces/{workspace_id}/change-management/changes/list:
+    post:
+      operationId: postapi-v-1-workspaces-workspace-id-change-management-changes-list
+      summary: Get changes by filter
+      description: "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `status` | `IS_ANY_OF` | Change status (e.g. `DRAFT`, `IN_REVIEW`, `APPROVED`, `IMPLEMENTED`). |\n| `type` | `IS_ANY_OF` | Change type. |\n| `assignee_id` | `IS_ANY_OF` | Assigned agent user ID. |\n| `created_at` | `IS_BETWEEN` | Creation timestamp (ISO 8601). |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"status\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": \"DRAFT\"\n      },\n      {\n        \"value\": \"IN_REVIEW\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"created_at\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": \"2024-01-01T00:00:00Z\"\n      },\n      {\n        \"value\": \"2024-12-31T23:59:59Z\"\n      }\n    ]\n  }\n]\n```\n"
+      tags:
+      - changeManagement
+      parameters:
+      - name: workspace_id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: filter_name
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: sort_order
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostParametersSortOrder'
+      - name: sort
+        in: query
+        description: 'Comma-separated sort keys as `field:direction` (e.g. `status:asc,created_at:desc`), up to 2 keys. Field keys come from GET /views/CHANGE/fields (entries with `sortable: true`). Takes precedence over `sort_order`. Invalid/unknown fields -> 400.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: paginate
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Change Management_postapi_v1_workspaces__workspace_id__change_management_changes_list_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItems'
+components:
+  schemas:
+    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostParametersSortOrder
+    ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaType
+    Change Management_getapi_v1_change_management_changes__display_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_getapi_v1_change_management_changes__display_id_Response_200
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsType
+    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
+      type: string
+      enum:
+      - EQUALS
+      - NOT_EQUALS
+      - CONTAINS
+      - NOT_CONTAINS
+      - IN
+      - NOT_IN
+      - GREATER_THAN
+      - LESS_THAN
+      - GREATER_THAN_EQUALS
+      - LESS_THAN_EQUALS
+      - IS_BETWEEN
+      - IS_NULL
+      - IS_NOT_NULL
+      - STARTS_WITH
+      - ENDS_WITH
+      - TEXT_CONTAINS
+      - TEXT_DOES_NOT_CONTAINS
+      - IS_ANY_OF
+      - IS_NOT_ANY_OF
+      - IS_EXACTLY
+      - IS_ON_OR_BEFORE
+      - IS_ON_OR_AFTER
+      - IS_WITHIN
+      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsOperator
+    ApiV1AgentChangeManagementChangeTemplatesGetParametersStatus:
+      type: string
+      enum:
+      - PUBLISHED
+      - DRAFT
+      - ARCHIVED
+      title: ApiV1AgentChangeManagementChangeTemplatesGetParametersStatus
+    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
+    Change Management_patchapi_v1_change_management_changes__display_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_patchapi_v1_change_management_changes__display_id_Response_200
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference2:
+      type: object
+      properties:
+        type:
+          type: string
+        issue_id:
+          type: string
+      required:
+      - type
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference2
+    Change Management_getapi_v1_change_management_changes__display_id__activity_notes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_getapi_v1_change_management_changes__display_id__activity_notes_Response_200
+    Change Management_postapi_v1_change_management_changes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_postapi_v1_change_management_changes_Response_200
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaCustomFields:
+      type: object
+      properties: {}
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaCustomFields
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSource:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSource
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaConversationInfo:
+      type: object
+      properties:
+        channel_name:
+          type: string
+        channel_id:
+          type: string
+        start_timestamp:
+          type: string
+          format: unix-timestamp
+      required:
+      - start_timestamp
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaConversationInfo
+    Change Management_getapi_v1_change_management_changes__display_id__notes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_getapi_v1_change_management_changes__display_id__notes_Response_200
+    Change Management_postapi_v1_change_management_changes_create_with_files_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_postapi_v1_change_management_changes_create_with_files_Response_200
+    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
+      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItems
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      - RAPID7
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference0:
+      type: object
+      properties:
+        type:
+          type: string
+        project_id:
+          type: string
+        build_id:
+          type: string
+        organization_id:
+          type: string
+        correlation_id:
+          type: string
+        organization_url:
+          type: string
+      required:
+      - type
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference0
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference1:
+      type: object
+      properties:
+        type:
+          type: string
+        project_id:
+          type: string
+        release_id:
+          type: string
+        organization_id:
+          type: string
+        correlation_id:
+          type: string
+        organization_url:
+          type: string
+      required:
+      - type
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference1
+    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference:
+      oneOf:
+      - $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference0'
+      - $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference1'
+      - $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference2'
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference
+    Change Management_postapi_v1_workspaces__workspace_id__change_management_changes_list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_postapi_v1_workspaces__workspace_id__change_management_changes_list_Response_200
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaTemplateFields:
+      type: object
+      properties: {}
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaTemplateFields
+    ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      - RAPID7
+      title: ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaSource
+    Change Management_postapi_v1_change_management_changes__display_id__notes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_postapi_v1_change_management_changes__display_id__notes_Response_200
+    Change Management_getapi_v1_agent_change_management_change_templates_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_getapi_v1_agent_change_management_change_templates_Response_200
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItems:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        description:
+          type: string
+        mentions:
+          type: array
+          items:
+            type: integer
+            format: int64
+        is_private:
+          type: boolean
+          default: false
+        source:
+          $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsSource'
+        type:
+          $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsType'
+        attachments:
+          type: array
+          items:
+            type: integer
+            format: int64
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItems
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

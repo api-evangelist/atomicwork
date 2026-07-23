@@ -1,0 +1,71 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/atomicwork-public-api-openapi.yaml
+note: >
+  Entity graph derived from the OpenAPI tag/path structure and id-reference fields.
+  The API is a workspace-scoped agentic ITSM/ESM platform; Workspace is the root
+  scoping entity for most resources.
+entities:
+- name: Workspace
+  operations: 3
+  root_scope: true
+- name: Request
+  operations: 23
+  kinds: [incident, service_request, general, problem, major_incident]
+  relationships:
+  - {type: belongs_to, target: Workspace, via: workspace_id}
+  - {type: has_many, target: RequestNote, via: request_id}
+  - {type: has_many, target: Follower, via: request_id}
+  - {type: has_many, target: ServiceItemInstance, via: request_id}
+- name: Change
+  operations: 9
+  relationships:
+  - {type: belongs_to, target: Workspace, via: workspace_id}
+  - {type: has_many, target: ChangeNote, via: display_id}
+- name: Problem
+  operations: 7
+  relationships:
+  - {type: belongs_to, target: Workspace, via: workspace_id}
+- name: Asset
+  operations: 9
+  relationships:
+  - {type: belongs_to, target: AssetType, via: asset_type_id}
+  - {type: belongs_to, target: User, via: user_id}
+  - {type: has_many, target: AssetActivity, via: asset_id}
+- name: User
+  operations: 14
+  relationships:
+  - {type: has_many, target: Workspace, via: workspace assignment}
+  - {type: has_many, target: Asset, via: user_id}
+- name: ServiceCatalogItem
+  operations: 10
+  relationships:
+  - {type: belongs_to, target: Workspace, via: workspace_id}
+- name: Workflow
+  operations: 14
+  relationships:
+  - {type: belongs_to, target: Workspace, via: workspace_id}
+- name: IgaGrant
+  operations: 5
+  relationships:
+  - {type: belongs_to, target: User, via: user_id}
+  - {type: belongs_to, target: IgaEntitlement, via: entitlement_id}
+  - {type: belongs_to, target: IgaPolicy, via: policy_id}
+- name: IgaEntitlement
+  operations: 2
+  relationships:
+  - {type: belongs_to, target: IgaApp, via: app_id}
+- name: IgaPolicy
+  operations: 1
+- name: CustomObject
+  operations: 11
+  relationships:
+  - {type: belongs_to, target: ObjectType, via: object_type}
+- name: Tag
+  operations: 5
+- name: AgentGroup
+  operations: 4
+- name: AuditLog
+  operations: 3
+  relationships:
+  - {type: belongs_to, target: Workspace, via: workspace_id}

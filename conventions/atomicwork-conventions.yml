@@ -1,0 +1,48 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.atomicwork.com/api-reference/introduction
+authentication:
+  style: api-key
+  header: X-Api-Key
+  workspace_header: X-Workspace-Id
+  see: authentication/atomicwork-authentication.yml
+base_url:
+  template: https://{tenant}.atomicwork.com/api/v1
+  note: Per-tenant subdomain; replace {tenant} with the Atomicwork workspace subdomain.
+versioning:
+  scheme: uri-path
+  current: v1
+  note: A v2 variant exists for a few request endpoints (e.g. GET /api/v1/requests/v2/{requestId}).
+  see: lifecycle/atomicwork-lifecycle.yml
+pagination:
+  styles:
+  - style: offset
+    params: [page, per_page]
+    defaults: {per_page: 25, max_per_page: 100}
+    note: page is 1-indexed.
+  - style: cursor
+    response_field: next_page_token
+    note: Pass next_page_token on the next request; absence signals the last page.
+filtering:
+  location: request body (array) or a `filters` field on the request object
+  shape:
+    attribute: field name
+    operator: "e.g. IS_ANY_OF, IS_BETWEEN"
+    values: "array of {value: <x>} objects"
+  note: Supported attributes/operators are documented per endpoint.
+error_envelope:
+  format: custom-json
+  shape: {error: human-readable message, code: ERROR_CODE}
+  problem_json: false
+  see: errors/atomicwork-problem-types.yml
+rate_limiting:
+  signal: 429 with Retry-After header
+  note: Retry after the number of seconds in the Retry-After response header.
+idempotency:
+  supported: false
+  note: No idempotency-key header or parameter is documented in the API or spec.
+request_tracing:
+  documented: false
+metadata:
+  custom_objects: true
+  note: Custom Objects and custom field definitions extend core entities (requests, assets).

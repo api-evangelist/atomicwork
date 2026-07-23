@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Atomicwork Public API
+  version: 1.0.0
+extends: openapi/atomicwork-public-api-openapi.yaml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-18'
+    x-api-key-header: X-Api-Key
+    x-workspace-header: X-Workspace-Id
+    x-status-page: https://status.atomicwork.com
+    x-trust-center: https://trust.atomicwork.com/
+    x-mcp-server: https://developers.atomicwork.com/_mcp/server
+- target: $.info
+  update:
+    x-pagination:
+      offset: {params: [page, per_page], per_page_default: 25, per_page_max: 100}
+      cursor: {response_field: next_page_token}
+    x-error-envelope: {error: string, code: string}
+    x-rate-limit-signal: 429 with Retry-After header
+    x-idempotency-supported: false

@@ -1,0 +1,762 @@
+openapi: 3.1.0
+info:
+  title: Atomicwork Public accessManagement forms API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: forms
+paths:
+  /api/v1/forms/changes:
+    get:
+      operationId: getapi-v-1-forms-changes
+      summary: Get change fields applicable (visible) to current user
+      tags:
+      - forms
+      parameters:
+      - name: workspace_id
+        in: query
+        description: The workspace id
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: change_template_id
+        in: query
+        description: The change template ID
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: change_id
+        in: query
+        description: The change display ID
+        required: false
+        schema:
+          type: string
+      - name: view
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsChangesGetParametersView'
+      - name: status_value
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: event_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsChangesGetParametersEventType'
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forms_getapi_v1_forms_changes_Response_200'
+  /api/v1/forms/requests:
+    get:
+      operationId: getapi-v-1-forms-requests
+      summary: Get request fields applicable (visible) to current user
+      tags:
+      - forms
+      parameters:
+      - name: request_form_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsRequestsGetParametersRequestFormType'
+      - name: request_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsRequestsGetParametersRequestType'
+      - name: supported_objects
+        in: query
+        description: The supported object type. Takes precedence over request_type if both are provided.
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsRequestsGetParametersSupportedObjects'
+      - name: workspace_id
+        in: query
+        description: The workspace id
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: request_id
+        in: query
+        description: The request display ID
+        required: false
+        schema:
+          type: string
+      - name: service_item_ids
+        in: query
+        description: The service item ids if service request is being created
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      - name: catalog_item_ids
+        in: query
+        description: The catalogue item fields if catalogue request is being created, we will depreciate(service_item_ids) this soon.
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      - name: channel_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsRequestsGetParametersChannelType'
+      - name: channel_id
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: view
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsRequestsGetParametersView'
+      - name: status_value
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forms_getapi_v1_forms_requests_Response_200'
+  /api/v1/forms/custom-form-template/{form_id}:
+    get:
+      operationId: getapi-v-1-forms-custom-form-template-form-id
+      summary: Get request fields applicable (visible) to current user
+      tags:
+      - forms
+      parameters:
+      - name: form_id
+        in: path
+        description: The custom form id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: context_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsCustomFormTemplateFormIdGetParametersContextType'
+      - name: context_id
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forms_getapi_v1_forms_custom_form_template__form_id_Response_200'
+  /api/v1/forms/{entity_type}/{reference_key}/options:
+    get:
+      operationId: getapi-v-1-forms-entity-type-reference-key-options
+      summary: Get list of options for the field identified by reference_key
+      tags:
+      - forms
+      parameters:
+      - name: entity_type
+        in: path
+        description: ''
+        required: true
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersEntityType'
+      - name: reference_key
+        in: path
+        description: The reference key of a dropdown, multi dropdown, nested dropdown field
+        required: true
+        schema:
+          type: string
+      - name: workspace_id
+        in: query
+        description: The workspace id
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: request_sub_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersRequestSubType'
+      - name: request_id
+        in: query
+        description: The request display ID
+        required: false
+        schema:
+          type: string
+      - name: entity_id
+        in: query
+        description: The service item id in case entity_type is SERVICE_ITEM
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: parent_option_id
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: selected_option_ids
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: view
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersView'
+      - name: is_flattened_nested_field_required
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: include_any
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: is_value_required_as_id
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: field_entity_source
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersFieldEntitySource'
+      - name: external_field_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersExternalFieldType'
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forms_getapi_v1_forms__entity_type___reference_key__options_Response_200'
+  /api/v1/forms/{entity_type}/{reference_key}/entities:
+    get:
+      operationId: getapi-v-1-forms-entity-type-reference-key-entities
+      summary: Get list of options for the field identified by reference_key
+      tags:
+      - forms
+      parameters:
+      - name: entity_type
+        in: path
+        description: ''
+        required: true
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersEntityType'
+      - name: reference_key
+        in: path
+        description: The reference key of a entity reference field
+        required: true
+        schema:
+          type: string
+      - name: workspace_id
+        in: query
+        description: The workspace id
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: request_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersRequestType'
+      - name: request_id
+        in: query
+        description: The request display id
+        required: false
+        schema:
+          type: string
+      - name: entity_id
+        in: query
+        description: The service item id in case entity_type is SERVICE_ITEM
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: parent_option_id
+        in: query
+        description: The parent option ID to query for child options
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: selected_options_ids
+        in: query
+        description: Deprecated, DO NOT USE. This was a typo. Use selected_option_ids instead.
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      - name: selected_option_ids
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      - name: is_flattened_nested_field_required
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: view
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersView'
+      - name: is_workspace_member
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      - name: subview
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersSubview'
+      - name: should_have_system_user
+        in: query
+        description: Include system users and bots in the response (SYSTEM and ATOMIC_BOT types)
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: user_type
+        in: query
+        description: 'Narrows the assignee/agent picker to a single user category. EMPLOYEE returns human
+
+          users only, AI_EMPLOYEE returns AI coworkers only. These are the only two values used by
+
+          the picker tabs. When omitted, humans and AI coworkers are returned together (current
+
+          behavior). Any other enum value (e.g. EXTERNAL) is filtered as-is and yields no assignable
+
+          users, since external users are not valid assignees. Applied only to the user-flavoured
+
+          assignee resolution path; ignored for every other entity type.
+
+          '
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersUserType'
+      - name: template_id
+        in: query
+        description: 'Change template ID. When entity_type=CHANGE and reference_key=requester,
+
+          filters the response to workspace members allowed by the template''s
+
+          user_segments (workspace agents always included). Ignored otherwise.
+
+          '
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forms_getapi_v1_forms__entity_type___reference_key__entities_Response_200'
+components:
+  schemas:
+    ApiV1FormsChangesGetParametersView:
+      type: string
+      enum:
+      - CREATE_CHANGE_FORM
+      - CHANGE_DETAILS
+      - CHANGE_LIST
+      - UPDATE_CHANGE_ATTRIBUTES_ACTION_CONFIG_FORM
+      - CHANGE_ATTRIBUTE_PLACEHOLDERS
+      - CHANGE_TEMPLATE_ATTRIBUTES_SETTINGS
+      title: ApiV1FormsChangesGetParametersView
+    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersFieldEntitySource:
+      type: string
+      enum:
+      - JSM
+      - SERVICE_NOW
+      - INTERNAL
+      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersFieldEntitySource
+    Forms_getapi_v1_forms_requests_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Forms_getapi_v1_forms_requests_Response_200
+    Forms_getapi_v1_forms_custom_form_template__form_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Forms_getapi_v1_forms_custom_form_template__form_id_Response_200
+    Forms_getapi_v1_forms_changes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Forms_getapi_v1_forms_changes_Response_200
+    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - INCIDENT
+      - PROBLEM_REQUEST
+      - PROBLEM
+      - USER
+      - SERVICE_ITEM
+      - CUSTOM_FORM
+      - SURVEY
+      - ASSET
+      - CHANGE
+      - CHANGE_TEMPLATE
+      - CUSTOM_OBJECT
+      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersEntityType
+    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersRequestType:
+      type: string
+      enum:
+      - REQUEST
+      - INCIDENT
+      - SERVICE_REQUEST
+      - PROBLEM
+      - CHANGE
+      - MAJOR_INCIDENT
+      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersRequestType
+    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersExternalFieldType:
+      type: string
+      enum:
+      - USER
+      - PROFORMA
+      description: JSM (Jira Service Management) field type identifier
+      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersExternalFieldType
+    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersView:
+      type: string
+      enum:
+      - HOME
+      - WORKFLOW
+      - JOURNEY
+      - LIST
+      - INSIGHTS
+      - CUSTOM_SLA
+      - ASSET_LIST
+      - RELATIONSHIP_ATTRIBUTE
+      - SCHEDULE_WORKFLOW
+      - SEARCH
+      - NOTIFICATIONS
+      - ASSET_RELATIONSHIPS
+      - USER_SEGMENTS
+      - MULTI_SOURCE_SYNC
+      - MAJOR_INCIDENT_CREATE
+      - APPROVERS
+      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersView
+    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersView:
+      type: string
+      enum:
+      - HOME
+      - WORKFLOW
+      - JOURNEY
+      - LIST
+      - INSIGHTS
+      - CUSTOM_SLA
+      - ASSET_LIST
+      - RELATIONSHIP_ATTRIBUTE
+      - SCHEDULE_WORKFLOW
+      - SEARCH
+      - NOTIFICATIONS
+      - ASSET_RELATIONSHIPS
+      - USER_SEGMENTS
+      - MULTI_SOURCE_SYNC
+      - MAJOR_INCIDENT_CREATE
+      - APPROVERS
+      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersView
+    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersSubview:
+      type: string
+      enum:
+      - CONDITION
+      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersSubview
+    ApiV1FormsChangesGetParametersEventType:
+      type: string
+      enum:
+      - CREATE
+      - VIEW_OR_UPDATE
+      - VIEW
+      - UPDATE
+      - CLOSE
+      title: ApiV1FormsChangesGetParametersEventType
+    ApiV1FormsCustomFormTemplateFormIdGetParametersContextType:
+      type: string
+      enum:
+      - JOURNEY
+      - WORKFLOW
+      - CHANGE_TEMPLATE
+      - PROBLEM_REQUEST
+      - CHANGE
+      - REQUEST
+      title: ApiV1FormsCustomFormTemplateFormIdGetParametersContextType
+    Forms_getapi_v1_forms__entity_type___reference_key__options_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Forms_getapi_v1_forms__entity_type___reference_key__options_Response_200
+    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - INCIDENT
+      - PROBLEM_REQUEST
+      - PROBLEM
+      - USER
+      - SERVICE_ITEM
+      - CUSTOM_FORM
+      - SURVEY
+      - ASSET
+      - CHANGE
+      - CHANGE_TEMPLATE
+      - CUSTOM_OBJECT
+      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersEntityType
+    ApiV1FormsRequestsGetParametersRequestFormType:
+      type: string
+      enum:
+      - REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - SERVICE_REQUEST
+      - PROBLEM_REQUEST
+      title: ApiV1FormsRequestsGetParametersRequestFormType
+    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersUserType:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersUserType
+    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersRequestSubType:
+      type: string
+      enum:
+      - REQUEST
+      - INCIDENT
+      - SERVICE_REQUEST
+      - PROBLEM
+      - CHANGE
+      - MAJOR_INCIDENT
+      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersRequestSubType
+    Forms_getapi_v1_forms__entity_type___reference_key__entities_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Forms_getapi_v1_forms__entity_type___reference_key__entities_Response_200
+    ApiV1FormsRequestsGetParametersView:
+      type: string
+      enum:
+      - HOME
+      - WORKFLOW
+      - JOURNEY
+      - LIST
+      - INSIGHTS
+      - CUSTOM_SLA
+      - ASSET_LIST
+      - RELATIONSHIP_ATTRIBUTE
+      - SCHEDULE_WORKFLOW
+      - SEARCH
+      - NOTIFICATIONS
+      - ASSET_RELATIONSHIPS
+      - USER_SEGMENTS
+      - MULTI_SOURCE_SYNC
+      - MAJOR_INCIDENT_CREATE
+      - APPROVERS
+      title: ApiV1FormsRequestsGetParametersView
+    ApiV1FormsRequestsGetParametersChannelType:
+      type: string
+      enum:
+      - SLACK
+      - MS_TEAMS
+      - EMAIL
+      - ATOMICINBOX
+      - UNIVERSAL_AGENT
+      title: ApiV1FormsRequestsGetParametersChannelType
+    ApiV1FormsRequestsGetParametersRequestType:
+      type: string
+      enum:
+      - REQUEST
+      - INCIDENT
+      - SERVICE_REQUEST
+      - PROBLEM
+      - CHANGE
+      - MAJOR_INCIDENT
+      title: ApiV1FormsRequestsGetParametersRequestType
+    ApiV1FormsRequestsGetParametersSupportedObjects:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT
+      - PROBLEM
+      - CHANGE
+      title: ApiV1FormsRequestsGetParametersSupportedObjects
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

@@ -1,0 +1,596 @@
+openapi: 3.1.0
+info:
+  title: Atomicwork Public accessManagement problems API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: problems
+paths:
+  /api/v1/problems:
+    post:
+      operationId: postapi-v-1-problems
+      summary: Create problem request
+      tags:
+      - problems
+      parameters:
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problems_postapi_v1_problems_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                request_type:
+                  type: string
+                request_source:
+                  $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestSource'
+                description:
+                  type: string
+                email_content:
+                  type: string
+                plain_text_description_override:
+                  type: string
+                  description: 'Internal-only override for the persisted plain-text rendering of the description. When non-empty, AbstractRequestService persists it as RequestDetail.description instead of running HTMLSanitizerUtil.getPlainText() on the HTML description.
+
+                    Set ONLY by the email ingestion path (EmailIntentBasedRequestCreationService), which derives it from reqDescription via normalizeHtmlToPlainText(getPlainTextForRichHtml(...)) so system-generated HTML emails (BlackLine offboarding, etc.) avoid mashed table cells and blank-line storms.
+
+                    Annotated @JsonIgnore so external HTTP clients cannot set it via the request body — without that annotation, any caller of POST /requests, /service-requests, /incidents could write arbitrary unsanitized text into RequestDetail.description, bypassing the getPlainText() pipeline. The Lombok @SuperBuilder still exposes a setter for in-process Java callers (the email path), since builder access does not go through Jackson.
+
+                    '
+                status:
+                  type: string
+                priority:
+                  type: string
+                parent_request_id:
+                  type: integer
+                  format: int64
+                agent_group:
+                  type: integer
+                  format: int64
+                assignee:
+                  type: integer
+                  format: int64
+                subject:
+                  type: string
+                notes:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItems'
+                workspace_id:
+                  type: integer
+                  format: int64
+                conversation_info:
+                  $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaConversationInfo'
+                tags:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                cc_emails:
+                  type: array
+                  items:
+                    type: string
+                bcc_emails:
+                  type: array
+                  items:
+                    type: string
+                attachments:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                requester:
+                  type: integer
+                  format: int64
+                to_email:
+                  type: string
+                request_created_from:
+                  $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom'
+                custom_fields:
+                  $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaCustomFields'
+                created_at:
+                  type: string
+                  format: date-time
+                updated_at:
+                  type: string
+                  format: date-time
+                external_id:
+                  type: string
+                external_source:
+                  $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaExternalSource'
+                resolution_time:
+                  type: string
+                  format: date-time
+                  description: 'When the ticket was resolved in the source system. Only accepted during migration (requires external_id or external_source).
+
+                    '
+                first_response_time:
+                  type: string
+                  format: date-time
+                  description: 'When the first agent response occurred in the source system. Only accepted during migration (requires external_id or external_source).
+
+                    '
+                first_response_due_time:
+                  type: string
+                  format: date-time
+                  description: 'SLA due time for first response from the source system. Only accepted during migration (requires external_id or external_source).
+
+                    '
+                resolution_due_time:
+                  type: string
+                  format: date-time
+                  description: 'SLA due time for resolution from the source system. Only accepted during migration (requires external_id or external_source).
+
+                    '
+                closed_status_at:
+                  type: string
+                  format: date-time
+                  description: 'When the ticket was moved to closed status in the source system. Only accepted during migration (requires external_id or external_source). When provided with a closed status, also sets resolution_time if not explicitly provided.
+
+                    '
+                item_id:
+                  type: integer
+                  format: int64
+                item_fields:
+                  $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaItemFields'
+                impact:
+                  type: string
+                urgency:
+                  type: string
+                category:
+                  type: string
+                subcategory:
+                  type: string
+                assets:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+  /api/v1/problems/{display_id}/assessment-form:
+    get:
+      operationId: getapi-v-1-problems-display-id-assessment-form
+      summary: Retrieve Problem Request Assessment Form
+      tags:
+      - problems
+      parameters:
+      - name: display_id
+        in: path
+        description: The problem ID
+        required: true
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problems_getapi_v1_problems__display_id__assessment_form_Response_200'
+    post:
+      operationId: postapi-v-1-problems-display-id-assessment-form
+      summary: Update Problem Request Assessment Form
+      tags:
+      - problems
+      parameters:
+      - name: display_id
+        in: path
+        description: The problem ID
+        required: true
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problems_postapi_v1_problems__display_id__assessment_form_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                form_fields:
+                  $ref: '#/components/schemas/ApiV1ProblemsDisplayIdAssessmentFormPostRequestBodyContentApplicationJsonSchemaFormFields'
+              required:
+              - form_fields
+  /api/v1/problems/{display_id}/tasks:
+    get:
+      operationId: getapi-v-1-problems-display-id-tasks
+      summary: Retrieve Problem Request Tasks
+      tags:
+      - problems
+      parameters:
+      - name: display_id
+        in: path
+        description: The problem ID
+        required: true
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problems_getapi_v1_problems__display_id__tasks_Response_200'
+    post:
+      operationId: postapi-v-1-problems-display-id-tasks
+      summary: Create task for problem request
+      tags:
+      - problems
+      parameters:
+      - name: display_id
+        in: path
+        description: The problem ID
+        required: true
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problems_postapi_v1_problems__display_id__tasks_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                due_date:
+                  type: string
+                  format: date
+                assignee:
+                  type: integer
+                  format: int64
+                status:
+                  $ref: '#/components/schemas/ApiV1ProblemsDisplayIdTasksPostRequestBodyContentApplicationJsonSchemaStatus'
+  /api/v1/problems/{display_id}/tasks/{task_id}:
+    get:
+      operationId: getapi-v-1-problems-display-id-tasks-task-id
+      summary: Retrieve Problem Request Task
+      tags:
+      - problems
+      parameters:
+      - name: display_id
+        in: path
+        description: The problem ID
+        required: true
+        schema:
+          type: string
+      - name: task_id
+        in: path
+        description: The task ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problems_getapi_v1_problems__display_id__tasks__task_id_Response_200'
+    put:
+      operationId: putapi-v-1-problems-display-id-tasks-task-id
+      summary: Update Problem Request Task
+      tags:
+      - problems
+      parameters:
+      - name: display_id
+        in: path
+        description: The problem ID
+        required: true
+        schema:
+          type: string
+      - name: task_id
+        in: path
+        description: The task ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problems_putapi_v1_problems__display_id__tasks__task_id_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                due_date:
+                  type: string
+                  format: date
+                assignee:
+                  type: integer
+                  format: int64
+                status:
+                  $ref: '#/components/schemas/ApiV1ProblemsDisplayIdTasksTaskIdPutRequestBodyContentApplicationJsonSchemaStatus'
+components:
+  schemas:
+    Problems_postapi_v1_problems_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_postapi_v1_problems_Response_200
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaCustomFields:
+      type: object
+      properties: {}
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaCustomFields
+    ApiV1ProblemsDisplayIdTasksTaskIdPutRequestBodyContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - OPEN
+      - IN_PROGRESS
+      - COMPLETE
+      title: ApiV1ProblemsDisplayIdTasksTaskIdPutRequestBodyContentApplicationJsonSchemaStatus
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaItemFields:
+      type: object
+      properties: {}
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaItemFields
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaConversationInfo:
+      type: object
+      properties:
+        channel_name:
+          type: string
+        channel_id:
+          type: string
+        start_timestamp:
+          type: string
+          format: unix-timestamp
+      required:
+      - start_timestamp
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaConversationInfo
+    Problems_getapi_v1_problems__display_id__tasks__task_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_getapi_v1_problems__display_id__tasks__task_id_Response_200
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaExternalSource:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaExternalSource
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestSource
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType:
+      type: string
+      enum:
+      - REQUEST_SETTINGS
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType
+    Problems_postapi_v1_problems__display_id__assessment_form_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_postapi_v1_problems__display_id__assessment_form_Response_200
+    Problems_getapi_v1_problems__display_id__tasks_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_getapi_v1_problems__display_id__tasks_Response_200
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType'
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsType
+    Problems_putapi_v1_problems__display_id__tasks__task_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_putapi_v1_problems__display_id__tasks__task_id_Response_200
+    Problems_getapi_v1_problems__display_id__assessment_form_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_getapi_v1_problems__display_id__assessment_form_Response_200
+    Problems_postapi_v1_problems__display_id__tasks_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_postapi_v1_problems__display_id__tasks_Response_200
+    ApiV1ProblemsDisplayIdTasksPostRequestBodyContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - OPEN
+      - IN_PROGRESS
+      - COMPLETE
+      title: ApiV1ProblemsDisplayIdTasksPostRequestBodyContentApplicationJsonSchemaStatus
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType
+    ApiV1ProblemsDisplayIdAssessmentFormPostRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      title: ApiV1ProblemsDisplayIdAssessmentFormPostRequestBodyContentApplicationJsonSchemaFormFields
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItems:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        conversation_id:
+          type: integer
+          format: int64
+          description: When set, the reply is mirrored into this conversation's thread (UAG).
+        description:
+          type: string
+        mentions:
+          type: array
+          items:
+            type: integer
+            format: int64
+        is_private:
+          type: boolean
+          default: false
+        source:
+          $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource'
+        type:
+          $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsType'
+        attachments:
+          type: array
+          items:
+            type: integer
+            format: int64
+        cc_emails:
+          type: array
+          items:
+            type: string
+        bcc_emails:
+          type: array
+          items:
+            type: string
+        is_broadcast:
+          type: boolean
+          default: false
+        external_id:
+          type: string
+        external_source_type:
+          $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType'
+        email_content:
+          type: string
+        event_created_at:
+          type: string
+          format: date-time
+          description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItems
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

@@ -1,0 +1,21 @@
+generated: '2026-07-18'
+method: searched
+host: https://developers.atomicwork.com
+documents:
+- path: /.well-known/api-catalog
+  status: 200
+  file: atomicwork-api-catalog.json
+  note: RFC 9727 API catalog (linkset) pointing at the Atomicwork Public API OpenAPI service-desc.
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+other_hosts_probed:
+- host: https://www.atomicwork.com
+  results: {security.txt: 404, api-catalog: 404}
+- host: https://atomicwork.com
+  results: {security.txt: 404, api-catalog: 404}

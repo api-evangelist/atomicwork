@@ -1,0 +1,17 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.atomicwork.com/api-reference/introduction
+versioning:
+  scheme: uri-path
+  current: v1
+  note: >
+    Version is carried in the URL path (/api/v1/...). A v2 variant exists for a
+    small number of request endpoints (e.g. /api/v1/requests/v2/{requestId}).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is documented.
+sla:
+  url: null
+status_page: https://status.atomicwork.com
+deprecated_operations: []

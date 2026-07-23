@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+probe: true
+url: https://trust.atomicwork.com/
+compliance_page: https://trust.atomicwork.com/compliance
+security_page: https://www.atomicwork.com/security
+certifications:
+- SOC 2 Type 1
+- SOC 2 Type 2
+- ISO 27001
+- ISO 27017
+- ISO 27018
+- ISO 27701
+- ISO 42001
+- HIPAA
+- GDPR
+- CCPA
+- CSA STAR Level 1
+- Microsoft 365 Certification
+- CASA Tier 3
+data_residency: Data residency options in approved regions on secure cloud infrastructure.
+evidence:
+- source: https://www.atomicwork.com/security
+  keywords: [soc 2 type 2, iso 27001, iso 42001, hipaa, gdpr, trust center]
+- source: https://trust.atomicwork.com/
+  note: Live trust center (returns 403 to automated fetchers; confirmed via security page + public announcements).

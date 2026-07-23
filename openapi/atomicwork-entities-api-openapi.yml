@@ -1,0 +1,217 @@
+openapi: 3.1.0
+info:
+  title: Atomicwork Public accessManagement entities API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: entities
+paths:
+  /api/v1/entities/{entity_type}/{display_id}/links:
+    get:
+      operationId: getapi-v-1-entities-entity-type-display-id-links
+      summary: Get all linked entities with relationship information
+      tags:
+      - entities
+      parameters:
+      - name: entity_type
+        in: path
+        description: The entity type (e.g. REQUEST, CHANGE)
+        required: true
+        schema:
+          $ref: '#/components/schemas/ApiV1EntitiesEntityTypeDisplayIdLinksGetParametersEntityType'
+      - name: display_id
+        in: path
+        description: The display ID of the source entity (e.g. REQ-123, CHG-456)
+        required: true
+        schema:
+          type: string
+      - name: reference_key
+        in: query
+        description: Reference key of the implicit relationship field definition
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number for pagination
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of items per page
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: search_key
+        in: query
+        description: Search keyword to filter linked entities by display ID or subject
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entities_getapi_v1_entities__entity_type___display_id__links_Response_200'
+    post:
+      operationId: postapi-v-1-entities-entity-type-display-id-links
+      summary: Link multiple entities at once
+      description: 'Creates multiple relationships between the source entity and target entities.
+
+        Each link can be a different relationship type and direction.
+
+        '
+      tags:
+      - entities
+      parameters:
+      - name: entity_type
+        in: path
+        description: The entity type (e.g. REQUEST, CHANGE)
+        required: true
+        schema:
+          $ref: '#/components/schemas/ApiV1EntitiesEntityTypeDisplayIdLinksPostParametersEntityType'
+      - name: display_id
+        in: path
+        description: The display ID of the source entity (e.g. REQ-123, CHG-456)
+        required: true
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entities_postapi_v1_entities__entity_type___display_id__links_Response_200'
+      requestBody:
+        description: 'Links multiple entities to a source entity, grouped by target entity type.
+
+          The source entity type is determined by the path parameter (e.g., /requests/{id} → REQUEST).
+
+          For implicit reference keys, source and target directions are swapped automatically.
+
+          '
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reference_key:
+                  type: string
+                  description: Reference key of the relationship (e.g., "relates", "blocks", "causes", or "implicit_causes")
+                entities:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItems'
+                  description: List of entity groups to link, each specifying a target entity type and its display IDs
+              required:
+              - reference_key
+              - entities
+components:
+  schemas:
+    Entities_getapi_v1_entities__entity_type___display_id__links_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Entities_getapi_v1_entities__entity_type___display_id__links_Response_200
+    Entities_postapi_v1_entities__entity_type___display_id__links_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Entities_postapi_v1_entities__entity_type___display_id__links_Response_200
+    ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - CHANGE
+      - SERVICE_REQUEST
+      - INCIDENT
+      - PROBLEM
+      description: The entity type of the target display IDs
+      title: ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType
+    ApiV1EntitiesEntityTypeDisplayIdLinksGetParametersEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - INCIDENT
+      - PROBLEM_REQUEST
+      - PROBLEM
+      - USER
+      - SERVICE_ITEM
+      - CUSTOM_FORM
+      - SURVEY
+      - ASSET
+      - CHANGE
+      - CHANGE_TEMPLATE
+      - CUSTOM_OBJECT
+      title: ApiV1EntitiesEntityTypeDisplayIdLinksGetParametersEntityType
+    ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItems:
+      type: object
+      properties:
+        entity_type:
+          $ref: '#/components/schemas/ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType'
+          description: The entity type of the target display IDs
+        display_ids:
+          type: array
+          items:
+            type: string
+          description: List of target entity display IDs to link (e.g., REQ-123, CHG-456)
+      required:
+      - entity_type
+      - display_ids
+      description: A group of entities of the same type to link
+      title: ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItems
+    ApiV1EntitiesEntityTypeDisplayIdLinksPostParametersEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - INCIDENT
+      - PROBLEM_REQUEST
+      - PROBLEM
+      - USER
+      - SERVICE_ITEM
+      - CUSTOM_FORM
+      - SURVEY
+      - ASSET
+      - CHANGE
+      - CHANGE_TEMPLATE
+      - CUSTOM_OBJECT
+      title: ApiV1EntitiesEntityTypeDisplayIdLinksPostParametersEntityType
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

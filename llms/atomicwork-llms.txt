@@ -1,0 +1,161 @@
+# Atomicwork Developer Documentation
+
+> Programmatic access to the Atomicwork agentic service management platform. Manage requests, assets, users, workflows, and identity governance through REST APIs and MCP tools.
+
+For clean Markdown of any page, append .md to the page URL.
+For AI client integration (Claude Code, Cursor, etc.), connect to the MCP server at https://developers.atomicwork.com/_mcp/server.
+
+## API Reference — Overview
+
+- [Introduction](https://developers.atomicwork.com/api-reference/introduction.md): Getting started — authentication, workspace scoping, filtering, pagination, and error handling.
+
+## API Reference — Endpoints
+
+- [Access Management](https://developers.atomicwork.com/api-reference/atomicwork-public-api/access-management.md): Manage IGA grants, apps, and entitlements for identity governance and access provisioning.
+- [Agent Groups](https://developers.atomicwork.com/api-reference/atomicwork-public-api/agent-groups.md): Workspace agent group membership management.
+- [Assets](https://developers.atomicwork.com/api-reference/atomicwork-public-api/assets.md): Asset creation, retrieval, updates, deletion, and activity tracking.
+- [Audit Logs](https://developers.atomicwork.com/api-reference/atomicwork-public-api/audit-logs.md): Query, filter, and export the immutable workspace audit trail.
+- [Business Hour Config](https://developers.atomicwork.com/api-reference/atomicwork-public-api/business-hour-config.md): Business hour configuration management.
+- [Change Management](https://developers.atomicwork.com/api-reference/atomicwork-public-api/change-management.md): Change request creation, updates, and note management.
+- [Forms](https://developers.atomicwork.com/api-reference/atomicwork-public-api/forms.md): Form fields and option listings for requests and changes.
+- [Problems](https://developers.atomicwork.com/api-reference/atomicwork-public-api/problems.md): Problem management and assessment.
+- [Requests](https://developers.atomicwork.com/api-reference/atomicwork-public-api/requests.md): Request lifecycle — incidents, service requests, and general tickets with filtering and follower management.
+- [Service Catalog](https://developers.atomicwork.com/api-reference/atomicwork-public-api/service-catalog.md): Catalog categories, items, and field configuration.
+- [Tags](https://developers.atomicwork.com/api-reference/atomicwork-public-api/tags.md): Tag CRUD operations.
+- [Users](https://developers.atomicwork.com/api-reference/atomicwork-public-api/users.md): User management — invite, create, update, restore, and workspace assignment.
+- [Workflows](https://developers.atomicwork.com/api-reference/atomicwork-public-api/workflows.md): Request automation workflow definitions, actions, conditions, and version management.
+- [Workspaces](https://developers.atomicwork.com/api-reference/atomicwork-public-api/workspaces.md): Workspace listing, details, and member management.
+
+## MCP Tools — Getting Started
+
+- [Introduction](https://developers.atomicwork.com/mcp-tools/introduction.md): Overview of the Atomicwork MCP server — capabilities, setup, and supported clients.
+- [Connect Overview](https://developers.atomicwork.com/mcp-tools/connect-your-client/overview.md): How to connect your AI client to the Atomicwork MCP server.
+- [Claude Code](https://developers.atomicwork.com/mcp-tools/connect-your-client/claude-code.md): Connect Claude Code CLI to Atomicwork.
+- [Claude Desktop](https://developers.atomicwork.com/mcp-tools/connect-your-client/claude-desktop.md): Connect Claude Desktop to Atomicwork.
+- [Cursor](https://developers.atomicwork.com/mcp-tools/connect-your-client/cursor.md): Connect Cursor to Atomicwork.
+- [VS Code / Copilot](https://developers.atomicwork.com/mcp-tools/connect-your-client/vs-code-copilot.md): Connect VS Code with GitHub Copilot to Atomicwork.
+- [OpenAI Codex](https://developers.atomicwork.com/mcp-tools/connect-your-client/open-ai-codex.md): Connect OpenAI Codex to Atomicwork.
+
+## MCP Tools — Requests & Tickets
+
+- [createGeneralRequest](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-creation/create-general-request.md): Create a standard IT support request.
+- [createIncident](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-creation/create-incident.md): Create an incident for outages or security issues.
+- [createProblem](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-creation/create-problem.md): Create a problem for root cause investigation.
+- [createServiceRequest](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-creation/create-service-request.md): Create a service catalog request.
+- [listRequests](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-retrieval-search/list-requests.md): Filter tickets by status, priority, assignee, dates, SLA.
+- [getRequest](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-retrieval-search/get-request.md): Get a single ticket by display ID.
+- [searchEntities](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-retrieval-search/search-entities.md): Full-text search across requests, users, assets, changes.
+- [searchEntitiesByType](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-retrieval-search/search-entities-by-type.md): Search entities filtered by type.
+- [updateGeneralRequest](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-updates/update-general-request.md): Update a general request.
+- [updateIncident](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-updates/update-incident.md): Update an incident.
+- [updateProblem](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-updates/update-problem.md): Update a problem.
+- [updateServiceRequest](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-updates/update-service-request.md): Update a service request.
+- [moveRequestAsGeneral](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-movement/move-request-as-general.md): Move a ticket to general request type.
+- [moveRequestAsIncident](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-movement/move-request-as-incident.md): Move a ticket to incident type.
+- [moveRequestAsServiceRequest](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-movement/move-request-as-service-request.md): Move a ticket to service request type.
+- [moveRequestAsProblem](https://developers.atomicwork.com/mcp-tools/requests-tickets/ticket-movement/move-request-as-problem.md): Move a ticket to problem type.
+- [getRequestFormFields](https://developers.atomicwork.com/mcp-tools/requests-tickets/forms-field-options/get-request-form-fields.md): Get form schema for creating or editing tickets.
+- [getFormFieldEntities](https://developers.atomicwork.com/mcp-tools/requests-tickets/forms-field-options/get-form-field-entities.md): Get options for entity reference fields.
+- [getFormFieldOptions](https://developers.atomicwork.com/mcp-tools/requests-tickets/forms-field-options/get-form-field-options.md): Get options for dropdown fields.
+- [initiateRequestApproval](https://developers.atomicwork.com/mcp-tools/requests-tickets/approvals/initiate-request-approval.md): Start an approval workflow for a request.
+- [listRequestApprovalPolicies](https://developers.atomicwork.com/mcp-tools/requests-tickets/approvals/list-request-approval-policies.md): List available approval policies.
+- [initiateRequestApprovalByPolicy](https://developers.atomicwork.com/mcp-tools/requests-tickets/approvals/initiate-request-approval-by-policy.md): Start approval using a specific policy.
+- [createRequestNote](https://developers.atomicwork.com/mcp-tools/requests-tickets/notes-attachments/create-request-note.md): Add a note to a request.
+- [getRequestNotes](https://developers.atomicwork.com/mcp-tools/requests-tickets/notes-attachments/get-request-notes.md): Retrieve notes for a request.
+- [createAttachmentUploadUrl](https://developers.atomicwork.com/mcp-tools/requests-tickets/notes-attachments/create-attachment-upload-url.md): Generate a pre-signed upload URL for attachments.
+- [createRequestLinks](https://developers.atomicwork.com/mcp-tools/requests-tickets/links-relationships/create-request-links.md): Link requests to other entities.
+- [listRequestLinks](https://developers.atomicwork.com/mcp-tools/requests-tickets/links-relationships/list-request-links.md): List links for a request.
+- [removeRequestLink](https://developers.atomicwork.com/mcp-tools/requests-tickets/links-relationships/remove-request-link.md): Remove a link from a request.
+- [bulkModifyRequestLinks](https://developers.atomicwork.com/mcp-tools/requests-tickets/links-relationships/bulk-modify-request-links.md): Add or remove multiple request links at once.
+- [getCurrentUser](https://developers.atomicwork.com/mcp-tools/requests-tickets/users-workspaces/get-current-user.md): Get the current authenticated user.
+- [listUsers](https://developers.atomicwork.com/mcp-tools/requests-tickets/users-workspaces/list-users.md): List users in the workspace.
+- [getUserDetails](https://developers.atomicwork.com/mcp-tools/requests-tickets/users-workspaces/get-user-details.md): Get details for a specific user.
+- [listWorkspaces](https://developers.atomicwork.com/mcp-tools/requests-tickets/users-workspaces/list-workspaces.md): List all workspaces.
+- [getWorkspaceDetails](https://developers.atomicwork.com/mcp-tools/requests-tickets/users-workspaces/get-workspace-details.md): Get details for a specific workspace.
+- [listViews](https://developers.atomicwork.com/mcp-tools/requests-tickets/users-workspaces/list-views.md): List saved views.
+- [listUserSegments](https://developers.atomicwork.com/mcp-tools/requests-tickets/users-workspaces/list-user-segments.md): List user segments.
+- [listServiceItems](https://developers.atomicwork.com/mcp-tools/requests-tickets/service-catalog/list-service-items.md): List service catalog items.
+- [searchCatalogItems](https://developers.atomicwork.com/mcp-tools/requests-tickets/service-catalog/search-catalog-items.md): Search the service catalog.
+- [searchWorkflowsForRequest](https://developers.atomicwork.com/mcp-tools/requests-tickets/workflows-automations/search-workflows-for-request.md): Find automation workflows applicable to a request.
+- [executeWorkflowForRequest](https://developers.atomicwork.com/mcp-tools/requests-tickets/workflows-automations/execute-workflow-for-request.md): Execute an automation workflow on a request.
+- [searchIgaResources](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/search-iga-resources.md): Search IGA resources.
+- [getIgaPolicies](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/get-iga-policies.md): List IGA policies.
+- [getIgaPolicyEntitlements](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/get-iga-policy-entitlements.md): Get entitlements for an IGA policy.
+- [getIgaEntitlementById](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/get-iga-entitlement-by-id.md): Get a specific IGA entitlement.
+- [getIgaResolvedEntitlements](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/get-iga-resolved-entitlements.md): Get resolved entitlements for a user.
+- [createIgaServiceItemInstance](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/create-iga-service-item-instance.md): Create an IGA service item instance.
+- [validateIgaBusinessJustification](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/validate-iga-business-justification.md): Validate business justification for IGA access.
+- [startIgaBackgroundProvisioning](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/start-iga-background-provisioning.md): Start background provisioning for an IGA grant.
+- [createIgaEntitlement](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/create-iga-entitlement.md): Create a new IGA entitlement.
+- [createIgaPolicy](https://developers.atomicwork.com/mcp-tools/requests-tickets/identity-governance-iga/create-iga-policy.md): Create a new IGA policy.
+- [searchKnowledge](https://developers.atomicwork.com/mcp-tools/requests-tickets/knowledge-search/search-knowledge.md): Search the knowledge base.
+- [checkAppHealthStatus](https://developers.atomicwork.com/mcp-tools/requests-tickets/knowledge-search/check-app-health-status.md): Check application health status.
+- [searchAppHealthStatus](https://developers.atomicwork.com/mcp-tools/requests-tickets/knowledge-search/search-app-health-status.md): Search application health statuses.
+- [listIntegrationCredentials](https://developers.atomicwork.com/mcp-tools/requests-tickets/integrations-http/list-integration-credentials.md): List configured integration credentials.
+- [getIntegrationCredential](https://developers.atomicwork.com/mcp-tools/requests-tickets/integrations-http/get-integration-credential.md): Get a specific integration credential.
+- [executeHttpRequest](https://developers.atomicwork.com/mcp-tools/requests-tickets/integrations-http/execute-http-request.md): Execute an HTTP request through an integration.
+- [createTag](https://developers.atomicwork.com/mcp-tools/requests-tickets/tags/create-tag.md): Create a new tag.
+
+## MCP Tools — AI Coworkers
+
+- [listAiCoworkers](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/list-ai-coworkers.md): List all AI coworkers.
+- [createAiCoworker](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/create-ai-coworker.md): Create a new AI coworker.
+- [getAiCoworker](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/get-ai-coworker.md): Get an AI coworker by ID.
+- [setAiCoworkerProperties](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/set-ai-coworker-properties.md): Set properties on an AI coworker.
+- [updateAiCoworker](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/update-ai-coworker.md): Update an AI coworker.
+- [discardAiCoworkerDraft](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/discard-ai-coworker-draft.md): Discard an AI coworker draft.
+- [publishAiCoworker](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/publish-ai-coworker.md): Publish an AI coworker.
+- [setAiCoworkerAvailability](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/set-ai-coworker-availability.md): Set availability for an AI coworker.
+- [listAiCoworkerVersions](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/list-ai-coworker-versions.md): List AI coworker versions.
+- [getAiCoworkerVersion](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/get-ai-coworker-version.md): Get a specific AI coworker version.
+- [listAiCoworkerSkills](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/list-ai-coworker-skills.md): List skills for an AI coworker.
+- [listAiCoworkerToolCatalog](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/list-ai-coworker-tool-catalog.md): List the AI coworker tool catalog.
+- [getAiCoworkerToolCatalogServer](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/get-ai-coworker-tool-catalog-server.md): Get tool catalog server details.
+- [getAiCoworkerTool](https://developers.atomicwork.com/mcp-tools/requests-tickets/other/get-ai-coworker-tool.md): Get details for a specific AI coworker tool.
+
+## MCP Tools — Assets
+
+- [listAssets](https://developers.atomicwork.com/mcp-tools/assets/asset-browsing-filtering/list-assets.md): List assets with filtering.
+- [listAssetFilterFields](https://developers.atomicwork.com/mcp-tools/assets/asset-browsing-filtering/list-asset-filter-fields.md): Get available asset filter fields.
+- [getAsset](https://developers.atomicwork.com/mcp-tools/assets/asset-browsing-filtering/get-asset.md): Get a specific asset by ID.
+- [getUserAssets](https://developers.atomicwork.com/mcp-tools/assets/asset-browsing-filtering/get-user-assets.md): Get assets assigned to a user.
+- [getAssetActivity](https://developers.atomicwork.com/mcp-tools/assets/asset-browsing-filtering/get-asset-activity.md): Get activity log for an asset.
+- [createAsset](https://developers.atomicwork.com/mcp-tools/assets/asset-management/create-asset.md): Create a new asset.
+- [updateAsset](https://developers.atomicwork.com/mcp-tools/assets/asset-management/update-asset.md): Update an existing asset.
+- [deleteAsset](https://developers.atomicwork.com/mcp-tools/assets/asset-management/delete-asset.md): Delete an asset.
+- [listAssetTypes](https://developers.atomicwork.com/mcp-tools/assets/asset-types-schemas/list-asset-types.md): List available asset types.
+- [getAssetTypeFormFields](https://developers.atomicwork.com/mcp-tools/assets/asset-types-schemas/get-asset-type-form-fields.md): Get form fields for an asset type.
+
+## MCP Tools — Custom Objects
+
+- [listObjectTypes](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-discovery/list-object-types.md): List custom object types.
+- [getObjectType](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-discovery/get-object-type.md): Get a specific object type.
+- [getObjectTypeDraft](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-discovery/get-object-type-draft.md): Get the draft version of an object type.
+- [getObjectTypeFormFields](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-discovery/get-object-type-form-fields.md): Get form fields for an object type.
+- [createObjectType](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-management/create-object-type.md): Create a new custom object type.
+- [updateObjectType](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-management/update-object-type.md): Update an object type.
+- [publishObjectType](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-management/publish-object-type.md): Publish an object type.
+- [unpublishObjectType](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-management/unpublish-object-type.md): Unpublish an object type.
+- [republishObjectType](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-management/republish-object-type.md): Republish an object type.
+- [discardObjectTypeDraft](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-management/discard-object-type-draft.md): Discard an object type draft.
+- [updateDraftMessage](https://developers.atomicwork.com/mcp-tools/custom-objects/object-type-management/update-draft-message.md): Update the draft message for an object type.
+- [customObjectListFieldDefinitions](https://developers.atomicwork.com/mcp-tools/custom-objects/field-definitions/custom-object-list-field-definitions.md): List field definitions for a custom object.
+- [customObjectCreateFieldDefinition](https://developers.atomicwork.com/mcp-tools/custom-objects/field-definitions/custom-object-create-field-definition.md): Create a field definition.
+- [customObjectUpdateFieldDefinition](https://developers.atomicwork.com/mcp-tools/custom-objects/field-definitions/custom-object-update-field-definition.md): Update a field definition.
+- [customObjectDeleteFieldDefinition](https://developers.atomicwork.com/mcp-tools/custom-objects/field-definitions/custom-object-delete-field-definition.md): Delete a field definition.
+- [addCustomObjectFieldToRequest](https://developers.atomicwork.com/mcp-tools/custom-objects/field-definitions/add-custom-object-field-to-request.md): Add a custom object field to requests.
+- [addCustomObjectFieldToAsset](https://developers.atomicwork.com/mcp-tools/custom-objects/field-definitions/add-custom-object-field-to-asset.md): Add a custom object field to assets.
+- [customObjectGetFieldOptions](https://developers.atomicwork.com/mcp-tools/custom-objects/field-options-entities/custom-object-get-field-options.md): Get field options for a custom object.
+- [customObjectGetFieldEntities](https://developers.atomicwork.com/mcp-tools/custom-objects/field-options-entities/custom-object-get-field-entities.md): Get field entities for a custom object.
+- [getCustomObjectViewFields](https://developers.atomicwork.com/mcp-tools/custom-objects/field-options-entities/get-custom-object-view-fields.md): Get view fields for a custom object.
+- [listCustomObjects](https://developers.atomicwork.com/mcp-tools/custom-objects/instance-crud/list-custom-objects.md): List custom object instances.
+- [listCustomObjectsFiltered](https://developers.atomicwork.com/mcp-tools/custom-objects/instance-crud/list-custom-objects-filtered.md): List custom objects with filtering.
+- [createCustomObject](https://developers.atomicwork.com/mcp-tools/custom-objects/instance-crud/create-custom-object.md): Create a custom object instance.
+- [getCustomObject](https://developers.atomicwork.com/mcp-tools/custom-objects/instance-crud/get-custom-object.md): Get a custom object by ID.
+- [updateCustomObject](https://developers.atomicwork.com/mcp-tools/custom-objects/instance-crud/update-custom-object.md): Update a custom object.
+- [patchCustomObject](https://developers.atomicwork.com/mcp-tools/custom-objects/instance-crud/patch-custom-object.md): Partially update a custom object.
+- [deleteCustomObject](https://developers.atomicwork.com/mcp-tools/custom-objects/instance-crud/delete-custom-object.md): Delete a custom object.
+- [getCustomObjectActivities](https://developers.atomicwork.com/mcp-tools/custom-objects/activity-audit/get-custom-object-activities.md): Get activity log for a custom object.
+- [getCustomObjectByDisplayId](https://developers.atomicwork.com/mcp-tools/custom-objects/other/get-custom-object-by-display-id.md): Get a custom object by display ID.
+- [updateCustomObjectByDisplayId](https://developers.atomicwork.com/mcp-tools/custom-objects/other/update-custom-object-by-display-id.md): Update a custom object by display ID.
+- [patchCustomObjectByDisplayId](https://developers.atomicwork.com/mcp-tools/custom-objects/other/patch-custom-object-by-display-id.md): Partially update a custom object by display ID.

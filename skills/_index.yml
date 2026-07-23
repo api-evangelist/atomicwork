@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/atomicwork-public-api-openapi.yaml
+skills:
+- file: atomicwork-create-and-track-incident.md
+  name: Create and track an incident
+  api: openapi/atomicwork-public-api-openapi.yaml
+  operations: [postapi-v-1-requests, getapi-v-1-requests-request-id, patchapi-v-1-requests-request-id,
+    postapi-v-1-requests-request-id-notes]
+- file: atomicwork-provision-access-grant.md
+  name: Provision an identity access grant (IGA)
+  api: openapi/atomicwork-public-api-openapi.yaml
+  operations: [getapi-v-1-iga-apps, getapi-v-1-iga-entitlements, postapi-v-1-iga-grants,
+    postapi-v-1-iga-grants-grant-id-revoke]
+- file: atomicwork-manage-asset.md
+  name: Create and update an asset
+  api: openapi/atomicwork-public-api-openapi.yaml
+  operations: [postapi-v-1-assets, getapi-v-1-assets-asset-id, putapi-v-1-assets-asset-id,
+    getapi-v-1-assets-asset-id-activities]

@@ -1,0 +1,322 @@
+openapi: 3.1.0
+info:
+  title: Atomicwork Public accessManagement agentGroups API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: agentGroups
+paths:
+  /api/v1/workspaces/{workspace_id}/agent-groups:
+    get:
+      operationId: getapi-v-1-workspaces-workspace-id-agent-groups
+      summary: Get workspace agent groups
+      tags:
+      - agentGroups
+      parameters:
+      - name: workspace_id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: type
+        in: query
+        description: Automation entity type (see allowed values in the enum schema).
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType'
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200'
+  /api/v1/workspaces/{workspace_id}/agent-groups/{agent_group_id}/members:
+    get:
+      operationId: getapi-v-1-workspaces-workspace-id-agent-groups-agent-group-id-members
+      summary: Get workspace agent group members
+      tags:
+      - agentGroups
+      parameters:
+      - name: workspace_id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: agent_group_id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: sort_order
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersSortOrder'
+      - name: filter
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter'
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200'
+    post:
+      operationId: postapi-v-1-workspaces-workspace-id-agent-groups-agent-group-id-members
+      summary: Add workspace agent group member
+      tags:
+      - agentGroups
+      parameters:
+      - name: workspace_id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: agent_group_id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                emails:
+                  type: array
+                  items:
+                    type: string
+                    format: email
+                user_ids:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                users:
+                  type: array
+                  items:
+                    type: string
+                org_roles:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                type:
+                  $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType'
+                send_email:
+                  type: boolean
+                  default: true
+                workspaces:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems'
+  /api/v1/workspaces/{workspace_id}/agent-groups/{agent_group_id}/members/{member_id}:
+    delete:
+      operationId: deleteapi-v-1-workspaces-workspace-id-agent-groups-agent-group-id-members-member-id
+      summary: Delete workspace agent group member
+      tags:
+      - agentGroups
+      parameters:
+      - name: workspace_id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: agent_group_id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: member_id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200'
+components:
+  schemas:
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      - UPDATED_AT_ASC
+      - NAME_EMAIL_ASC
+      - NAME_EMAIL_DESC
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersSortOrder
+    Agent Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        roles:
+          type: array
+          items:
+            type: integer
+            format: int64
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems
+    Agent Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType
+    Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
+    ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType:
+      type: string
+      enum:
+      - DROPDOWN
+      - LIST
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType
+    Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter:
+      type: string
+      enum:
+      - ALL
+      - ASSIGNABLE
+      - NOT_ASSIGNABLE
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

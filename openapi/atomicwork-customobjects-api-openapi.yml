@@ -1,0 +1,705 @@
+openapi: 3.1.0
+info:
+  title: Atomicwork Public accessManagement customObjects API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: customObjects
+paths:
+  /api/v1/custom-objects/view-fields:
+    get:
+      operationId: getapi-v-1-custom-objects-view-fields
+      summary: Get filter fields for custom object list view
+      tags:
+      - customObjects
+      parameters:
+      - name: object_type_id
+        in: query
+        description: The object type ID to get filter fields for
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_getapi_v1_custom_objects_view_fields_Response_200'
+  /api/v1/custom-objects:
+    get:
+      operationId: getapi-v-1-custom-objects
+      summary: List custom objects
+      tags:
+      - customObjects
+      parameters:
+      - name: object_type_id
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: search_key
+        in: query
+        description: Optional search string to filter custom objects by display ID
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_getapi_v1_custom_objects_Response_200'
+    post:
+      operationId: postapi-v-1-custom-objects
+      summary: Create a custom object instance
+      tags:
+      - customObjects
+      parameters:
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_postapi_v1_custom_objects_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                object_type_id:
+                  type: integer
+                  format: int64
+                form_fields:
+                  $ref: '#/components/schemas/ApiV1CustomObjectsPostRequestBodyContentApplicationJsonSchemaFormFields'
+                  description: 'Custom field values keyed by field reference_key. Must include
+
+                    display_name, the reserved system field for every custom object type.
+
+                    form_fields.display_name is trimmed, must be non-empty/non-whitespace,
+
+                    and must be at most 255 characters.
+
+                    '
+              required:
+              - object_type_id
+  /api/v1/custom-objects/{objectTypeId}/list:
+    post:
+      operationId: postapi-v-1-custom-objects-object-type-id-list
+      summary: List custom objects with filtering and sorting
+      tags:
+      - customObjects
+      parameters:
+      - name: objectTypeId
+        in: path
+        description: The object type ID to scope results to
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_postapi_v1_custom_objects__objectTypeId__list_Response_200'
+      requestBody:
+        description: Request body for the filtered custom object list view endpoint
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filters:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItems'
+                  description: Optional filter conditions
+                sort:
+                  $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaSort'
+                  description: Sort order for custom object list view results
+                scope:
+                  $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaScope'
+                  description: Scope of the object type (GLOBAL or WORKSPACE)
+                workspace_id:
+                  type: integer
+                  format: int64
+                  description: 'Workspace ID for cross-type queries. Required when scope=WORKSPACE
+
+                    in cross-type list calls (when objectTypeId is absent).
+
+                    '
+                page:
+                  type: integer
+                  default: 1
+                  description: Page number (1-based)
+                page_size:
+                  type: integer
+                  default: 25
+                  description: Number of records per page
+  /api/v1/custom-objects/{objectTypeId}/fields:
+    get:
+      operationId: getapi-v-1-custom-objects-object-type-id-fields
+      summary: Get CO field picker values (dropdown/multi-dropdown/relationship options)
+      tags:
+      - customObjects
+      parameters:
+      - name: objectTypeId
+        in: path
+        description: The object type ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: field_name
+        in: query
+        description: Reference key of the dropdown / multi-dropdown / relationship field
+        required: true
+        schema:
+          type: string
+      - name: field_value
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: include_none
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: include_any
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: include_null
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: parent_option_id
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_getapi_v1_custom_objects__objectTypeId__fields_Response_200'
+  /api/v1/custom-objects/by-id/{id}:
+    get:
+      operationId: getapi-v-1-custom-objects-by-id-id
+      summary: Get custom object details by numeric id
+      description: 'Numeric-id counterpart of `getCustomObject`. The display-id form
+
+        `/custom-objects/{displayId}` (e.g. `/custom-objects/COB-001`) is the
+
+        canonical user-facing URL; this endpoint takes the internal numeric id
+
+        and is intended for callers that already hold the int64 id.
+
+        '
+      tags:
+      - customObjects
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_getapi_v1_custom_objects_by_id__id_Response_200'
+    put:
+      operationId: putapi-v-1-custom-objects-by-id-id
+      summary: Update a custom object instance
+      tags:
+      - customObjects
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_putapi_v1_custom_objects_by_id__id_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                form_fields:
+                  $ref: '#/components/schemas/ApiV1CustomObjectsByIdIdPutRequestBodyContentApplicationJsonSchemaFormFields'
+                  description: 'Partial custom field values keyed by field reference_key. To rename the
+
+                    object, send form_fields.display_name. If absent, the existing display
+
+                    name is preserved. If present, it is trimmed, must be non-empty/
+
+                    non-whitespace, and must be at most 255 characters.
+
+                    '
+    delete:
+      operationId: deleteapi-v-1-custom-objects-by-id-id
+      summary: Soft delete a custom object instance
+      tags:
+      - customObjects
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_deleteapi_v1_custom_objects_by_id__id_Response_200'
+    patch:
+      operationId: patchapi-v-1-custom-objects-by-id-id
+      summary: Partial update a custom object instance (single-field edits)
+      tags:
+      - customObjects
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_patchapi_v1_custom_objects_by_id__id_Response_200'
+      requestBody:
+        description: 'Partial update for a custom object instance (single-field inline edits).
+
+          form_fields must include at least one field that changes the object''s
+
+          state; enforced at the service layer. To rename the object, send
+
+          form_fields.display_name. A display-name-only no-op is rejected.
+
+          '
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                form_fields:
+                  $ref: '#/components/schemas/ApiV1CustomObjectsByIdIdPatchRequestBodyContentApplicationJsonSchemaFormFields'
+                  description: 'Partial custom field values keyed by field reference_key.
+
+                    form_fields.display_name may be sent alone for inline name edits.
+
+                    '
+  /api/v1/custom-objects/by-id/{id}/relationships:
+    get:
+      operationId: getapi-v-1-custom-objects-by-id-id-relationships
+      summary: Get only the relationship fields of a custom object
+      description: 'Returns the same `CustomObjectDetailsDto` shape as `getCustomObject`, but
+
+        `customData` is restricted to relationship reference keys only — scalar,
+
+        dropdown, date, and other non-relationship fields are omitted. Each
+
+        `objectType.sections[*].fieldIds` list is filtered to retain only the
+
+        field IDs that correspond to relationship field definitions; empty
+
+        sections are preserved so the UI gets a stable section layout.
+
+
+        Useful when a caller needs to display a CO''s links to other entities
+
+        without paying the cost of resolving the full custom_data payload.
+
+        '
+      tags:
+      - customObjects
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_getapi_v1_custom_objects_by_id__id__relationships_Response_200'
+  /api/v1/custom-objects/{objectTypeId}/list/download:
+    post:
+      operationId: postapi-v-1-custom-objects-object-type-id-list-download
+      summary: Export custom objects to CSV (async, emailed)
+      tags:
+      - customObjects
+      parameters:
+      - name: objectTypeId
+        in: path
+        description: The object type ID to export
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Objects_postapi_v1_custom_objects__objectTypeId__list_download_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sort_order:
+                  type: string
+components:
+  schemas:
+    Custom Objects_deleteapi_v1_custom_objects_by_id__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_deleteapi_v1_custom_objects_by_id__id_Response_200
+    Custom Objects_getapi_v1_custom_objects__objectTypeId__fields_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_getapi_v1_custom_objects__objectTypeId__fields_Response_200
+    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaSort:
+      type: string
+      enum:
+      - CREATED_AT_ASC
+      - CREATED_AT_DESC
+      - UPDATED_AT_ASC
+      - UPDATED_AT_DESC
+      - DISPLAY_ID_ASC
+      - DISPLAY_ID_DESC
+      description: Sort order for custom object list view results
+      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaSort
+    Custom Objects_getapi_v1_custom_objects_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_getapi_v1_custom_objects_Response_200
+    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
+      description: 'Filter condition for the custom object list view. Extends BaseListFilterDTO using the standard attribute/operator/values pattern. The attribute field holds either a top-level field name (e.g. "display_id", "created_at"), a column_key for custom fields (e.g. "cf_shorttext_001"), or a custom field reference_key. For ID-shaped custom fields (relationship, entity-reference, dropdown, and multi-dropdown), value -1 or null means blank. Blank filters match indexed field slots with null/empty values, indexed slots containing the historical -1 sentinel, and records where the nested field slot does not exist.
+
+        '
+      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItems
+    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
+    Custom Objects_getapi_v1_custom_objects_by_id__id__relationships_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_getapi_v1_custom_objects_by_id__id__relationships_Response_200
+    Custom Objects_getapi_v1_custom_objects_view_fields_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_getapi_v1_custom_objects_view_fields_Response_200
+    Custom Objects_patchapi_v1_custom_objects_by_id__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_patchapi_v1_custom_objects_by_id__id_Response_200
+    ApiV1CustomObjectsByIdIdPutRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      description: 'Partial custom field values keyed by field reference_key. To rename the
+
+        object, send form_fields.display_name. If absent, the existing display
+
+        name is preserved. If present, it is trimmed, must be non-empty/
+
+        non-whitespace, and must be at most 255 characters.
+
+        '
+      title: ApiV1CustomObjectsByIdIdPutRequestBodyContentApplicationJsonSchemaFormFields
+    ApiV1CustomObjectsPostRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      description: 'Custom field values keyed by field reference_key. Must include
+
+        display_name, the reserved system field for every custom object type.
+
+        form_fields.display_name is trimmed, must be non-empty/non-whitespace,
+
+        and must be at most 255 characters.
+
+        '
+      title: ApiV1CustomObjectsPostRequestBodyContentApplicationJsonSchemaFormFields
+    Custom Objects_postapi_v1_custom_objects_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_postapi_v1_custom_objects_Response_200
+    ApiV1CustomObjectsByIdIdPatchRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      description: 'Partial custom field values keyed by field reference_key.
+
+        form_fields.display_name may be sent alone for inline name edits.
+
+        '
+      title: ApiV1CustomObjectsByIdIdPatchRequestBodyContentApplicationJsonSchemaFormFields
+    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaScope:
+      type: string
+      enum:
+      - GLOBAL
+      - WORKSPACE
+      description: Scope of the object type (GLOBAL or WORKSPACE)
+      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaScope
+    Custom Objects_putapi_v1_custom_objects_by_id__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_putapi_v1_custom_objects_by_id__id_Response_200
+    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
+    Custom Objects_postapi_v1_custom_objects__objectTypeId__list_download_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_postapi_v1_custom_objects__objectTypeId__list_download_Response_200
+    Custom Objects_getapi_v1_custom_objects_by_id__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_getapi_v1_custom_objects_by_id__id_Response_200
+    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator:
+      type: string
+      enum:
+      - EQUALS
+      - NOT_EQUALS
+      - CONTAINS
+      - NOT_CONTAINS
+      - IN
+      - NOT_IN
+      - GREATER_THAN
+      - LESS_THAN
+      - GREATER_THAN_EQUALS
+      - LESS_THAN_EQUALS
+      - IS_BETWEEN
+      - IS_NULL
+      - IS_NOT_NULL
+      - STARTS_WITH
+      - ENDS_WITH
+      - TEXT_CONTAINS
+      - TEXT_DOES_NOT_CONTAINS
+      - IS_ANY_OF
+      - IS_NOT_ANY_OF
+      - IS_EXACTLY
+      - IS_ON_OR_BEFORE
+      - IS_ON_OR_AFTER
+      - IS_WITHIN
+      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator
+    Custom Objects_postapi_v1_custom_objects__objectTypeId__list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_postapi_v1_custom_objects__objectTypeId__list_Response_200
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

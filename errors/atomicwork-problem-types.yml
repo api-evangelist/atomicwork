@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.atomicwork.com/api-reference/introduction
+format: custom-json
+envelope:
+  shape: {error: human-readable message, code: ERROR_CODE}
+  note: >
+    Atomicwork does not use RFC 9457 application/problem+json. Errors return a
+    consistent JSON envelope with a human-readable `error` string and a machine
+    `code`. The OpenAPI declares only 2xx responses, so these HTTP status classes
+    are derived from the published error-handling reference, not from spec responses.
+problems:
+- status: 400
+  title: Invalid request
+  remediation: Check field values and required parameters.
+- status: 401
+  title: Missing or invalid API key
+  remediation: Provide a valid workspace-scoped X-Api-Key header.
+- status: 403
+  title: Insufficient permissions
+  remediation: The API key lacks permission for this operation or workspace.
+- status: 404
+  title: Resource not found
+  remediation: Verify the resource ID and workspace scope.
+- status: 429
+  title: Rate limit exceeded
+  remediation: Retry after the number of seconds in the Retry-After response header.
+- status: 500
+  title: Internal server error
+  remediation: Retry; contact support if the error persists.

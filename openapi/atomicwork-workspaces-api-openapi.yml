@@ -1,0 +1,225 @@
+openapi: 3.1.0
+info:
+  title: Atomicwork Public accessManagement workspaces API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: workspaces
+paths:
+  /api/v1/workspaces:
+    get:
+      operationId: getapi-v-1-workspaces
+      summary: Get list of workspaces
+      tags:
+      - workspaces
+      parameters:
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: is_member_of
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      - name: include_static
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: supported_objects
+        in: query
+        description: Filter workspaces by supported object types. Returns workspaces that support ANY of the specified types.
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1WorkspacesGetParametersSupportedObjectsSchemaItems'
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspaces_getapi_v1_workspaces_Response_200'
+  /api/v1/workspaces/{id}:
+    get:
+      operationId: getapi-v-1-workspaces-id
+      summary: Get workspace details
+      tags:
+      - workspaces
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspaces_getapi_v1_workspaces__id_Response_200'
+  /api/v1/workspaces/{id}/members:
+    get:
+      operationId: getapi-v-1-workspaces-id-members
+      summary: Get workspace members
+      tags:
+      - workspaces
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: sort_order
+        in: query
+        description: ''
+        required: false
+        schema:
+          $ref: '#/components/schemas/ApiV1WorkspacesIdMembersGetParametersSortOrder'
+      - name: has_email
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      - name: types
+        in: query
+        description: Optional comma-separated list of user types to filter by
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1WorkspacesIdMembersGetParametersTypesSchemaItems'
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspaces_getapi_v1_workspaces__id__members_Response_200'
+components:
+  schemas:
+    Workspaces_getapi_v1_workspaces_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workspaces_getapi_v1_workspaces_Response_200
+    ApiV1WorkspacesGetParametersSupportedObjectsSchemaItems:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT
+      - PROBLEM
+      - CHANGE
+      title: ApiV1WorkspacesGetParametersSupportedObjectsSchemaItems
+    ApiV1WorkspacesIdMembersGetParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      - UPDATED_AT_ASC
+      - NAME_EMAIL_ASC
+      - NAME_EMAIL_DESC
+      title: ApiV1WorkspacesIdMembersGetParametersSortOrder
+    Workspaces_getapi_v1_workspaces__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workspaces_getapi_v1_workspaces__id_Response_200
+    Workspaces_getapi_v1_workspaces__id__members_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workspaces_getapi_v1_workspaces__id__members_Response_200
+    ApiV1WorkspacesIdMembersGetParametersTypesSchemaItems:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1WorkspacesIdMembersGetParametersTypesSchemaItems
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

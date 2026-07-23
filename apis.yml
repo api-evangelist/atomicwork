@@ -1,23 +1,346 @@
 aid: atomicwork
 name: Atomicwork
-description: Atomicwork is a company surfaced as a portfolio company of battery-ventures and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Atomicwork is an agentic service management (ITSM/ESM) platform that pairs an AI
+  "coworker" (Atom) with a modern service desk for IT, HR, and other enterprise
+  teams. The Atomicwork Public API gives programmatic, workspace-scoped access to
+  the core platform — requests and tickets (incidents, service requests, problems,
+  changes, major incidents), assets and a CMDB, users and workspaces, service
+  catalog, automation workflows, custom objects, audit logs, and identity
+  governance (IGA) grants and entitlements. Authentication is via a workspace-scoped
+  API key (X-Api-Key) with an X-Workspace-Id scoping header. Atomicwork also ships
+  an official hosted MCP server so AI clients (Claude, Cursor, Copilot, Codex) can
+  drive the same operations as tools. The API is documented as OpenAPI 3.1 with 102
+  paths across 16 tags, offset and cursor pagination, and a structured filter model.
 url: https://raw.githubusercontent.com/api-evangelist/atomicwork/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - battery-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-public-api
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://cdn.prod.website-files.com/64f08da4e7effe6dcb06d456/6a101caaa06c458154ef693c_Logomark.png
 tags:
 - Company
-apis: []
+- Service Management
+- ITSM
+- ESM
+- IT Service Desk
+- Identity Governance
+- Asset Management
+- AI Agents
+- MCP
+- Enterprise
+apis:
+- aid: atomicwork:atomicwork-accessmanagement-api
+  name: Atomicwork accessManagement API
+  description: The accessManagement API from Atomicwork — 8 operation(s) for accessmanagement.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - accessManagement
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-accessmanagement-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-agentgroups-api
+  name: Atomicwork agentGroups API
+  description: The agentGroups API from Atomicwork — 3 operation(s) for agentgroups.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - agentGroups
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-agentgroups-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-assets-api
+  name: Atomicwork assets API
+  description: The assets API from Atomicwork — 7 operation(s) for assets.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - assets
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-assets-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-auditlogs-api
+  name: Atomicwork auditLogs API
+  description: The auditLogs API from Atomicwork — 3 operation(s) for auditlogs.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - auditLogs
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-auditlogs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-businesshourconfig-api
+  name: Atomicwork businessHourConfig API
+  description: The businessHourConfig API from Atomicwork — 2 operation(s) for businesshourconfig.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - businessHourConfig
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-businesshourconfig-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-changemanagement-api
+  name: Atomicwork changeManagement API
+  description: The changeManagement API from Atomicwork — 7 operation(s) for changemanagement.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - changeManagement
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-changemanagement-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-customobjects-api
+  name: Atomicwork customObjects API
+  description: The customObjects API from Atomicwork — 7 operation(s) for customobjects.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - customObjects
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-customobjects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-entities-api
+  name: Atomicwork entities API
+  description: The entities API from Atomicwork — 1 operation(s) for entities.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - entities
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-entities-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-forms-api
+  name: Atomicwork forms API
+  description: The forms API from Atomicwork — 5 operation(s) for forms.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - forms
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-forms-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-problems-api
+  name: Atomicwork problems API
+  description: The problems API from Atomicwork — 4 operation(s) for problems.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - problems
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-problems-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-requests-api
+  name: Atomicwork requests API
+  description: The requests API from Atomicwork — 19 operation(s) for requests.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - requests
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-requests-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-servicecatalog-api
+  name: Atomicwork serviceCatalog API
+  description: The serviceCatalog API from Atomicwork — 7 operation(s) for servicecatalog.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - serviceCatalog
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-servicecatalog-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-tags-api
+  name: Atomicwork tags API
+  description: The tags API from Atomicwork — 2 operation(s) for tags.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - tags
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-tags-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-users-api
+  name: Atomicwork users API
+  description: The users API from Atomicwork — 10 operation(s) for users.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - users
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-workflows-api
+  name: Atomicwork workflows API
+  description: The workflows API from Atomicwork — 14 operation(s) for workflows.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-workspaces-api
+  name: Atomicwork workspaces API
+  description: The workspaces API from Atomicwork — 3 operation(s) for workspaces.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - workspaces
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-workspaces-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+common:
+- type: Website
+  url: https://www.atomicwork.com
+- type: DeveloperPortal
+  url: https://developers.atomicwork.com
+- type: Documentation
+  url: https://developers.atomicwork.com
+- type: APIReference
+  url: https://developers.atomicwork.com/api-reference/introduction
+- type: GettingStarted
+  url: https://developers.atomicwork.com/api-reference/introduction
+- type: Blog
+  url: https://www.atomicwork.com/blog
+- type: Pricing
+  url: https://www.atomicwork.com/pricing
+- type: SignUp
+  url: https://app.atomicwork.com
+- type: Login
+  url: https://app.atomicwork.com
+- type: TermsOfService
+  url: https://www.atomicwork.com/terms
+- type: PrivacyPolicy
+  url: https://www.atomicwork.com/privacy
+- type: Integrations
+  url: https://www.atomicwork.com/integrations
+- type: StatusPage
+  url: https://status.atomicwork.com
+- type: Security
+  url: https://www.atomicwork.com/security
+- type: Compliance
+  url: https://trust.atomicwork.com/
+- type: OpenAPI
+  url: openapi/atomicwork-public-api-openapi.yaml
+- type: Overlay
+  url: overlays/atomicwork-public-api-overlay.yaml
+- type: MCPServer
+  url: https://developers.atomicwork.com/_mcp/server
+- type: LLMsTxt
+  url: llms/atomicwork-llms.txt
+- type: LlmsText
+  url: https://developers.atomicwork.com/llms.txt
+- type: WellKnown
+  url: well-known/atomicwork-well-known.yml
+- type: Authentication
+  url: authentication/atomicwork-authentication.yml
+- type: Conventions
+  url: conventions/atomicwork-conventions.yml
+- type: ErrorCatalog
+  url: errors/atomicwork-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/atomicwork-lifecycle.yml
+- type: Conformance
+  url: conformance/atomicwork-conformance.yml
+- type: DataModel
+  url: data-model/atomicwork-data-model.yml
+- type: DomainSecurity
+  url: security/atomicwork-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/atomicwork-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/atomicwork-trust-center.yml
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
