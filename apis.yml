@@ -303,7 +303,7 @@ common:
 - type: Compliance
   url: https://trust.atomicwork.com/
 - type: OpenAPI
-  url: openapi/atomicwork-public-api-openapi.yaml
+  url: openapi/_original/atomicwork-public-api-openapi.yaml
 - type: Overlay
   url: overlays/atomicwork-public-api-overlay.yaml
 - type: MCPServer
