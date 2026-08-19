@@ -16,38 +16,133 @@ supported_clients:
 - OpenAI Codex
 tool_groups:
 - name: Requests & Tickets
-  tools: [createGeneralRequest, createIncident, createProblem, createServiceRequest,
-    listRequests, getRequest, searchEntities, searchEntitiesByType, updateGeneralRequest,
-    updateIncident, updateProblem, updateServiceRequest, moveRequestAsGeneral, moveRequestAsIncident,
-    moveRequestAsServiceRequest, moveRequestAsProblem, getRequestFormFields, getFormFieldEntities,
-    getFormFieldOptions, initiateRequestApproval, listRequestApprovalPolicies, initiateRequestApprovalByPolicy,
-    createRequestNote, getRequestNotes, createAttachmentUploadUrl, createRequestLinks,
-    listRequestLinks, removeRequestLink, bulkModifyRequestLinks, getCurrentUser, listUsers,
-    getUserDetails, listWorkspaces, getWorkspaceDetails, listViews, listUserSegments,
-    listServiceItems, searchCatalogItems, searchWorkflowsForRequest, executeWorkflowForRequest,
-    searchKnowledge, checkAppHealthStatus, searchAppHealthStatus, listIntegrationCredentials,
-    getIntegrationCredential, executeHttpRequest, createTag]
+  tools:
+  - createGeneralRequest
+  - createIncident
+  - createProblem
+  - createServiceRequest
+  - listRequests
+  - getRequest
+  - searchEntities
+  - searchEntitiesByType
+  - updateGeneralRequest
+  - updateIncident
+  - updateProblem
+  - updateServiceRequest
+  - moveRequestAsGeneral
+  - moveRequestAsIncident
+  - moveRequestAsServiceRequest
+  - moveRequestAsProblem
+  - getRequestFormFields
+  - getFormFieldEntities
+  - getFormFieldOptions
+  - initiateRequestApproval
+  - listRequestApprovalPolicies
+  - initiateRequestApprovalByPolicy
+  - createRequestNote
+  - getRequestNotes
+  - createAttachmentUploadUrl
+  - createRequestLinks
+  - listRequestLinks
+  - removeRequestLink
+  - bulkModifyRequestLinks
+  - getCurrentUser
+  - listUsers
+  - getUserDetails
+  - listWorkspaces
+  - getWorkspaceDetails
+  - listViews
+  - listUserSegments
+  - listServiceItems
+  - searchCatalogItems
+  - searchWorkflowsForRequest
+  - executeWorkflowForRequest
+  - searchKnowledge
+  - checkAppHealthStatus
+  - searchAppHealthStatus
+  - listIntegrationCredentials
+  - getIntegrationCredential
+  - executeHttpRequest
+  - createTag
 - name: Identity Governance (IGA)
-  tools: [searchIgaResources, getIgaPolicies, getIgaPolicyEntitlements, getIgaEntitlementById,
-    getIgaResolvedEntitlements, createIgaServiceItemInstance, validateIgaBusinessJustification,
-    startIgaBackgroundProvisioning, createIgaEntitlement, createIgaPolicy]
+  tools:
+  - searchIgaResources
+  - getIgaPolicies
+  - getIgaPolicyEntitlements
+  - getIgaEntitlementById
+  - getIgaResolvedEntitlements
+  - createIgaServiceItemInstance
+  - validateIgaBusinessJustification
+  - startIgaBackgroundProvisioning
+  - createIgaEntitlement
+  - createIgaPolicy
 - name: AI Coworkers
-  tools: [listAiCoworkers, createAiCoworker, getAiCoworker, setAiCoworkerProperties,
-    updateAiCoworker, discardAiCoworkerDraft, publishAiCoworker, setAiCoworkerAvailability,
-    listAiCoworkerVersions, getAiCoworkerVersion, listAiCoworkerSkills, listAiCoworkerToolCatalog,
-    getAiCoworkerToolCatalogServer, getAiCoworkerTool]
+  tools:
+  - listAiCoworkers
+  - createAiCoworker
+  - getAiCoworker
+  - setAiCoworkerProperties
+  - updateAiCoworker
+  - discardAiCoworkerDraft
+  - publishAiCoworker
+  - setAiCoworkerAvailability
+  - listAiCoworkerVersions
+  - getAiCoworkerVersion
+  - listAiCoworkerSkills
+  - listAiCoworkerToolCatalog
+  - getAiCoworkerToolCatalogServer
+  - getAiCoworkerTool
 - name: Assets
-  tools: [listAssets, listAssetFilterFields, getAsset, getUserAssets, getAssetActivity,
-    createAsset, updateAsset, deleteAsset, listAssetTypes, getAssetTypeFormFields]
+  tools:
+  - listAssets
+  - listAssetFilterFields
+  - getAsset
+  - getUserAssets
+  - getAssetActivity
+  - createAsset
+  - updateAsset
+  - deleteAsset
+  - listAssetTypes
+  - getAssetTypeFormFields
 - name: Custom Objects
-  tools: [listObjectTypes, getObjectType, getObjectTypeDraft, getObjectTypeFormFields,
-    createObjectType, updateObjectType, publishObjectType, unpublishObjectType, republishObjectType,
-    discardObjectTypeDraft, updateDraftMessage, customObjectListFieldDefinitions,
-    customObjectCreateFieldDefinition, customObjectUpdateFieldDefinition, customObjectDeleteFieldDefinition,
-    addCustomObjectFieldToRequest, addCustomObjectFieldToAsset, customObjectGetFieldOptions,
-    customObjectGetFieldEntities, getCustomObjectViewFields, listCustomObjects, listCustomObjectsFiltered,
-    createCustomObject, getCustomObject, updateCustomObject, patchCustomObject, deleteCustomObject,
-    getCustomObjectActivities, getCustomObjectByDisplayId, updateCustomObjectByDisplayId,
-    patchCustomObjectByDisplayId]
-notes: Official hosted remote MCP server published by Atomicwork alongside the REST
-  API; tool catalog harvested from the published developer docs index (llms.txt).
+  tools:
+  - listObjectTypes
+  - getObjectType
+  - getObjectTypeDraft
+  - getObjectTypeFormFields
+  - createObjectType
+  - updateObjectType
+  - publishObjectType
+  - unpublishObjectType
+  - republishObjectType
+  - discardObjectTypeDraft
+  - updateDraftMessage
+  - customObjectListFieldDefinitions
+  - customObjectCreateFieldDefinition
+  - customObjectUpdateFieldDefinition
+  - customObjectDeleteFieldDefinition
+  - addCustomObjectFieldToRequest
+  - addCustomObjectFieldToAsset
+  - customObjectGetFieldOptions
+  - customObjectGetFieldEntities
+  - getCustomObjectViewFields
+  - listCustomObjects
+  - listCustomObjectsFiltered
+  - createCustomObject
+  - getCustomObject
+  - updateCustomObject
+  - patchCustomObject
+  - deleteCustomObject
+  - getCustomObjectActivities
+  - getCustomObjectByDisplayId
+  - updateCustomObjectByDisplayId
+  - patchCustomObjectByDisplayId
+notes: Official hosted remote MCP server published by Atomicwork alongside the REST API; tool catalog
+  harvested from the published developer docs index (llms.txt).
+deployment:
+  mode: remote
+  endpoint: https://developers.atomicwork.com/mcp-tools/introduction
+  verified: probed
+  probe: http-405
+  checked: '2026-08-12'
+  source: catalog MCP census

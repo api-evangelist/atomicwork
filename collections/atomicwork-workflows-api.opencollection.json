@@ -1,0 +1,763 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement workflows API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get request automation definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:id/request-automations/:type",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trigger_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by trigger type (SCHEDULED_RECURRING or EVENT)"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "query",
+                "description": "Deprecated alias of entity_type_id for typed entities (CUSTOM_OBJECT/ASSET). Retained for backward compatibility."
+              },
+              {
+                "name": "entity_type_id",
+                "value": "",
+                "type": "query",
+                "description": "Filters automations by entity type ID (for CUSTOM_OBJECT type — the object type ID). Null for REQUEST/CHANGE."
+              }
+            ]
+          },
+          "docs": "Get request automation definitions"
+        },
+        {
+          "info": {
+            "name": "Get Request automation Definition of a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:id/request-automations/:type/:request_key",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "request_key",
+                "value": "",
+                "type": "path",
+                "description": "Automation UUID — the `key` field returned by list/get endpoints."
+              }
+            ]
+          },
+          "docs": "Get Request automation Definition of a Workspace"
+        },
+        {
+          "info": {
+            "name": "Clone a Request automations of a Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:id/request-automations/:request_key/clone",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "request_key",
+                "value": "",
+                "type": "path",
+                "description": "Automation UUID — the `key` field returned by list/get endpoints."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clone a Request automations of a Workspace"
+        },
+        {
+          "info": {
+            "name": "Get actions for request automations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:id/request-automations/:type/actions",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              }
+            ]
+          },
+          "docs": "Get actions for request automations"
+        },
+        {
+          "info": {
+            "name": "Get placeholders, adhoc query conditions for request automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:id/request-automations/:type/query-conditions",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "field_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "query",
+                "description": "Overloaded parameter by QueryContext. For REQUEST/CHANGE: service item/change template ID. For CUSTOM_OBJECT: use entity_type_id instead (new parameter)."
+              },
+              {
+                "name": "entity_type_id",
+                "value": "",
+                "type": "query",
+                "description": "Entity type ID for typed entity automations (CUSTOM_OBJECT today, ASSET in future). Preferred over entity_id for these types."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "field_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trigger_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get placeholders, adhoc query conditions for request automation"
+        },
+        {
+          "info": {
+            "name": "Get placeholder fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/request-automations/:request_entity_type/placeholders",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "request_entity_type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "automation_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "current_action_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "previous_action_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "query",
+                "description": "Overloaded parameter by QueryContext. For REQUEST/CHANGE: service item/change template ID. For CUSTOM_OBJECT: use entity_type_id instead (new parameter)."
+              },
+              {
+                "name": "entity_type_id",
+                "value": "",
+                "type": "query",
+                "description": "Entity type ID for typed entity automations (CUSTOM_OBJECT today, ASSET in future). Preferred over entity_id for these types."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "field_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trigger_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get placeholder fields"
+        },
+        {
+          "info": {
+            "name": "Get previous actions with output fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/request-automations/:request_entity_type/previous-actions-with-output-fields",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "request_entity_type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "automation_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "current_action_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_entity",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get previous actions with output fields"
+        },
+        {
+          "info": {
+            "name": "Get output fields for action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/request-automations/:request_entity_type/actions/:action_type/output-fields",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "request_entity_type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "action_type",
+                "value": "",
+                "type": "path",
+                "description": "Action type identifier string."
+              },
+              {
+                "name": "automation_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_entity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get output fields for action"
+        },
+        {
+          "info": {
+            "name": "Get output fields for action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/request-automations/:request_entity_type/actions/:action_type/output-fields/:field_name/options",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "request_entity_type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "action_type",
+                "value": "",
+                "type": "path",
+                "description": "Action type identifier string."
+              },
+              {
+                "name": "field_name",
+                "value": "",
+                "type": "path",
+                "description": "Output field name identifier."
+              },
+              {
+                "name": "automation_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get output fields for action"
+        },
+        {
+          "info": {
+            "name": "Get details of a request field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/request-automations/:type/update-request-fields",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Type of request automation."
+              }
+            ]
+          },
+          "docs": "Get details of a request field"
+        },
+        {
+          "info": {
+            "name": "Generate description for the difference in workflows of the versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspace_id/request-automations/:type/:automation_key/versions/:current_version_id/diff-of-workflows-version",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "automation_key",
+                "value": "",
+                "type": "path",
+                "description": "Automation UUID — the `key` field returned by list/get endpoints."
+              },
+              {
+                "name": "current_version_id",
+                "value": "",
+                "type": "path",
+                "description": "Automation version ID (numeric)."
+              }
+            ]
+          },
+          "docs": "Generate description for the difference in workflows of the versions"
+        },
+        {
+          "info": {
+            "name": "List versions of a request automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspace_id/request-automations/:type/:automation_key/versions",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "automation_key",
+                "value": "",
+                "type": "path",
+                "description": "Automation UUID — the `key` field returned by list/get endpoints."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List versions of a request automation"
+        },
+        {
+          "info": {
+            "name": "Get specific version of a request automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspace_id/request-automations/:type/:automation_key/versions/:version_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "automation_key",
+                "value": "",
+                "type": "path",
+                "description": "Automation UUID — the `key` field returned by list/get endpoints."
+              },
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "Automation version ID (numeric)."
+              }
+            ]
+          },
+          "docs": "Get specific version of a request automation"
+        },
+        {
+          "info": {
+            "name": "List request automations with pagination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspace_id/request-automations/:type/paged",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Automation entity type (see allowed values in the enum schema)."
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trigger_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List request automations with pagination"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,903 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement requests API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create request"
+        },
+        {
+          "info": {
+            "name": "Bulk action on requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/bulk-actions/:bulk_action_type",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "bulk_action_type",
+                "value": "",
+                "type": "path",
+                "description": "The bulk action type"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk action on requests"
+        },
+        {
+          "info": {
+            "name": "Get requests by filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/list",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filter_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Generic ordered sort as a compact string, e.g. `created_at:ASC,subject:DESC`. Field keys are validated server-side against the view-column allowlist. When present, takes precedence over the legacy `sort_order` enum."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | "
+        },
+        {
+          "info": {
+            "name": "Get requests by filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspace_id/requests/list",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "filter_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_problem",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Generic ordered sort as a compact string, e.g. `priority:DESC,created_at:ASC`. Field keys are validated server-side against the view-column allowlist. When present, takes precedence over the legacy `sort_order` enum."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "request_type_filter",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | "
+        },
+        {
+          "info": {
+            "name": "Get Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Request"
+        },
+        {
+          "info": {
+            "name": "Patch request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch request"
+        },
+        {
+          "info": {
+            "name": "Move Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId/move",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**DEPRECATED**: Use `/requests/{requestId}/move/result` instead.\n\nThis endpoint does not handle permission-based responses correctly when the user\nlacks view access to the destination workspace.\n"
+        },
+        {
+          "info": {
+            "name": "Add or Remove Followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId/modify-followers",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or Remove Followers"
+        },
+        {
+          "info": {
+            "name": "Get Followers of a Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId/followers",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Followers of a Request"
+        },
+        {
+          "info": {
+            "name": "Add Followers to a Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId/add-followers",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Followers to a Request"
+        },
+        {
+          "info": {
+            "name": "Trash Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId/trash",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Trash Request"
+        },
+        {
+          "info": {
+            "name": "Get Request Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId/notes",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Request Notes"
+        },
+        {
+          "info": {
+            "name": "Create request notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId/notes",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create request notes"
+        },
+        {
+          "info": {
+            "name": "Get Request Notes and activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:requestId/activity-notes",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Request Notes and activities"
+        },
+        {
+          "info": {
+            "name": "Create service request for item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/items/:item_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The item ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create service request for item"
+        },
+        {
+          "info": {
+            "name": "Add service item instance to service request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:request_id/items/:item_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The item ID"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The request ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add service item instance to service request"
+        },
+        {
+          "info": {
+            "name": "Retrieve Service Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:request_id/items/:item_instance_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The request ID"
+              },
+              {
+                "name": "item_instance_id",
+                "value": "",
+                "type": "path",
+                "description": "The item ID"
+              }
+            ]
+          },
+          "docs": "Retrieve Service Request"
+        },
+        {
+          "info": {
+            "name": "Patch Service Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:request_id/items/:item_instance_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The request ID"
+              },
+              {
+                "name": "item_instance_id",
+                "value": "",
+                "type": "path",
+                "description": "The item ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Service Request"
+        },
+        {
+          "info": {
+            "name": "Retrieve Service Request Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/:request_id/items",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The request ID"
+              }
+            ]
+          },
+          "docs": "Retrieve Service Request Items"
+        },
+        {
+          "info": {
+            "name": "List Impact Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspace_id/requests/impact-options",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace ID"
+              }
+            ]
+          },
+          "docs": "List Impact Options"
+        },
+        {
+          "info": {
+            "name": "Get Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/v2/:requestId",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Request"
+        },
+        {
+          "info": {
+            "name": "Patch request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/v2/:requestId",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "request_source",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "status",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "priority",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "agent_group",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assignee",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "subject",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "impact",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "urgency",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "category",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "subcategory",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "data_json",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "attachments",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assets",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Patch request"
+        },
+        {
+          "info": {
+            "name": "Create major incident request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/requests/major-incident",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create major incident request"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

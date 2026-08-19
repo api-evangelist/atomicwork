@@ -1,0 +1,1699 @@
+{
+  "item": [
+    {
+      "id": "ba9a556a-7490-44b1-a08e-e6847bc758df",
+      "name": "changeManagement",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f90e0c2-7685-4861-9f92-16c281bd5e06",
+          "name": "Retrieve all the templates a logged in user can raise changes from (scoped to the workspaces the user is a member of); when for_user_id is supplied the list is curated for that profile user",
+          "request": {
+            "name": "Retrieve all the templates a logged in user can raise changes from (scoped to the workspaces the user is a member of); when for_user_id is supplied the list is curated for that profile user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "agent",
+                "change-management",
+                "change-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "workspace_id",
+                  "value": "<long>",
+                  "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_active",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "for_user_id",
+                  "value": "<long>",
+                  "description": "Optional profile user the template list should be curated for (people-profile on-behalf-of context). When set, the list is narrowed to templates both the calling agent can raise and this user is allowed to access. When absent, behaviour is unchanged."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "253f8250-d2cb-4f96-a1a5-8e461a76d6e8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "agent",
+                    "change-management",
+                    "change-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "workspace_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "PUBLISHED"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "for_user_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3950a258-e605-4739-87bc-62ab1bd43f9a",
+          "name": "Create Change in workspace",
+          "request": {
+            "name": "Create Change in workspace",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "change-management",
+                "changes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "problem_display_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"change_template\": \"<long>\",\n  \"subject\": \"<string>\",\n  \"created_by\": \"<long>\",\n  \"requester\": \"<long>\",\n  \"owner\": \"<long>\",\n  \"agent_group\": \"<long>\",\n  \"assignee\": \"<long>\",\n  \"change_type\": \"<string>\",\n  \"change_start_date\": \"<dateTime>\",\n  \"change_completion_date\": \"<dateTime>\",\n  \"planned_change_start_date\": \"<dateTime>\",\n  \"planned_change_completion_date\": \"<dateTime>\",\n  \"actual_change_start_date\": \"<dateTime>\",\n  \"actual_change_completion_date\": \"<dateTime>\",\n  \"priority\": \"<string>\",\n  \"status\": \"<string>\",\n  \"impact\": \"<string>\",\n  \"urgency\": \"<string>\",\n  \"parent_change_id\": \"<long>\",\n  \"parent_display_id\": \"<string>\",\n  \"parent_request_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"tags\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"workspace_id\": \"<long>\",\n  \"assets\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"linked_requests\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {},\n  \"template_fields\": {},\n  \"notes\": [\n    {\n      \"user_id\": \"<long>\",\n      \"description\": \"<string>\",\n      \"mentions\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"is_private\": false,\n      \"source\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attachments\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    },\n    {\n      \"user_id\": \"<long>\",\n      \"description\": \"<string>\",\n      \"mentions\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"is_private\": false,\n      \"source\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attachments\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    }\n  ],\n  \"conversation_info\": {\n    \"start_timestamp\": \"<unix-timestamp>\",\n    \"channel_name\": \"<string>\",\n    \"channel_id\": \"<string>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"external_id\": \"<string>\",\n  \"external_source\": \"<string>\",\n  \"external_system_entity_reference\": {\n    \"type\": \"<string>\",\n    \"project_id\": \"<string>\",\n    \"build_id\": \"<string>\",\n    \"organization_id\": \"<string>\",\n    \"correlation_id\": \"<string>\",\n    \"organization_url\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c76fc3ab-e486-42b9-a6e6-d320f9345914",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "change-management",
+                    "changes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "problem_display_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"change_template\": \"<long>\",\n  \"subject\": \"<string>\",\n  \"created_by\": \"<long>\",\n  \"requester\": \"<long>\",\n  \"owner\": \"<long>\",\n  \"agent_group\": \"<long>\",\n  \"assignee\": \"<long>\",\n  \"change_type\": \"<string>\",\n  \"change_start_date\": \"<dateTime>\",\n  \"change_completion_date\": \"<dateTime>\",\n  \"planned_change_start_date\": \"<dateTime>\",\n  \"planned_change_completion_date\": \"<dateTime>\",\n  \"actual_change_start_date\": \"<dateTime>\",\n  \"actual_change_completion_date\": \"<dateTime>\",\n  \"priority\": \"<string>\",\n  \"status\": \"<string>\",\n  \"impact\": \"<string>\",\n  \"urgency\": \"<string>\",\n  \"parent_change_id\": \"<long>\",\n  \"parent_display_id\": \"<string>\",\n  \"parent_request_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"tags\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"workspace_id\": \"<long>\",\n  \"assets\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"linked_requests\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {},\n  \"template_fields\": {},\n  \"notes\": [\n    {\n      \"user_id\": 7837,\n      \"description\": \"string\",\n      \"mentions\": [\n        6556,\n        9559\n      ],\n      \"is_private\": false,\n      \"source\": \"WORKFLOW\",\n      \"type\": \"EMAIL_NOTE\",\n      \"attachments\": [\n        4219,\n        6600\n      ]\n    },\n    {\n      \"user_id\": 2388,\n      \"description\": \"string\",\n      \"mentions\": [\n        7794,\n        7230\n      ],\n      \"is_private\": false,\n      \"source\": \"RAPID7\",\n      \"type\": \"SLACK_NOTE\",\n      \"attachments\": [\n        3187,\n        88\n      ]\n    }\n  ],\n  \"conversation_info\": {\n    \"start_timestamp\": \"string\",\n    \"channel_name\": \"string\",\n    \"channel_id\": \"string\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"external_id\": \"<string>\",\n  \"external_source\": \"SNOW\",\n  \"external_system_entity_reference\": {\n    \"type\": \"string\",\n    \"project_id\": \"string\",\n    \"build_id\": \"string\",\n    \"organization_id\": \"string\",\n    \"correlation_id\": \"string\",\n    \"organization_url\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03969bd2-1442-4a8f-b51a-7d6946919ea1",
+          "name": "Create Change with File Uploads",
+          "request": {
+            "name": "Create Change with File Uploads",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "change-management",
+                "changes",
+                "create-with-files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "change_template",
+                  "value": "<long>",
+                  "type": "text",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "requester",
+                  "value": "<long>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "agent_group",
+                  "value": "<long>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "change_type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "planned_change_start_date",
+                  "value": "<dateTime>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "planned_change_completion_date",
+                  "value": "<dateTime>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "actual_change_start_date",
+                  "value": "<dateTime>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "actual_change_completion_date",
+                  "value": "<dateTime>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "priority",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "status",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "impact",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "urgency",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "parent_change_id",
+                  "value": "<long>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "description",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "assignee",
+                  "value": "<long>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "data_json",
+                  "value": "{}",
+                  "type": "text",
+                  "description": "Any type"
+                },
+                {
+                  "key": "attachments",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "Upload multiple files as attachments."
+                },
+                {
+                  "key": "tags",
+                  "value": "[\"<long>\",\"<long>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "workspace_id",
+                  "value": "<long>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "assets",
+                  "value": "[\"<long>\",\"<long>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "linked_requests",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "external_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "external_source",
+                  "value": "{}",
+                  "type": "text",
+                  "description": "Any type"
+                },
+                {
+                  "key": "external_system_entity_reference",
+                  "value": "{}",
+                  "type": "text",
+                  "description": "Any type"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ce793572-0cf3-47d0-b2e3-616714378a51",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "change-management",
+                    "changes",
+                    "create-with-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "change_template",
+                      "value": "<long>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "requester",
+                      "value": "<long>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "agent_group",
+                      "value": "<long>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "change_type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "planned_change_start_date",
+                      "value": "<dateTime>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "planned_change_completion_date",
+                      "value": "<dateTime>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "actual_change_start_date",
+                      "value": "<dateTime>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "actual_change_completion_date",
+                      "value": "<dateTime>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "priority",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "impact",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "urgency",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "parent_change_id",
+                      "value": "<long>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "assignee",
+                      "value": "<long>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Any type",
+                        "type": "text/plain"
+                      },
+                      "key": "data_json",
+                      "value": "{}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Upload multiple files as attachments.",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<long>\",\"<long>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "workspace_id",
+                      "value": "<long>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "assets",
+                      "value": "[\"<long>\",\"<long>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "linked_requests",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Any type",
+                        "type": "text/plain"
+                      },
+                      "key": "external_source",
+                      "value": "{}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Any type",
+                        "type": "text/plain"
+                      },
+                      "key": "external_system_entity_reference",
+                      "value": "{}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "545f045d-915c-4f89-917a-ae0bd599f0fe",
+          "name": "Get Change by display ID",
+          "request": {
+            "name": "Get Change by display ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "change-management",
+                "changes",
+                ":display_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "display_id",
+                  "description": "(Required) Display ID of the change"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76f93515-4095-4433-aae1-36780144910f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "change-management",
+                    "changes",
+                    ":display_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "display_id",
+                      "description": "(Required) Display ID of the change"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e1002c1-0434-4252-96c6-22f88f259c37",
+          "name": "Patch Change by display ID",
+          "request": {
+            "name": "Patch Change by display ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "change-management",
+                "changes",
+                ":display_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "display_id",
+                  "description": "(Required) Display ID of the change"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82fcd52e-792b-4350-8ed5-fd2cd6f01dad",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "change-management",
+                    "changes",
+                    ":display_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "display_id",
+                      "description": "(Required) Display ID of the change"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04291cf7-b54e-440c-b61d-ee7d4100b3f7",
+          "name": "Get notes for change by display ID",
+          "request": {
+            "name": "Get notes for change by display ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "change-management",
+                "changes",
+                ":display_id",
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "display_id",
+                  "description": "(Required) Display ID of the change"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6c7b706-0b09-4461-ba50-d5f834cad540",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "change-management",
+                    "changes",
+                    ":display_id",
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "display_id",
+                      "description": "(Required) Display ID of the change"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39c41257-0d9c-495b-abad-e1a7aebb8cc5",
+          "name": "Create note for change by display ID",
+          "request": {
+            "name": "Create note for change by display ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "change-management",
+                "changes",
+                ":display_id",
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "display_id",
+                  "description": "(Required) Display ID of the change"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<long>\",\n  \"description\": \"<string>\",\n  \"mentions\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"is_private\": false,\n  \"source\": \"<string>\",\n  \"type\": \"<string>\",\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c7903bf-bfe9-4da5-9484-64285b863c72",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "change-management",
+                    "changes",
+                    ":display_id",
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "display_id",
+                      "description": "(Required) Display ID of the change"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<long>\",\n  \"description\": \"<string>\",\n  \"mentions\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"is_private\": false,\n  \"source\": \"PORTAL\",\n  \"type\": \"SLACK_NOTE\",\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e187fb98-8f9e-422b-8caf-9ec4f9998f00",
+          "name": "Get Change Notes and activities",
+          "request": {
+            "name": "Get Change Notes and activities",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "change-management",
+                "changes",
+                ":display_id",
+                "activity-notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "display_id",
+                  "description": "(Required) Display ID of the change"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa788dae-1266-4723-924f-c5f1fa9d625c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "change-management",
+                    "changes",
+                    ":display_id",
+                    "activity-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "display_id",
+                      "description": "(Required) Display ID of the change"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70bea4ba-ef7c-4a89-b98c-8afa0c56af15",
+          "name": "Get changes by filter",
+          "request": {
+            "name": "Get changes by filter",
+            "description": {
+              "content": "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `status` | `IS_ANY_OF` | Change status (e.g. `DRAFT`, `IN_REVIEW`, `APPROVED`, `IMPLEMENTED`). |\n| `type` | `IS_ANY_OF` | Change type. |\n| `assignee_id` | `IS_ANY_OF` | Assigned agent user ID. |\n| `created_at` | `IS_BETWEEN` | Creation timestamp (ISO 8601). |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"status\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": \"DRAFT\"\n      },\n      {\n        \"value\": \"IN_REVIEW\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"created_at\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": \"2024-01-01T00:00:00Z\"\n      },\n      {\n        \"value\": \"2024-12-31T23:59:59Z\"\n      }\n    ]\n  }\n]\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "workspaces",
+                ":workspace_id",
+                "change-management",
+                "changes",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter_name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated sort keys as `field:direction` (e.g. `status:asc,created_at:desc`), up to 2 keys. Field keys come from GET /views/CHANGE/fields (entries with `sortable: true`). Takes precedence over `sort_order`. Invalid/unknown fields -> 400.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "paginate",
+                  "value": "true"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "workspace_id",
+                  "description": "(Required) Workspace ID (numeric). Find yours under Settings → Workspace."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"attribute\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  },\n  {\n    \"attribute\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "546605c7-475d-4693-8236-4857d34ff440",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workspaces",
+                    ":workspace_id",
+                    "change-management",
+                    "changes",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "UPDATED_AT_DESC"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "paginate",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workspace_id",
+                      "description": "(Required) Workspace ID (numeric). Find yours under Settings → Workspace."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"attribute\": \"string\",\n    \"operator\": \"NOT_IN\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  },\n  {\n    \"attribute\": \"string\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.atomicwork.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "60ddfce0-0e7e-444c-af9c-e2b6d599d4e1",
+    "name": "Atomicwork Public accessManagement changeManagement API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

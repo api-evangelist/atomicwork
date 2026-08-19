@@ -1,0 +1,209 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement tags API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/tags",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "context_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of tag entity"
+              },
+              {
+                "name": "context_id",
+                "value": "",
+                "type": "query",
+                "description": "The workspace Id"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query",
+                "description": "Search query"
+              }
+            ]
+          },
+          "docs": "Get tags"
+        },
+        {
+          "info": {
+            "name": "Create Tag Option",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/tags",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Tag Option"
+        },
+        {
+          "info": {
+            "name": "Get tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/tags/:id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The tag ID"
+              },
+              {
+                "name": "context_id",
+                "value": "",
+                "type": "query",
+                "description": "The workspace id"
+              },
+              {
+                "name": "context_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of tag entity"
+              }
+            ]
+          },
+          "docs": "Get tag"
+        },
+        {
+          "info": {
+            "name": "Update Tag Option",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}.atomicwork.com/api/v1/tags/:id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The tag ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Tag Option"
+        },
+        {
+          "info": {
+            "name": "Delete Tag Option",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}.atomicwork.com/api/v1/tags/:id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The tag ID"
+              },
+              {
+                "name": "context_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "context_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of Tag entity"
+              }
+            ]
+          },
+          "docs": "Delete Tag Option"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

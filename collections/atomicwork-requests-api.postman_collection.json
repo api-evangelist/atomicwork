@@ -1,0 +1,3394 @@
+{
+  "item": [
+    {
+      "id": "4a9d6bc1-5d1a-4b7e-b490-18808bf0f42b",
+      "name": "requests",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e0aeea4-efc0-45d1-8b6b-ce9f827c2a60",
+          "name": "Create request",
+          "request": {
+            "name": "Create request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_type\": \"<string>\",\n  \"request_source\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email_content\": \"<string>\",\n  \"plain_text_description_override\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"parent_request_id\": \"<long>\",\n  \"agent_group\": \"<long>\",\n  \"assignee\": \"<long>\",\n  \"subject\": \"<string>\",\n  \"notes\": [\n    {\n      \"user_id\": \"<long>\",\n      \"conversation_id\": \"<long>\",\n      \"description\": \"<string>\",\n      \"mentions\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"is_private\": false,\n      \"source\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attachments\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"cc_emails\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"bcc_emails\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"is_broadcast\": false,\n      \"external_id\": \"<string>\",\n      \"external_source_type\": \"<string>\",\n      \"email_content\": \"<string>\",\n      \"event_created_at\": \"<dateTime>\"\n    },\n    {\n      \"user_id\": \"<long>\",\n      \"conversation_id\": \"<long>\",\n      \"description\": \"<string>\",\n      \"mentions\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"is_private\": false,\n      \"source\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attachments\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"cc_emails\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"bcc_emails\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"is_broadcast\": false,\n      \"external_id\": \"<string>\",\n      \"external_source_type\": \"<string>\",\n      \"email_content\": \"<string>\",\n      \"event_created_at\": \"<dateTime>\"\n    }\n  ],\n  \"workspace_id\": \"<long>\",\n  \"conversation_info\": {\n    \"start_timestamp\": \"<unix-timestamp>\",\n    \"channel_name\": \"<string>\",\n    \"channel_id\": \"<string>\"\n  },\n  \"tags\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"cc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"requester\": \"<long>\",\n  \"to_email\": \"<string>\",\n  \"request_created_from\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"custom_fields\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"external_id\": \"<string>\",\n  \"external_source\": \"<string>\",\n  \"resolution_time\": \"<dateTime>\",\n  \"first_response_time\": \"<dateTime>\",\n  \"first_response_due_time\": \"<dateTime>\",\n  \"resolution_due_time\": \"<dateTime>\",\n  \"closed_status_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b89e08ed-4c3a-4747-b338-cc820b975e01",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_type\": \"<string>\",\n  \"request_source\": \"EMAIL\",\n  \"description\": \"<string>\",\n  \"email_content\": \"<string>\",\n  \"plain_text_description_override\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"parent_request_id\": \"<long>\",\n  \"agent_group\": \"<long>\",\n  \"assignee\": \"<long>\",\n  \"subject\": \"<string>\",\n  \"notes\": [\n    {\n      \"user_id\": 2842,\n      \"conversation_id\": 4327,\n      \"description\": \"string\",\n      \"mentions\": [\n        879,\n        8474\n      ],\n      \"is_private\": false,\n      \"source\": \"SLACK\",\n      \"type\": \"TEMPLATE\",\n      \"attachments\": [\n        2359,\n        6175\n      ],\n      \"cc_emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"bcc_emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_broadcast\": false,\n      \"external_id\": \"string\",\n      \"external_source_type\": \"SNOW\",\n      \"email_content\": \"string\",\n      \"event_created_at\": \"1969-09-20T08:09:40.321Z\"\n    },\n    {\n      \"user_id\": 8762,\n      \"conversation_id\": 1558,\n      \"description\": \"string\",\n      \"mentions\": [\n        5205,\n        7321\n      ],\n      \"is_private\": false,\n      \"source\": \"SLACK\",\n      \"type\": \"EMAIL_NOTE\",\n      \"attachments\": [\n        4689,\n        8056\n      ],\n      \"cc_emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"bcc_emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_broadcast\": false,\n      \"external_id\": \"string\",\n      \"external_source_type\": \"SAAS_GENIE\",\n      \"email_content\": \"string\",\n      \"event_created_at\": \"1979-04-05T10:40:32.431Z\"\n    }\n  ],\n  \"workspace_id\": \"<long>\",\n  \"conversation_info\": {\n    \"start_timestamp\": \"string\",\n    \"channel_name\": \"string\",\n    \"channel_id\": \"string\"\n  },\n  \"tags\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"cc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"requester\": \"<long>\",\n  \"to_email\": \"<string>\",\n  \"request_created_from\": {\n    \"id\": \"string\",\n    \"type\": \"REQUEST_SETTINGS\"\n  },\n  \"custom_fields\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"external_id\": \"<string>\",\n  \"external_source\": \"JSM_BRIDGE\",\n  \"resolution_time\": \"<dateTime>\",\n  \"first_response_time\": \"<dateTime>\",\n  \"first_response_due_time\": \"<dateTime>\",\n  \"resolution_due_time\": \"<dateTime>\",\n  \"closed_status_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19b51372-7ffb-4873-9849-d226ee18ccd4",
+          "name": "Bulk action on requests",
+          "request": {
+            "name": "Bulk action on requests",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "bulk-actions",
+                ":bulk_action_type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bulk_action_type",
+                  "description": "(Required) The bulk action type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"display_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assignee\": \"<string>\",\n  \"tags\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"option_label\": \"<string>\",\n  \"sub_option_label\": \"<string>\",\n  \"all_children\": \"<boolean>\",\n  \"major_incident_display_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c92c9cf0-44b6-40d9-bc5f-f92ad03532b0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "bulk-actions",
+                    ":bulk_action_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bulk_action_type",
+                      "description": "(Required) The bulk action type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assignee\": \"<string>\",\n  \"tags\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"option_label\": \"<string>\",\n  \"sub_option_label\": \"<string>\",\n  \"all_children\": \"<boolean>\",\n  \"major_incident_display_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d04a2e8-64d7-4403-afaa-76ab4bcbc248",
+          "name": "Get requests by filter",
+          "request": {
+            "name": "Get requests by filter",
+            "description": {
+              "content": "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `status` | `IS_ANY_OF` | Ticket status (e.g. `OPEN`, `IN_PROGRESS`, `RESOLVED`, `CLOSED`). |\n| `type` | `IS_ANY_OF` | Request type (e.g. `INCIDENT`, `SERVICE_REQUEST`, `GENERAL_REQUEST`). |\n| `assignee_id` | `IS_ANY_OF` | Assigned agent user ID. |\n| `requester_id` | `IS_ANY_OF` | Requester user ID. |\n| `created_at` | `IS_BETWEEN` | Creation timestamp (ISO 8601). Use for date range filtering. |\n| `updated_at` | `IS_BETWEEN` | Last-updated timestamp (ISO 8601). |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"status\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": \"OPEN\"\n      },\n      {\n        \"value\": \"IN_PROGRESS\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"created_at\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": \"2024-01-01T00:00:00Z\"\n      },\n      {\n        \"value\": \"2024-12-31T23:59:59Z\"\n      }\n    ]\n  }\n]\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter_name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Generic ordered sort as a compact string, e.g. `created_at:ASC,subject:DESC`. Field keys are validated server-side against the view-column allowlist. When present, takes precedence over the legacy `sort_order` enum."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"attribute\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  },\n  {\n    \"attribute\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9a146d5-d9b5-41a5-9c67-35cd83aaf714",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "NAME_DESC"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"attribute\": \"string\",\n    \"operator\": \"CONTAINS\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  },\n  {\n    \"attribute\": \"string\",\n    \"operator\": \"IS_NOT_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "895c524f-2e08-45a3-bcc9-1e2d02a49a0a",
+          "name": "Get requests by filter",
+          "request": {
+            "name": "Get requests by filter",
+            "description": {
+              "content": "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `status` | `IS_ANY_OF` | Ticket status (e.g. `OPEN`, `IN_PROGRESS`, `RESOLVED`, `CLOSED`). |\n| `type` | `IS_ANY_OF` | Request type (e.g. `INCIDENT`, `SERVICE_REQUEST`, `GENERAL_REQUEST`). |\n| `assignee_id` | `IS_ANY_OF` | Assigned agent user ID. |\n| `requester_id` | `IS_ANY_OF` | Requester user ID. |\n| `created_at` | `IS_BETWEEN` | Creation timestamp (ISO 8601). Use for date range filtering. |\n| `updated_at` | `IS_BETWEEN` | Last-updated timestamp (ISO 8601). |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"status\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": \"OPEN\"\n      },\n      {\n        \"value\": \"IN_PROGRESS\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"created_at\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": \"2024-01-01T00:00:00Z\"\n      },\n      {\n        \"value\": \"2024-12-31T23:59:59Z\"\n      }\n    ]\n  }\n]\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "workspaces",
+                ":workspace_id",
+                "requests",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter_name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "is_problem",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Generic ordered sort as a compact string, e.g. `priority:DESC,created_at:ASC`. Field keys are validated server-side against the view-column allowlist. When present, takes precedence over the legacy `sort_order` enum."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_type_filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_type_filter",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "workspace_id",
+                  "description": "(Required) Workspace ID (numeric). Find yours under Settings → Workspace."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"attribute\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  },\n  {\n    \"attribute\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7235e3f-e63c-463a-9b88-435b2f84c2ae",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workspaces",
+                    ":workspace_id",
+                    "requests",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_problem",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "CREATED_AT_ASC"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "request_type_filter",
+                      "value": "CHANGE"
+                    },
+                    {
+                      "key": "request_type_filter",
+                      "value": "CHANGE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workspace_id",
+                      "description": "(Required) Workspace ID (numeric). Find yours under Settings → Workspace."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"attribute\": \"string\",\n    \"operator\": \"LESS_THAN_EQUALS\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  },\n  {\n    \"attribute\": \"string\",\n    \"operator\": \"IS_NOT_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01c74efc-d964-4711-9f87-ae9b76bb4687",
+          "name": "Get Request",
+          "request": {
+            "name": "Get Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b897c73-2361-4d4f-81b6-1261c5e1924d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "013ca112-b093-4680-892a-34f10225479a",
+          "name": "Patch request",
+          "request": {
+            "name": "Patch request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df9d958a-30e2-4e6d-bb54-4beb04973aa1",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91e0ac39-5435-44bf-800b-1e964e7d5f9d",
+          "name": "Move Request",
+          "request": {
+            "name": "Move Request",
+            "description": {
+              "content": "**DEPRECATED**: Use `/requests/{requestId}/move/result` instead.\n\nThis endpoint does not handle permission-based responses correctly when the user\nlacks view access to the destination workspace.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId",
+                "move"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination_workspace_id\": \"<long>\",\n  \"request_note\": {\n    \"description\": \"<string>\"\n  },\n  \"workflow_request_note\": {\n    \"user_id\": \"<long>\",\n    \"conversation_id\": \"<long>\",\n    \"description\": \"<string>\",\n    \"mentions\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"is_private\": false,\n    \"source\": \"<string>\",\n    \"type\": \"<string>\",\n    \"attachments\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"cc_emails\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"bcc_emails\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"is_broadcast\": false,\n    \"external_id\": \"<string>\",\n    \"external_source_type\": \"<string>\",\n    \"email_content\": \"<string>\",\n    \"event_created_at\": \"<dateTime>\"\n  },\n  \"data\": {\n    \"request_type\": \"<string>\",\n    \"request_source\": \"<string>\",\n    \"description\": \"<string>\",\n    \"email_content\": \"<string>\",\n    \"plain_text_description_override\": \"<string>\",\n    \"status\": \"<string>\",\n    \"priority\": \"<string>\",\n    \"parent_request_id\": \"<long>\",\n    \"agent_group\": \"<long>\",\n    \"assignee\": \"<long>\",\n    \"subject\": \"<string>\",\n    \"notes\": [\n      {\n        \"user_id\": \"<long>\",\n        \"conversation_id\": \"<long>\",\n        \"description\": \"<string>\",\n        \"mentions\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"is_private\": false,\n        \"source\": \"<string>\",\n        \"type\": \"<string>\",\n        \"attachments\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"cc_emails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bcc_emails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_broadcast\": false,\n        \"external_id\": \"<string>\",\n        \"external_source_type\": \"<string>\",\n        \"email_content\": \"<string>\",\n        \"event_created_at\": \"<dateTime>\"\n      },\n      {\n        \"user_id\": \"<long>\",\n        \"conversation_id\": \"<long>\",\n        \"description\": \"<string>\",\n        \"mentions\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"is_private\": false,\n        \"source\": \"<string>\",\n        \"type\": \"<string>\",\n        \"attachments\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"cc_emails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bcc_emails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_broadcast\": false,\n        \"external_id\": \"<string>\",\n        \"external_source_type\": \"<string>\",\n        \"email_content\": \"<string>\",\n        \"event_created_at\": \"<dateTime>\"\n      }\n    ],\n    \"workspace_id\": \"<long>\",\n    \"conversation_info\": {\n      \"start_timestamp\": \"<unix-timestamp>\",\n      \"channel_name\": \"<string>\",\n      \"channel_id\": \"<string>\"\n    },\n    \"tags\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"cc_emails\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"bcc_emails\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"attachments\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"requester\": \"<long>\",\n    \"to_email\": \"<string>\",\n    \"request_created_from\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"custom_fields\": {},\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"external_id\": \"<string>\",\n    \"external_source\": \"<string>\",\n    \"resolution_time\": \"<dateTime>\",\n    \"first_response_time\": \"<dateTime>\",\n    \"first_response_due_time\": \"<dateTime>\",\n    \"resolution_due_time\": \"<dateTime>\",\n    \"closed_status_at\": \"<dateTime>\",\n    \"item_id\": \"<long>\",\n    \"item_fields\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2dc3da84-70e5-4b7c-9672-16fd4311c531",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId",
+                    "move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_workspace_id\": \"<long>\",\n  \"request_note\": {\n    \"description\": \"string\"\n  },\n  \"workflow_request_note\": {\n    \"user_id\": 2042,\n    \"conversation_id\": 8904,\n    \"description\": \"string\",\n    \"mentions\": [\n      1547,\n      9416\n    ],\n    \"is_private\": false,\n    \"source\": \"UNIVERSAL_AGENT\",\n    \"type\": \"SLACK_NOTE\",\n    \"attachments\": [\n      2034,\n      2582\n    ],\n    \"cc_emails\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bcc_emails\": [\n      \"string\",\n      \"string\"\n    ],\n    \"is_broadcast\": false,\n    \"external_id\": \"string\",\n    \"external_source_type\": \"SNOW\",\n    \"email_content\": \"string\",\n    \"event_created_at\": \"2024-11-23T16:41:41.671Z\"\n  },\n  \"data\": {\n    \"request_type\": \"string\",\n    \"request_source\": \"TEAMS\",\n    \"description\": \"string\",\n    \"email_content\": \"string\",\n    \"plain_text_description_override\": \"string\",\n    \"status\": \"string\",\n    \"priority\": \"string\",\n    \"parent_request_id\": 6426,\n    \"agent_group\": 6071,\n    \"assignee\": 418,\n    \"subject\": \"string\",\n    \"notes\": [\n      {\n        \"user_id\": 2289,\n        \"conversation_id\": 8138,\n        \"description\": \"string\",\n        \"mentions\": [\n          9353,\n          1097\n        ],\n        \"is_private\": false,\n        \"source\": \"SLACK\",\n        \"type\": \"WORKFLOW_NOTE\",\n        \"attachments\": [\n          1167,\n          4782\n        ],\n        \"cc_emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"bcc_emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"is_broadcast\": false,\n        \"external_id\": \"string\",\n        \"external_source_type\": \"SNOW\",\n        \"email_content\": \"string\",\n        \"event_created_at\": \"1952-12-30T13:33:24.700Z\"\n      },\n      {\n        \"user_id\": 5409,\n        \"conversation_id\": 3759,\n        \"description\": \"string\",\n        \"mentions\": [\n          7174,\n          4668\n        ],\n        \"is_private\": false,\n        \"source\": \"SLACK\",\n        \"type\": \"ESD_NOTE\",\n        \"attachments\": [\n          1836,\n          879\n        ],\n        \"cc_emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"bcc_emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"is_broadcast\": false,\n        \"external_id\": \"string\",\n        \"external_source_type\": \"SAAS_GENIE\",\n        \"email_content\": \"string\",\n        \"event_created_at\": \"1994-04-10T01:35:28.912Z\"\n      }\n    ],\n    \"workspace_id\": 5302,\n    \"conversation_info\": {\n      \"start_timestamp\": \"string\",\n      \"channel_name\": \"string\",\n      \"channel_id\": \"string\"\n    },\n    \"tags\": [\n      122,\n      9960\n    ],\n    \"cc_emails\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bcc_emails\": [\n      \"string\",\n      \"string\"\n    ],\n    \"attachments\": [\n      9065,\n      1162\n    ],\n    \"requester\": 4943,\n    \"to_email\": \"string\",\n    \"request_created_from\": {\n      \"id\": \"string\",\n      \"type\": \"REQUEST_SETTINGS\"\n    },\n    \"custom_fields\": {},\n    \"created_at\": \"1949-01-22T07:26:24.984Z\",\n    \"updated_at\": \"1957-03-20T21:12:22.004Z\",\n    \"external_id\": \"string\",\n    \"external_source\": \"SAAS_GENIE\",\n    \"resolution_time\": \"1968-06-30T23:10:14.497Z\",\n    \"first_response_time\": \"1995-10-03T05:28:54.157Z\",\n    \"first_response_due_time\": \"1951-02-06T15:09:18.235Z\",\n    \"resolution_due_time\": \"1969-07-11T07:21:33.540Z\",\n    \"closed_status_at\": \"1998-07-28T08:09:54.791Z\",\n    \"item_id\": 8774,\n    \"item_fields\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b46e4480-6d95-496c-90f3-3f6cf011cac6",
+          "name": "Add or Remove Followers",
+          "request": {
+            "name": "Add or Remove Followers",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId",
+                "modify-followers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"follower_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "339ade24-5edc-47f3-982f-7705cb886da4",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId",
+                    "modify-followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"follower_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ea7124c-4c5d-4f26-928e-c477dc2e7d91",
+          "name": "Get Followers of a Request",
+          "request": {
+            "name": "Get Followers of a Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId",
+                "followers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f99688c0-bfe2-4b0a-95db-3eb7bc8e6690",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7efc2d64-fd6c-4eef-8e7c-219fa282078a",
+          "name": "Add Followers to a Request",
+          "request": {
+            "name": "Add Followers to a Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId",
+                "add-followers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"follower_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa100edf-0426-40e6-ab29-9609c7d0b088",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId",
+                    "add-followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"follower_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9149af4-6a7a-4c3d-8cef-870fb3434c68",
+          "name": "Trash Request",
+          "request": {
+            "name": "Trash Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId",
+                "trash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c700c71-d4b5-4e5a-9a1f-09ed64add081",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId",
+                    "trash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d680b892-bcf9-4bb1-b9e7-a65b9fa1de5c",
+          "name": "Get Request Notes",
+          "request": {
+            "name": "Get Request Notes",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId",
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf4796c3-eb6d-4f33-87df-d00a0107eab4",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId",
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e38ed077-4f89-4aa6-be6a-e7fd0cea10d0",
+          "name": "Create request notes",
+          "request": {
+            "name": "Create request notes",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId",
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<long>\",\n  \"conversation_id\": \"<long>\",\n  \"description\": \"<string>\",\n  \"mentions\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"is_private\": false,\n  \"source\": \"<string>\",\n  \"type\": \"<string>\",\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"cc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_broadcast\": false,\n  \"external_id\": \"<string>\",\n  \"external_source_type\": \"<string>\",\n  \"email_content\": \"<string>\",\n  \"event_created_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "628916cd-8378-4e8b-8893-1245962a1706",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId",
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<long>\",\n  \"conversation_id\": \"<long>\",\n  \"description\": \"<string>\",\n  \"mentions\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"is_private\": false,\n  \"source\": \"JOURNEY\",\n  \"type\": \"SLACK_NOTE\",\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"cc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_broadcast\": false,\n  \"external_id\": \"<string>\",\n  \"external_source_type\": \"SNOW\",\n  \"email_content\": \"<string>\",\n  \"event_created_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3c26e54-b353-47e5-b91e-8d3bd63f1b72",
+          "name": "Get Request Notes and activities",
+          "request": {
+            "name": "Get Request Notes and activities",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":requestId",
+                "activity-notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ac40dc4-3afd-4436-b290-3e3e15bac30c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":requestId",
+                    "activity-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed4c044b-3114-48ed-a083-72a7ccd0aa36",
+          "name": "Create service request for item",
+          "request": {
+            "name": "Create service request for item",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "items",
+                ":item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "item_id",
+                  "description": "(Required) The item ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_type\": \"<string>\",\n  \"request_source\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email_content\": \"<string>\",\n  \"plain_text_description_override\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"parent_request_id\": \"<long>\",\n  \"agent_group\": \"<long>\",\n  \"assignee\": \"<long>\",\n  \"subject\": \"<string>\",\n  \"notes\": [\n    {\n      \"user_id\": \"<long>\",\n      \"conversation_id\": \"<long>\",\n      \"description\": \"<string>\",\n      \"mentions\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"is_private\": false,\n      \"source\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attachments\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"cc_emails\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"bcc_emails\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"is_broadcast\": false,\n      \"external_id\": \"<string>\",\n      \"external_source_type\": \"<string>\",\n      \"email_content\": \"<string>\",\n      \"event_created_at\": \"<dateTime>\"\n    },\n    {\n      \"user_id\": \"<long>\",\n      \"conversation_id\": \"<long>\",\n      \"description\": \"<string>\",\n      \"mentions\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"is_private\": false,\n      \"source\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attachments\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"cc_emails\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"bcc_emails\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"is_broadcast\": false,\n      \"external_id\": \"<string>\",\n      \"external_source_type\": \"<string>\",\n      \"email_content\": \"<string>\",\n      \"event_created_at\": \"<dateTime>\"\n    }\n  ],\n  \"workspace_id\": \"<long>\",\n  \"conversation_info\": {\n    \"start_timestamp\": \"<unix-timestamp>\",\n    \"channel_name\": \"<string>\",\n    \"channel_id\": \"<string>\"\n  },\n  \"tags\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"cc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"requester\": \"<long>\",\n  \"to_email\": \"<string>\",\n  \"request_created_from\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"custom_fields\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"external_id\": \"<string>\",\n  \"external_source\": \"<string>\",\n  \"resolution_time\": \"<dateTime>\",\n  \"first_response_time\": \"<dateTime>\",\n  \"first_response_due_time\": \"<dateTime>\",\n  \"resolution_due_time\": \"<dateTime>\",\n  \"closed_status_at\": \"<dateTime>\",\n  \"item_id\": \"<long>\",\n  \"item_fields\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "218126f4-e5fc-4399-8be4-f1fec52da193",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "item_id",
+                      "description": "(Required) The item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_type\": \"<string>\",\n  \"request_source\": \"EMAIL\",\n  \"description\": \"<string>\",\n  \"email_content\": \"<string>\",\n  \"plain_text_description_override\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"parent_request_id\": \"<long>\",\n  \"agent_group\": \"<long>\",\n  \"assignee\": \"<long>\",\n  \"subject\": \"<string>\",\n  \"notes\": [\n    {\n      \"user_id\": 3183,\n      \"conversation_id\": 2976,\n      \"description\": \"string\",\n      \"mentions\": [\n        6326,\n        3354\n      ],\n      \"is_private\": false,\n      \"source\": \"TEAMS\",\n      \"type\": \"WORKFLOW_NOTE\",\n      \"attachments\": [\n        8532,\n        9993\n      ],\n      \"cc_emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"bcc_emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_broadcast\": false,\n      \"external_id\": \"string\",\n      \"external_source_type\": \"SNOW\",\n      \"email_content\": \"string\",\n      \"event_created_at\": \"1955-02-03T15:29:46.321Z\"\n    },\n    {\n      \"user_id\": 66,\n      \"conversation_id\": 1241,\n      \"description\": \"string\",\n      \"mentions\": [\n        9010,\n        2584\n      ],\n      \"is_private\": false,\n      \"source\": \"SLACK\",\n      \"type\": \"EMAIL_NOTE\",\n      \"attachments\": [\n        6411,\n        4295\n      ],\n      \"cc_emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"bcc_emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_broadcast\": false,\n      \"external_id\": \"string\",\n      \"external_source_type\": \"SNOW\",\n      \"email_content\": \"string\",\n      \"event_created_at\": \"1972-12-22T17:09:43.032Z\"\n    }\n  ],\n  \"workspace_id\": \"<long>\",\n  \"conversation_info\": {\n    \"start_timestamp\": \"string\",\n    \"channel_name\": \"string\",\n    \"channel_id\": \"string\"\n  },\n  \"tags\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"cc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"requester\": \"<long>\",\n  \"to_email\": \"<string>\",\n  \"request_created_from\": {\n    \"id\": \"string\",\n    \"type\": \"REQUEST_SETTINGS\"\n  },\n  \"custom_fields\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"external_id\": \"<string>\",\n  \"external_source\": \"SNOW\",\n  \"resolution_time\": \"<dateTime>\",\n  \"first_response_time\": \"<dateTime>\",\n  \"first_response_due_time\": \"<dateTime>\",\n  \"resolution_due_time\": \"<dateTime>\",\n  \"closed_status_at\": \"<dateTime>\",\n  \"item_id\": \"<long>\",\n  \"item_fields\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "595ddd6e-2da9-4e70-bccc-f9551174836e",
+          "name": "Add service item instance to service request",
+          "request": {
+            "name": "Add service item instance to service request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":request_id",
+                "items",
+                ":item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "item_id",
+                  "description": "(Required) The item ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The request ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ab4f74c-70f8-4e4d-961b-f3a3dc79ee42",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":request_id",
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "item_id",
+                      "description": "(Required) The item ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The request ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "070480b6-63e7-4b0b-bc38-afed46b6f358",
+          "name": "Retrieve Service Request",
+          "request": {
+            "name": "Retrieve Service Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":request_id",
+                "items",
+                ":item_instance_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The request ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "item_instance_id",
+                  "description": "(Required) The item ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d50e122c-d7de-4353-bcca-87177ef9633e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":request_id",
+                    "items",
+                    ":item_instance_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The request ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "item_instance_id",
+                      "description": "(Required) The item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0071077-29d4-4c20-98c7-e569cf063794",
+          "name": "Patch Service Request",
+          "request": {
+            "name": "Patch Service Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":request_id",
+                "items",
+                ":item_instance_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The request ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "item_instance_id",
+                  "description": "(Required) The item ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"item_fields\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eea0dc86-2f1e-4b14-9a63-cd759c7025e0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":request_id",
+                    "items",
+                    ":item_instance_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The request ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "item_instance_id",
+                      "description": "(Required) The item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"item_fields\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0252487e-05d2-466e-bbda-7783567b8212",
+          "name": "Retrieve Service Request Items",
+          "request": {
+            "name": "Retrieve Service Request Items",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                ":request_id",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The request ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff587fb6-2ad5-4668-ba72-de5bd8dfa257",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    ":request_id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The request ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e26d0eb4-78d1-484d-a00e-3eddf1a8bac8",
+          "name": "List Impact Options",
+          "request": {
+            "name": "List Impact Options",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "workspaces",
+                ":workspace_id",
+                "requests",
+                "impact-options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "workspace_id",
+                  "description": "(Required) The workspace ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4248d9f8-8ca3-42e1-8cef-3773705967cd",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workspaces",
+                    ":workspace_id",
+                    "requests",
+                    "impact-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workspace_id",
+                      "description": "(Required) The workspace ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbc159b3-4bdc-466f-9b41-8a96e802f2ec",
+          "name": "Get Request",
+          "request": {
+            "name": "Get Request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "v2",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f370efc7-22cb-43b0-a251-16af433179c2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "v2",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fca98ce-3ef7-4824-a606-ea93d8c1bdb4",
+          "name": "Patch request",
+          "request": {
+            "name": "Patch request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "v2",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "request_source",
+                  "value": "{}",
+                  "type": "text",
+                  "description": "Any type"
+                },
+                {
+                  "key": "description",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "status",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "priority",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "agent_group",
+                  "value": "<long>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "assignee",
+                  "value": "<long>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "impact",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "urgency",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "category",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "subcategory",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "data_json",
+                  "value": "{\"custom_fields\":{\"key_0\":{},\"key_1\":{},\"key_2\":{}}}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "attachments",
+                  "value": "[\"<long>\",\"<long>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "assets",
+                  "value": "[\"<long>\",\"<long>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bb6ad30b-ac43-49da-bed3-f3696c5f06da",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "v2",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Any type",
+                        "type": "text/plain"
+                      },
+                      "key": "request_source",
+                      "value": "{}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "priority",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "agent_group",
+                      "value": "<long>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "assignee",
+                      "value": "<long>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "impact",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "urgency",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "category",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "subcategory",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "data_json",
+                      "value": "{\"custom_fields\":{\"key_0\":{}}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[\"<long>\",\"<long>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "assets",
+                      "value": "[\"<long>\",\"<long>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2757ffa8-f62a-4550-b264-2da2b00ededb",
+          "name": "Create major incident request",
+          "request": {
+            "name": "Create major incident request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "major-incident"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"incident_cluster_id\": \"<string>\",\n  \"request_source\": \"<string>\",\n  \"workspace_id\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b7b4639-7dcf-40f6-918f-b631534e4d48",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "major-incident"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"incident_cluster_id\": \"<string>\",\n  \"request_source\": \"SLACK\",\n  \"workspace_id\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.atomicwork.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8354dd86-69e3-4602-a1ba-e86fe7ab5e3c",
+    "name": "Atomicwork Public accessManagement requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

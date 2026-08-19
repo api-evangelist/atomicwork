@@ -1,0 +1,400 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement customObjects API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customObjects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get filter fields for custom object list view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects/view-fields",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "object_type_id",
+                "value": "",
+                "type": "query",
+                "description": "The object type ID to get filter fields for"
+              }
+            ]
+          },
+          "docs": "Get filter fields for custom object list view"
+        },
+        {
+          "info": {
+            "name": "List custom objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "object_type_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query",
+                "description": "Optional search string to filter custom objects by display ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List custom objects"
+        },
+        {
+          "info": {
+            "name": "Create a custom object instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a custom object instance"
+        },
+        {
+          "info": {
+            "name": "List custom objects with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects/:objectTypeId/list",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "objectTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The object type ID to scope results to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List custom objects with filtering and sorting"
+        },
+        {
+          "info": {
+            "name": "Get CO field picker values (dropdown/multi-dropdown/relationship options)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects/:objectTypeId/fields",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "objectTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The object type ID"
+              },
+              {
+                "name": "field_name",
+                "value": "",
+                "type": "query",
+                "description": "Reference key of the dropdown / multi-dropdown / relationship field"
+              },
+              {
+                "name": "field_value",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_none",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_any",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_null",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "parent_option_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get CO field picker values (dropdown/multi-dropdown/relationship options)"
+        },
+        {
+          "info": {
+            "name": "Get custom object details by numeric id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects/by-id/:id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              }
+            ]
+          },
+          "docs": "Numeric-id counterpart of `getCustomObject`. The display-id form\n`/custom-objects/{displayId}` (e.g. `/custom-objects/COB-001`) is the\ncanonical user-facing URL; this endpoint takes the internal numeric id\nand is intended for callers that already hold the int64 id.\n"
+        },
+        {
+          "info": {
+            "name": "Update a custom object instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects/by-id/:id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a custom object instance"
+        },
+        {
+          "info": {
+            "name": "Partial update a custom object instance (single-field edits)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects/by-id/:id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partial update a custom object instance (single-field edits)"
+        },
+        {
+          "info": {
+            "name": "Soft delete a custom object instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects/by-id/:id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              }
+            ]
+          },
+          "docs": "Soft delete a custom object instance"
+        },
+        {
+          "info": {
+            "name": "Get only the relationship fields of a custom object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects/by-id/:id/relationships",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              }
+            ]
+          },
+          "docs": "Returns the same `CustomObjectDetailsDto` shape as `getCustomObject`, but\n`customData` is restricted to relationship reference keys only — scalar,\ndropdown, date, and other non-relationship fields are omitted. Each\n`objectType.sections[*].fieldIds` list is filtered to retain only the\nfield IDs that correspond to relationship field definitions; empty\nsections are preserved so the UI gets a stable section layout.\n\nUseful when a caller needs to display a CO's links to other entities\nwithout paying "
+        },
+        {
+          "info": {
+            "name": "Export custom objects to CSV (async, emailed)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/custom-objects/:objectTypeId/list/download",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "objectTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The object type ID to export"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export custom objects to CSV (async, emailed)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

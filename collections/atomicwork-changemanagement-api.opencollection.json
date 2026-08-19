@@ -1,0 +1,508 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement changeManagement API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "changeManagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all the templates a logged in user can raise changes from (scoped to the workspaces the user is a member of); when for_user_id is supplied the list is curated for that profile user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/agent/change-management/change-templates",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "for_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional profile user the template list should be curated for (people-profile on-behalf-of context). When set, the list is narrowed to templates both the calling agent can raise and this user is allowed to access. When absent, behaviour is unchanged."
+              }
+            ]
+          },
+          "docs": "Retrieve all the templates a logged in user can raise changes from (scoped to the workspaces the user is a member of); when for_user_id is supplied the list is curated for that profile user"
+        },
+        {
+          "info": {
+            "name": "Create Change in workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/change-management/changes",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "problem_display_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Change in workspace"
+        },
+        {
+          "info": {
+            "name": "Create Change with File Uploads",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/change-management/changes/create-with-files",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "requester",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "agent_group",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "change_type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "change_template",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "planned_change_start_date",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "planned_change_completion_date",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "actual_change_start_date",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "actual_change_completion_date",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "subject",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "priority",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "status",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "impact",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "urgency",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "parent_change_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assignee",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "data_json",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "attachments",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tags",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "workspace_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assets",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "linked_requests",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "external_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "external_source",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "external_system_entity_reference",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create Change with File Uploads"
+        },
+        {
+          "info": {
+            "name": "Get Change by display ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/change-management/changes/:display_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "Display ID of the change"
+              }
+            ]
+          },
+          "docs": "Get Change by display ID"
+        },
+        {
+          "info": {
+            "name": "Patch Change by display ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.atomicwork.com/api/v1/change-management/changes/:display_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "Display ID of the change"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Change by display ID"
+        },
+        {
+          "info": {
+            "name": "Get notes for change by display ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/change-management/changes/:display_id/notes",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "Display ID of the change"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get notes for change by display ID"
+        },
+        {
+          "info": {
+            "name": "Create note for change by display ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/change-management/changes/:display_id/notes",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "Display ID of the change"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create note for change by display ID"
+        },
+        {
+          "info": {
+            "name": "Get Change Notes and activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/change-management/changes/:display_id/activity-notes",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "Display ID of the change"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Change Notes and activities"
+        },
+        {
+          "info": {
+            "name": "Get changes by filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspace_id/change-management/changes/list",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID (numeric). Find yours under Settings → Workspace."
+              },
+              {
+                "name": "filter_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated sort keys as `field:direction` (e.g. `status:asc,created_at:desc`), up to 2 keys. Field keys come from GET /views/CHANGE/fields (entries with `sortable: true`). Takes precedence over `sort_order`. Invalid/unknown fields -> 400.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "paginate",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

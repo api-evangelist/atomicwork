@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement entities API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all linked entities with relationship information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/entities/:entity_type/:display_id/links",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "path",
+                "description": "The entity type (e.g. REQUEST, CHANGE)"
+              },
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "The display ID of the source entity (e.g. REQ-123, CHG-456)"
+              },
+              {
+                "name": "reference_key",
+                "value": "",
+                "type": "query",
+                "description": "Reference key of the implicit relationship field definition"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query",
+                "description": "Search keyword to filter linked entities by display ID or subject"
+              }
+            ]
+          },
+          "docs": "Get all linked entities with relationship information"
+        },
+        {
+          "info": {
+            "name": "Link multiple entities at once",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/entities/:entity_type/:display_id/links",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "path",
+                "description": "The entity type (e.g. REQUEST, CHANGE)"
+              },
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "The display ID of the source entity (e.g. REQ-123, CHG-456)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates multiple relationships between the source entity and target entities.\nEach link can be a different relationship type and direction.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,241 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement problems API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "problems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create problem request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/problems",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create problem request"
+        },
+        {
+          "info": {
+            "name": "Retrieve Problem Request Assessment Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/problems/:display_id/assessment-form",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "The problem ID"
+              }
+            ]
+          },
+          "docs": "Retrieve Problem Request Assessment Form"
+        },
+        {
+          "info": {
+            "name": "Update Problem Request Assessment Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/problems/:display_id/assessment-form",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "The problem ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Problem Request Assessment Form"
+        },
+        {
+          "info": {
+            "name": "Retrieve Problem Request Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/problems/:display_id/tasks",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "The problem ID"
+              }
+            ]
+          },
+          "docs": "Retrieve Problem Request Tasks"
+        },
+        {
+          "info": {
+            "name": "Create task for problem request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/problems/:display_id/tasks",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "The problem ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create task for problem request"
+        },
+        {
+          "info": {
+            "name": "Retrieve Problem Request Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/problems/:display_id/tasks/:task_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "The problem ID"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The task ID"
+              }
+            ]
+          },
+          "docs": "Retrieve Problem Request Task"
+        },
+        {
+          "info": {
+            "name": "Update Problem Request Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}.atomicwork.com/api/v1/problems/:display_id/tasks/:task_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "display_id",
+                "value": "",
+                "type": "path",
+                "description": "The problem ID"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The task ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Problem Request Task"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

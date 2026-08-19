@@ -1,0 +1,378 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "accessManagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a grant for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/iga/grants",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an identity grant directly without going through the IGA approval workflow. This is the primary endpoint for programmatic access provisioning — use it when an external system (HRMS, onboarding tool, compliance platform) needs to grant access to a user.\n\n**Required fields:** `user_id` and `entitlement_id`. Call `GET /iga/apps` then `GET /iga/entitlements?app_id={id}` to discover valid entitlement IDs.\n\n**Optional fields:**\n- `policy_id` or `policy_key` — link the grant to a specific access"
+        },
+        {
+          "info": {
+            "name": "List grants with filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/iga/grants/list",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search across grant, entitlement, and user fields."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for results. Common values: GRANTED_AT_DESC (newest first), GRANTED_AT_ASC (oldest first), EXPIRES_AT_ASC (expiring soonest first)."
+              },
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter grants linked to a specific access policy by its UUID key."
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter grants to entitlements under a specific app (from GET /iga/apps)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-indexed). Default 1."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (default 25, max 100)."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token from previous response to fetch the next page. When provided, takes priority over page and per_page parameters."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of grant IDs to filter by. When provided, returns only grants matching these IDs."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search and list identity grants with advanced filtering. This is the primary query endpoint for building compliance dashboards, access reviews, and audit reports.\n\nSupports filtering by user, app, entitlement, status, and date ranges via request body filters. Combine multiple filters for precise queries — for example, find all active grants for a specific app that were created in the last 90 days.\n\nUse query parameters for quick filtering (`app_id`, `policy_id`, `sort_order`) or the request body"
+        },
+        {
+          "info": {
+            "name": "Update a grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}.atomicwork.com/api/v1/iga/grants/:grant_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "grant_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an identity grant's metadata. Use this to change the associated policy, update the grantor, or adjust grant timestamps.\n\n**Updatable fields:**\n- `status` — transition the grant to a new status\n- `policy_id` or `policy_key` — reassign the grant to a different access policy\n- `granted_by` — update the grantor identifier\n- `granted_at` — correct the grant timestamp\n\nTo revoke a grant, use the dedicated `POST /iga/grants/{grant_id}/revoke` endpoint instead — it handles deprovisioning workflow"
+        },
+        {
+          "info": {
+            "name": "Revoke a grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/iga/grants/:grant_id/revoke",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "grant_id",
+                "value": "",
+                "type": "path",
+                "description": "The grant ID to revoke"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke an identity grant. Supports two modes depending on whether you want the identity provider to be notified:\n\n**Immediate revocation (default):** With `skip_deprovisioning=true` (the default), the grant is marked as `REVOKED` immediately in Atomicwork. No action is taken in the identity provider — use this when you've already removed access externally or when the grant is informational only.\n\n**Full deprovisioning:** With `skip_deprovisioning=false`, Atomicwork triggers the full deprovisioni"
+        },
+        {
+          "info": {
+            "name": "Get grant history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/iga/grants/:grant_id/history",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "grant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the grant"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for grant history results"
+              }
+            ]
+          },
+          "docs": "Retrieve the complete audit trail for a specific grant. Returns a paginated timeline of all lifecycle events — creation, extensions, revocations, and expirations — with timestamps and actors.\n\nEach history entry includes:\n- `event_type` — one of `GRANTED`, `EXTENDED`, `REVOKED`, or `EXPIRED`\n- `event_at` — when the event occurred (ISO 8601)\n- `event_by` — who or what triggered the event\n\n**Pagination:** Supports `page`, `per_page`, and `sort_order` (CREATED_AT_ASC or CREATED_AT_DESC). Default so"
+        },
+        {
+          "info": {
+            "name": "List available apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/iga/apps",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query",
+                "description": "Filter apps by name (partial match)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-indexed). Default 1."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (default 25)."
+              }
+            ]
+          },
+          "docs": "List the identity resource apps connected to your workspace. This is the starting point for grant discovery — each app represents a connected identity provider (Okta, Azure AD, JumpCloud, Google Workspace, etc.) and contains entitlements that can be granted to users.\n\n**Typical flow:** Call this endpoint first to get `app_id` values, then call `GET /iga/entitlements?app_id={id}` to browse the entitlements (groups, roles, licenses) available in each app.\n\n**Pagination:** Supports `page` and `per_"
+        },
+        {
+          "info": {
+            "name": "List available entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/iga/entitlements",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query",
+                "description": "Filter entitlements by name (partial match)."
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter entitlements under a specific app (from GET /iga/apps)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by entitlement category: GROUP (IDP group membership), ROLE (application role)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by publication state: PUBLISHED (available for granting), DRAFT (not yet available)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-indexed). Default 1."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (default 25)."
+              }
+            ]
+          },
+          "docs": "List the entitlements (groups, roles, licenses, repos) available for granting. Each entitlement belongs to an app and represents a specific access right that can be assigned to a user.\n\n**Filter by app:** Pass `app_id` (from `GET /iga/apps`) to list only entitlements under a specific identity provider app.\n\n**Filter by type:** Use the `type` parameter to narrow by entitlement category:\n- `GROUP` — identity provider group membership (e.g. Azure AD security group, Okta group)\n- `ROLE` — applicatio"
+        },
+        {
+          "info": {
+            "name": "Create an entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/iga/entitlements",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new identity entitlement. Requires app_id and type.\nThe entitlement can then be associated with policies and granted to users.\n"
+        },
+        {
+          "info": {
+            "name": "Create a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/iga/policies",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new identity policy. Requires name, type, and status.\nPolicies define access rules and can be associated with entitlements.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

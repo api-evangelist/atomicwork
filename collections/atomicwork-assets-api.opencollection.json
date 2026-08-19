@@ -1,0 +1,367 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement assets API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/assets",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Asset"
+        },
+        {
+          "info": {
+            "name": "Get List of all Asset attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/assets/attributes",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query",
+                "description": "Search String"
+              },
+              {
+                "name": "asset_type",
+                "value": "",
+                "type": "query",
+                "description": "asset_type"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "offset"
+              }
+            ]
+          },
+          "docs": "Get List of all Asset attributes"
+        },
+        {
+          "info": {
+            "name": "Asset List with views, and filters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/assets/list",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Generic multi-column sort, comma-separated `field:DIRECTION` (e.g. `display_name:ASC,created_at:DESC`). Sortable fields are those advertised with `sortable: true` by the asset fields endpoint. Takes precedence over `sort_order`. Invalid/unknown fields -> 400."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | "
+        },
+        {
+          "info": {
+            "name": "Get List of Assets for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/assets/users/:user_id/list",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "userId"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query",
+                "description": "Search String"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "offset"
+              }
+            ]
+          },
+          "docs": "Get List of Assets for a user"
+        },
+        {
+          "info": {
+            "name": "Get Form Fields of an AssetType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/assets/types/:asset_type_id/form-fields",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "asset_type_id",
+                "value": "",
+                "type": "path",
+                "description": "assetTypeId"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Optional. When provided (e.g. \"KANDJI\", \"MS_INTUNE\", \"JAMF\"), filters the returned\nform fields to only those mapped to that integration source — used by the per-source\nasset detail view to render only the fields the source contributes. When omitted,\nreturns the full field set for the asset type (current behavior).\n"
+              }
+            ]
+          },
+          "docs": "Get Form Fields of an AssetType"
+        },
+        {
+          "info": {
+            "name": "Get Asset Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/assets/:asset_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "assetId"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Optional. When provided (e.g. \"KANDJI\", \"MS_INTUNE\", \"JAMF\"), returns the asset's\nview from that integration's source-original ledger row instead of the merged unified\nview. The response's asset_basic_info.id stays as the unified id (URL is canonical);\nasset_basic_info.source still reflects the unified's origin; form_fields and per-row\ntimestamps reflect the source's contribution. Returns 404 if the asset has no\ncontribution from the requested source. See asset_basic_info.additional_sources for\nthe list of valid source values for this asset.\n"
+              }
+            ]
+          },
+          "docs": "Get Asset Details"
+        },
+        {
+          "info": {
+            "name": "Update Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}.atomicwork.com/api/v1/assets/:asset_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "assetId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Asset"
+        },
+        {
+          "info": {
+            "name": "Delete Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}.atomicwork.com/api/v1/assets/:asset_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "assetId"
+              }
+            ]
+          },
+          "docs": "Delete Asset"
+        },
+        {
+          "info": {
+            "name": "Get Asset Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/assets/:asset_id/activities",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "assetId"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Optional. When provided (e.g. \"KANDJI\", \"MS_INTUNE\", \"JAMF\"), returns the activity\nlog of that integration's source-original ledger row instead of the unified row's\nactivity log. Source-original entries capture each individual sync's changes;\nunified entries capture derive-driven aggregations. Returns 404 if the asset has no\ncontribution from the requested source.\n"
+              }
+            ]
+          },
+          "docs": "Get Asset Activities"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

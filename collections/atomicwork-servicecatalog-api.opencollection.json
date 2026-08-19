@@ -1,0 +1,438 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement serviceCatalog API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "serviceCatalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get catalogue item fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/catalogue-items/:item_id/fields",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The Catalogue item id"
+              },
+              {
+                "name": "show_editable_only",
+                "value": "",
+                "type": "query",
+                "description": "Show only editable fields for field management"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query",
+                "description": "Search key for field name"
+              }
+            ]
+          },
+          "docs": "Get catalogue item fields"
+        },
+        {
+          "info": {
+            "name": "Bulk create catalogue item fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/catalogue-items/:item_id/fields/bulk",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The Catalogue item id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n|"
+        },
+        {
+          "info": {
+            "name": "Get category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/catalogue/categories",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The workspace ID"
+              },
+              {
+                "name": "category_type",
+                "value": "",
+                "type": "query",
+                "description": "The category type"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get category"
+        },
+        {
+          "info": {
+            "name": "Create category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/catalogue/categories",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The workspace ID"
+              },
+              {
+                "name": "category_type",
+                "value": "",
+                "type": "query",
+                "description": "The category type"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create category"
+        },
+        {
+          "info": {
+            "name": "Get Service Items List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/service-catalog/:categoryId/items",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The workspace ID"
+              },
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path",
+                "description": "The category ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Service Items List"
+        },
+        {
+          "info": {
+            "name": "Retrieve Service Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/service-catalog/:categoryId/items/:serviceItemId",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The workspace ID"
+              },
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path",
+                "description": "The category ID"
+              },
+              {
+                "name": "serviceItemId",
+                "value": "",
+                "type": "path",
+                "description": "The service item ID"
+              }
+            ]
+          },
+          "docs": "Retrieve Service Item"
+        },
+        {
+          "info": {
+            "name": "Get catalogue item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/catalogue/items",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The workspace ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "category_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "category_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_published",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get catalogue item"
+        },
+        {
+          "info": {
+            "name": "Create catalogue item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/catalogue/items",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The workspace ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create catalogue item"
+        },
+        {
+          "info": {
+            "name": "Retrieve catalogue Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/catalogue/items/:itemId",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The workspace ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The service item ID"
+              }
+            ]
+          },
+          "docs": "Retrieve catalogue Item"
+        },
+        {
+          "info": {
+            "name": "Patch catalogue item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.atomicwork.com/api/v1/workspaces/:workspaceId/catalogue/items/:itemId",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "The workspace ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The service item ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch catalogue item"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

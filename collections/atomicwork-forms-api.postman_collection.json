@@ -1,0 +1,1141 @@
+{
+  "item": [
+    {
+      "id": "ed0a516f-4840-4188-815d-729e91583935",
+      "name": "forms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c97df63f-1598-43fb-996d-23bbaf4e1a8f",
+          "name": "Get change fields applicable (visible) to current user",
+          "request": {
+            "name": "Get change fields applicable (visible) to current user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "forms",
+                "changes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workspace_id",
+                  "value": "<long>",
+                  "description": "The workspace id"
+                },
+                {
+                  "disabled": false,
+                  "key": "change_template_id",
+                  "value": "<long>",
+                  "description": "The change template ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "change_id",
+                  "value": "<string>",
+                  "description": "The change display ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "view",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status_value",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "943f916e-300a-4509-801d-6ec7426f4eac",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "forms",
+                    "changes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workspace_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "change_template_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "change_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "view",
+                      "value": "UPDATE_CHANGE_ATTRIBUTES_ACTION_CONFIG_FORM"
+                    },
+                    {
+                      "key": "status_value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_type",
+                      "value": "VIEW_OR_UPDATE"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c882bb2e-ec7a-4edb-9ebc-32ba9d446872",
+          "name": "Get request fields applicable (visible) to current user",
+          "request": {
+            "name": "Get request fields applicable (visible) to current user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "forms",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "request_form_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "supported_objects",
+                  "value": "<string>",
+                  "description": "The supported object type. Takes precedence over request_type if both are provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "workspace_id",
+                  "value": "<long>",
+                  "description": "The workspace id"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_id",
+                  "value": "<string>",
+                  "description": "The request display ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "service_item_ids",
+                  "value": "<long>",
+                  "description": "The service item ids if service request is being created"
+                },
+                {
+                  "disabled": false,
+                  "key": "service_item_ids",
+                  "value": "<long>",
+                  "description": "The service item ids if service request is being created"
+                },
+                {
+                  "disabled": false,
+                  "key": "catalog_item_ids",
+                  "value": "<long>",
+                  "description": "The catalogue item fields if catalogue request is being created, we will depreciate(service_item_ids) this soon."
+                },
+                {
+                  "disabled": false,
+                  "key": "catalog_item_ids",
+                  "value": "<long>",
+                  "description": "The catalogue item fields if catalogue request is being created, we will depreciate(service_item_ids) this soon."
+                },
+                {
+                  "disabled": false,
+                  "key": "channel_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "view",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status_value",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d50a0caf-5534-4511-9a94-31e723875cd6",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "forms",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_form_type",
+                      "value": "INCIDENT_REQUEST"
+                    },
+                    {
+                      "key": "request_type",
+                      "value": "INCIDENT"
+                    },
+                    {
+                      "key": "supported_objects",
+                      "value": "PROBLEM"
+                    },
+                    {
+                      "key": "workspace_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service_item_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "service_item_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "catalog_item_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "catalog_item_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "channel_type",
+                      "value": "ATOMICINBOX"
+                    },
+                    {
+                      "key": "channel_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "view",
+                      "value": "MAJOR_INCIDENT_CREATE"
+                    },
+                    {
+                      "key": "status_value",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8dea823-672b-4275-b56a-332186c247eb",
+          "name": "Get request fields applicable (visible) to current user",
+          "request": {
+            "name": "Get request fields applicable (visible) to current user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "forms",
+                "custom-form-template",
+                ":form_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "context_id",
+                  "value": "<long>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "form_id",
+                  "description": "(Required) The custom form id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00373e07-4614-489d-9678-ae2bd696a970",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "forms",
+                    "custom-form-template",
+                    ":form_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context_type",
+                      "value": "REQUEST"
+                    },
+                    {
+                      "key": "context_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "form_id",
+                      "description": "(Required) The custom form id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5790203-7600-4a12-985b-720a5b37d1c6",
+          "name": "Get list of options for the field identified by reference_key",
+          "request": {
+            "name": "Get list of options for the field identified by reference_key",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "forms",
+                ":entity_type",
+                ":reference_key",
+                "options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workspace_id",
+                  "value": "<long>",
+                  "description": "The workspace id"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_sub_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_id",
+                  "value": "<string>",
+                  "description": "The request display ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<long>",
+                  "description": "The service item id in case entity_type is SERVICE_ITEM"
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_option_id",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "selected_option_ids",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "selected_option_ids",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "view",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_flattened_nested_field_required",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_any",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_value_required_as_id",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "field_entity_source",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_field_type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity_type",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference_key",
+                  "description": "(Required) The reference key of a dropdown, multi dropdown, nested dropdown field"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c2d6853-44ba-4bd2-8d6b-3ee4d9bd1a5c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "forms",
+                    ":entity_type",
+                    ":reference_key",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workspace_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "request_sub_type",
+                      "value": "REQUEST"
+                    },
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "parent_option_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "selected_option_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selected_option_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "view",
+                      "value": "NOTIFICATIONS"
+                    },
+                    {
+                      "key": "is_flattened_nested_field_required",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_any",
+                      "value": "false"
+                    },
+                    {
+                      "key": "is_value_required_as_id",
+                      "value": "false"
+                    },
+                    {
+                      "key": "field_entity_source",
+                      "value": "SERVICE_NOW"
+                    },
+                    {
+                      "key": "external_field_type",
+                      "value": "PROFORMA"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference_key",
+                      "description": "(Required) The reference key of a dropdown, multi dropdown, nested dropdown field"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e61aa7a-5ece-43f7-b88d-fd8750a0fd03",
+          "name": "Get list of options for the field identified by reference_key",
+          "request": {
+            "name": "Get list of options for the field identified by reference_key",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "forms",
+                ":entity_type",
+                ":reference_key",
+                "entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workspace_id",
+                  "value": "<long>",
+                  "description": "The workspace id"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_id",
+                  "value": "<string>",
+                  "description": "The request display id"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<long>",
+                  "description": "The service item id in case entity_type is SERVICE_ITEM"
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_option_id",
+                  "value": "<long>",
+                  "description": "The parent option ID to query for child options"
+                },
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "selected_options_ids",
+                  "value": "<long>",
+                  "description": "Deprecated, DO NOT USE. This was a typo. Use selected_option_ids instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "selected_options_ids",
+                  "value": "<long>",
+                  "description": "Deprecated, DO NOT USE. This was a typo. Use selected_option_ids instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "selected_option_ids",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "selected_option_ids",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_flattened_nested_field_required",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "view",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_workspace_member",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subview",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "should_have_system_user",
+                  "value": "false",
+                  "description": "Include system users and bots in the response (SYSTEM and ATOMIC_BOT types)"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_type",
+                  "value": "<string>",
+                  "description": "Narrows the assignee/agent picker to a single user category. EMPLOYEE returns human\nusers only, AI_EMPLOYEE returns AI coworkers only. These are the only two values used by\nthe picker tabs. When omitted, humans and AI coworkers are returned together (current\nbehavior). Any other enum value (e.g. EXTERNAL) is filtered as-is and yields no assignable\nusers, since external users are not valid assignees. Applied only to the user-flavoured\nassignee resolution path; ignored for every other entity type.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "template_id",
+                  "value": "<long>",
+                  "description": "Change template ID. When entity_type=CHANGE and reference_key=requester,\nfilters the response to workspace members allowed by the template's\nuser_segments (workspace agents always included). Ignored otherwise.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity_type",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference_key",
+                  "description": "(Required) The reference key of a entity reference field"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39ba725a-6b20-4cdb-b891-88974f1736d5",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "forms",
+                    ":entity_type",
+                    ":reference_key",
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workspace_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "request_type",
+                      "value": "SERVICE_REQUEST"
+                    },
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "parent_option_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "selected_options_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selected_options_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selected_option_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selected_option_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "is_flattened_nested_field_required",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "view",
+                      "value": "SCHEDULE_WORKFLOW"
+                    },
+                    {
+                      "key": "is_workspace_member",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "subview",
+                      "value": "CONDITION"
+                    },
+                    {
+                      "key": "should_have_system_user",
+                      "value": "false"
+                    },
+                    {
+                      "key": "user_type",
+                      "value": "AI_EMPLOYEE"
+                    },
+                    {
+                      "key": "template_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference_key",
+                      "description": "(Required) The reference key of a entity reference field"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.atomicwork.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a039a8e7-947c-4865-944a-e066412b7df1",
+    "name": "Atomicwork Public accessManagement forms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

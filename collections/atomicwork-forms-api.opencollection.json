@@ -1,0 +1,435 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Atomicwork Public accessManagement forms API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get change fields applicable (visible) to current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/forms/changes",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "The workspace id"
+              },
+              {
+                "name": "change_template_id",
+                "value": "",
+                "type": "query",
+                "description": "The change template ID"
+              },
+              {
+                "name": "change_id",
+                "value": "",
+                "type": "query",
+                "description": "The change display ID"
+              },
+              {
+                "name": "view",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status_value",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get change fields applicable (visible) to current user"
+        },
+        {
+          "info": {
+            "name": "Get request fields applicable (visible) to current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/forms/requests",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "request_form_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "request_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "supported_objects",
+                "value": "",
+                "type": "query",
+                "description": "The supported object type. Takes precedence over request_type if both are provided."
+              },
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "The workspace id"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query",
+                "description": "The request display ID"
+              },
+              {
+                "name": "service_item_ids",
+                "value": "",
+                "type": "query",
+                "description": "The service item ids if service request is being created"
+              },
+              {
+                "name": "catalog_item_ids",
+                "value": "",
+                "type": "query",
+                "description": "The catalogue item fields if catalogue request is being created, we will depreciate(service_item_ids) this soon."
+              },
+              {
+                "name": "channel_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "view",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status_value",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get request fields applicable (visible) to current user"
+        },
+        {
+          "info": {
+            "name": "Get request fields applicable (visible) to current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/forms/custom-form-template/:form_id",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "form_id",
+                "value": "",
+                "type": "path",
+                "description": "The custom form id"
+              },
+              {
+                "name": "context_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "context_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get request fields applicable (visible) to current user"
+        },
+        {
+          "info": {
+            "name": "Get list of options for the field identified by reference_key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/forms/:entity_type/:reference_key/options",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "reference_key",
+                "value": "",
+                "type": "path",
+                "description": "The reference key of a dropdown, multi dropdown, nested dropdown field"
+              },
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "The workspace id"
+              },
+              {
+                "name": "request_sub_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query",
+                "description": "The request display ID"
+              },
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "query",
+                "description": "The service item id in case entity_type is SERVICE_ITEM"
+              },
+              {
+                "name": "parent_option_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "selected_option_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "view",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_flattened_nested_field_required",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_any",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_value_required_as_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "field_entity_source",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_field_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get list of options for the field identified by reference_key"
+        },
+        {
+          "info": {
+            "name": "Get list of options for the field identified by reference_key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.atomicwork.com/api/v1/forms/:entity_type/:reference_key/entities",
+            "headers": [
+              {
+                "name": "X-Api-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Workspace-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "reference_key",
+                "value": "",
+                "type": "path",
+                "description": "The reference key of a entity reference field"
+              },
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "The workspace id"
+              },
+              {
+                "name": "request_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query",
+                "description": "The request display id"
+              },
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "query",
+                "description": "The service item id in case entity_type is SERVICE_ITEM"
+              },
+              {
+                "name": "parent_option_id",
+                "value": "",
+                "type": "query",
+                "description": "The parent option ID to query for child options"
+              },
+              {
+                "name": "search_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "selected_options_ids",
+                "value": "",
+                "type": "query",
+                "description": "Deprecated, DO NOT USE. This was a typo. Use selected_option_ids instead."
+              },
+              {
+                "name": "selected_option_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_flattened_nested_field_required",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "view",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_workspace_member",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subview",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "should_have_system_user",
+                "value": "",
+                "type": "query",
+                "description": "Include system users and bots in the response (SYSTEM and ATOMIC_BOT types)"
+              },
+              {
+                "name": "user_type",
+                "value": "",
+                "type": "query",
+                "description": "Narrows the assignee/agent picker to a single user category. EMPLOYEE returns human\nusers only, AI_EMPLOYEE returns AI coworkers only. These are the only two values used by\nthe picker tabs. When omitted, humans and AI coworkers are returned together (current\nbehavior). Any other enum value (e.g. EXTERNAL) is filtered as-is and yields no assignable\nusers, since external users are not valid assignees. Applied only to the user-flavoured\nassignee resolution path; ignored for every other entity type.\n"
+              },
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "query",
+                "description": "Change template ID. When entity_type=CHANGE and reference_key=requester,\nfilters the response to workspace members allowed by the template's\nuser_segments (workspace agents always included). Ignored otherwise.\n"
+              }
+            ]
+          },
+          "docs": "Get list of options for the field identified by reference_key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

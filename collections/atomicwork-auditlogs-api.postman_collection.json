@@ -1,0 +1,411 @@
+{
+  "item": [
+    {
+      "id": "6ff64a70-1b47-4588-85f5-2e73f3810ee3",
+      "name": "auditLogs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3036b859-4f24-4693-821d-0c0669a3298a",
+          "name": "Get all audit logs",
+          "request": {
+            "name": "Get all audit logs",
+            "description": {
+              "content": "Get all audit logs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "audit-logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53ddab0a-815d-4679-bb87-a2904ccca90a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "audit-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05cf258b-39f2-48dd-95a1-1e56be905733",
+          "name": "Export audit logs to CSV",
+          "request": {
+            "name": "Export audit logs to CSV",
+            "description": {
+              "content": "Triggers an export of audit logs to CSV file. The export is processed asynchronously and an email with download link is sent upon completion.\n### Filtering\n\nUse the `filters` field to narrow results. Pass an empty array or omit the field to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `event_at` | `IS_BETWEEN` | Event timestamp. Requires exactly **two** values: `[start, end]` (both inclusive). Accepts ISO 8601 (`2024-01-01T00:00:00Z`) or date-only (`2024-01-01` — end date is automatically extended to `T23:59:59Z`). On export, defaults to the last 6 months if omitted. |\n| `actor_id` | `IS_ANY_OF` | Numeric user ID of the person who performed the action (the `id` field from `GET /api/v1/users`). |\n| `module` | `IS_ANY_OF` | Module **integer ID** (not the name). See the Module IDs reference table below. |\n| `event_type` | `IS_ANY_OF` | Event type **integer ID** (not the name). See the Event Type IDs reference table below. Not every event type is valid for every module — unsupported combinations return zero results. |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n\n**Module IDs** (use with `attribute: \"module\"`)\n\n| ID | Module | What it covers |\n|---|---|---|\n| `0` | APPS | Third-party app connections (connect / disconnect / update) |\n| `1` | USERS | User creation and profile updates |\n| `2` | WORKFLOWS | Automation workflow changes |\n| `3` | SERVICE_CATALOG | Service catalog items |\n| `4` | SECURITY | Login, logout, API key creation / deletion |\n| `5` | SKILL | AI skill changes |\n| `6` | WORKSPACES | Workspace settings changes |\n| `7` | TENANT_MIGRATION | Sandbox import / export |\n| `8` | AGENT_GROUPS | Agent group changes |\n| `9` | ACCESS_MANAGEMENT | Role and access control changes |\n| `10` | AI_AGENTS | AI agent changes |\n| `11` | AGENT_AVAILABILITY | Agent availability updates |\n| `12` | CUSTOM_OBJECTS | Custom object type changes |\n\n**Event Type IDs** (use with `attribute: \"event_type\"`)\n\n| ID | Event Type |\n|---|---|\n| `0` | CONNECTED |\n| `1` | DISCONNECTED |\n| `2` | CREATED |\n| `3` | UPDATED |\n| `4` | ENABLED |\n| `5` | DISABLED |\n| `6` | DELETED |\n| `7` | IMPORT |\n| `8` | EXPORT |\n| `9` | RESTORED |\n| `10` | LOGIN |\n| `12` | LOGOUT |\n\n**Module → valid event types**\n\n| Module | Valid event type IDs |\n|---|---|\n| APPS (0) | 0 (CONNECTED), 1 (DISCONNECTED), 3 (UPDATED) |\n| USERS (1) | 2 (CREATED), 3 (UPDATED) |\n| WORKFLOWS (2) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| SERVICE_CATALOG (3) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| SECURITY (4) | 2 (CREATED), 6 (DELETED), 10 (LOGIN), 12 (LOGOUT) |\n| SKILL (5) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| WORKSPACES (6) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| TENANT_MIGRATION (7) | 7 (IMPORT), 8 (EXPORT) |\n| AGENT_GROUPS (8) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| ACCESS_MANAGEMENT (9) | 2 (CREATED), 3 (UPDATED), 6 (DELETED), 9 (RESTORED) |\n| AI_AGENTS (10) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| AGENT_AVAILABILITY (11) | 3 (UPDATED) |\n| CUSTOM_OBJECTS (12) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"event_at\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": \"2024-01-01T00:00:00Z\"\n      },\n      {\n        \"value\": \"2024-12-31T23:59:59Z\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"module\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 1\n      },\n      {\n        \"value\": 9\n      }\n    ]\n  },\n  {\n    \"attribute\": \"event_type\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 2\n      },\n      {\n        \"value\": 3\n      }\n    ]\n  },\n  {\n    \"attribute\": \"actor_id\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 123\n      }\n    ]\n  }\n]\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "audit-logs",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"search_key\": \"<string>\",\n  \"filters\": [\n    {\n      \"attribute\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        },\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        }\n      ]\n    },\n    {\n      \"attribute\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        },\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        }\n      ]\n    }\n  ],\n  \"cc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d71c1c81-d39c-4f5c-80f6-253b714d3cc7",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "audit-logs",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search_key\": \"<string>\",\n  \"filters\": [\n    {\n      \"attribute\": \"string\",\n      \"operator\": \"IS_BETWEEN\",\n      \"values\": [\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        },\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        }\n      ]\n    },\n    {\n      \"attribute\": \"string\",\n      \"operator\": \"IS_BETWEEN\",\n      \"values\": [\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        },\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        }\n      ]\n    }\n  ],\n  \"cc_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "defce5c5-fa22-4fb0-9e9b-9fd371830916",
+          "name": "List audit logs with filters",
+          "request": {
+            "name": "List audit logs with filters",
+            "description": {
+              "content": "List audit logs with structured filters for actor, module, and event type\n### Filtering\n\nUse the `filters` field to narrow results. Pass an empty array or omit the field to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `event_at` | `IS_BETWEEN` | Event timestamp. Requires exactly **two** values: `[start, end]` (both inclusive). Accepts ISO 8601 (`2024-01-01T00:00:00Z`) or date-only (`2024-01-01` — end date is automatically extended to `T23:59:59Z`). On export, defaults to the last 6 months if omitted. |\n| `actor_id` | `IS_ANY_OF` | Numeric user ID of the person who performed the action (the `id` field from `GET /api/v1/users`). |\n| `module` | `IS_ANY_OF` | Module **integer ID** (not the name). See the Module IDs reference table below. |\n| `event_type` | `IS_ANY_OF` | Event type **integer ID** (not the name). See the Event Type IDs reference table below. Not every event type is valid for every module — unsupported combinations return zero results. |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n\n**Module IDs** (use with `attribute: \"module\"`)\n\n| ID | Module | What it covers |\n|---|---|---|\n| `0` | APPS | Third-party app connections (connect / disconnect / update) |\n| `1` | USERS | User creation and profile updates |\n| `2` | WORKFLOWS | Automation workflow changes |\n| `3` | SERVICE_CATALOG | Service catalog items |\n| `4` | SECURITY | Login, logout, API key creation / deletion |\n| `5` | SKILL | AI skill changes |\n| `6` | WORKSPACES | Workspace settings changes |\n| `7` | TENANT_MIGRATION | Sandbox import / export |\n| `8` | AGENT_GROUPS | Agent group changes |\n| `9` | ACCESS_MANAGEMENT | Role and access control changes |\n| `10` | AI_AGENTS | AI agent changes |\n| `11` | AGENT_AVAILABILITY | Agent availability updates |\n| `12` | CUSTOM_OBJECTS | Custom object type changes |\n\n**Event Type IDs** (use with `attribute: \"event_type\"`)\n\n| ID | Event Type |\n|---|---|\n| `0` | CONNECTED |\n| `1` | DISCONNECTED |\n| `2` | CREATED |\n| `3` | UPDATED |\n| `4` | ENABLED |\n| `5` | DISABLED |\n| `6` | DELETED |\n| `7` | IMPORT |\n| `8` | EXPORT |\n| `9` | RESTORED |\n| `10` | LOGIN |\n| `12` | LOGOUT |\n\n**Module → valid event types**\n\n| Module | Valid event type IDs |\n|---|---|\n| APPS (0) | 0 (CONNECTED), 1 (DISCONNECTED), 3 (UPDATED) |\n| USERS (1) | 2 (CREATED), 3 (UPDATED) |\n| WORKFLOWS (2) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| SERVICE_CATALOG (3) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| SECURITY (4) | 2 (CREATED), 6 (DELETED), 10 (LOGIN), 12 (LOGOUT) |\n| SKILL (5) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| WORKSPACES (6) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| TENANT_MIGRATION (7) | 7 (IMPORT), 8 (EXPORT) |\n| AGENT_GROUPS (8) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| ACCESS_MANAGEMENT (9) | 2 (CREATED), 3 (UPDATED), 6 (DELETED), 9 (RESTORED) |\n| AI_AGENTS (10) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n| AGENT_AVAILABILITY (11) | 3 (UPDATED) |\n| CUSTOM_OBJECTS (12) | 2 (CREATED), 3 (UPDATED), 6 (DELETED) |\n\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"event_at\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": \"2024-01-01T00:00:00Z\"\n      },\n      {\n        \"value\": \"2024-12-31T23:59:59Z\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"module\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 1\n      },\n      {\n        \"value\": 9\n      }\n    ]\n  },\n  {\n    \"attribute\": \"event_type\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 2\n      },\n      {\n        \"value\": 3\n      }\n    ]\n  },\n  {\n    \"attribute\": \"actor_id\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 123\n      }\n    ]\n  }\n]\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "audit-logs",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"search_key\": \"<string>\",\n  \"page\": 1,\n  \"per_page\": 25,\n  \"next_page_token\": \"<string>\",\n  \"filters\": [\n    {\n      \"attribute\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        },\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        }\n      ]\n    },\n    {\n      \"attribute\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"values\": [\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        },\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        }\n      ]\n    }\n  ],\n  \"sort_order\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2060d7f4-b072-4fae-b556-8126d4732724",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "audit-logs",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search_key\": \"<string>\",\n  \"page\": 1,\n  \"per_page\": 25,\n  \"next_page_token\": \"<string>\",\n  \"filters\": [\n    {\n      \"attribute\": \"string\",\n      \"operator\": \"IS_BETWEEN\",\n      \"values\": [\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        },\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        }\n      ]\n    },\n    {\n      \"attribute\": \"string\",\n      \"operator\": \"IS_BETWEEN\",\n      \"values\": [\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        },\n        {\n          \"value\": {},\n          \"nested_filter\": {}\n        }\n      ]\n    }\n  ],\n  \"sort_order\": \"EVENT_AT_DESC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.atomicwork.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cfb7f929-a3e6-42e1-9881-bc3d66f70571",
+    "name": "Atomicwork Public accessManagement auditLogs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

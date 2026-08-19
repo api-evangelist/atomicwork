@@ -1,0 +1,1324 @@
+{
+  "item": [
+    {
+      "id": "3f8517f1-4f9e-423d-a172-cec5e5ec1de3",
+      "name": "accessManagement",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c6beaf8d-7e19-441e-a3c6-fa751e62a6b7",
+          "name": "Create a grant for a user",
+          "request": {
+            "name": "Create a grant for a user",
+            "description": {
+              "content": "Create an identity grant directly without going through the IGA approval workflow. This is the primary endpoint for programmatic access provisioning — use it when an external system (HRMS, onboarding tool, compliance platform) needs to grant access to a user.\n\n**Required fields:** `user_id` and `entitlement_id`. Call `GET /iga/apps` then `GET /iga/entitlements?app_id={id}` to discover valid entitlement IDs.\n\n**Optional fields:**\n- `policy_id` or `policy_key` — link the grant to a specific access policy\n- `granted_by` — record which user or system initiated the grant\n- `granted_at` — backdate the grant timestamp (ISO 8601); defaults to now\n\nThe grant method (how provisioning happens) is automatically derived from the entitlement's provisioning configuration — Okta, Azure AD, JumpCloud, Google Workspace, or manual service request.\n\nReturns the created grant with its `id`, resolved `status`, `entitlement`, `app`, and provisioning details.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "iga",
+                "grants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<long>\",\n  \"entitlement_id\": \"<long>\",\n  \"policy_id\": \"<long>\",\n  \"policy_key\": \"<string>\",\n  \"granted_by\": \"<long>\",\n  \"granted_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bca19a45-97ed-4f5a-979d-f55a4db5d619",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "iga",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<long>\",\n  \"entitlement_id\": \"<long>\",\n  \"policy_id\": \"<long>\",\n  \"policy_key\": \"<string>\",\n  \"granted_by\": \"<long>\",\n  \"granted_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ba6f64c-270d-4c0b-8625-81e99bad8916",
+          "name": "List grants with filters",
+          "request": {
+            "name": "List grants with filters",
+            "description": {
+              "content": "Search and list identity grants with advanced filtering. This is the primary query endpoint for building compliance dashboards, access reviews, and audit reports.\n\nSupports filtering by user, app, entitlement, status, and date ranges via request body filters. Combine multiple filters for precise queries — for example, find all active grants for a specific app that were created in the last 90 days.\n\nUse query parameters for quick filtering (`app_id`, `policy_id`, `sort_order`) or the request body for structured filter objects with operators like `IS_ANY_OF`, `IS_BETWEEN`, etc.\n\n**Pagination:** Returns paginated results with `page`, `per_page` (default 25), and `next_page_token` for cursor-based pagination. Pass `next_page_token` from the previous response to fetch the next page.\n\n**Response** includes full grant details: user info, entitlement, app, policy, provisioning status, revocation status, and timestamps.\n\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `status` | `IS_ANY_OF` | Grant status **bucket** (not the raw status). Accepted values: `ACTIVE` (includes GRANTED and EXTENDED grants), `INACTIVE` (includes REVOKED and EXPIRED grants), `REVOKED` (revoked only). See the Status Reference table below. |\n| `user` | `IS_ANY_OF` | Numeric user ID of the grant recipient (the `id` field from `GET /api/v1/users`). Pass one or more user IDs to filter grants belonging to specific people. |\n| `app` | `IS_ANY_OF` | Application ID — the identity resource app the entitlement belongs to (the `id` field from `GET /api/v1/iga/apps`). Filters grants to entitlements under a specific app. |\n| `entitlement` | `IS_ANY_OF` | Entitlement ID — the specific entitlement (group, role, license, etc.) the grant was issued for. Use `GET /api/v1/iga/entitlements` to discover IDs. |\n| `entitlement_value` | `IS_ANY_OF` | Entitlement value string — filters by the human-readable entitlement value (e.g. the group name or role name) rather than the numeric ID. |\n| `granted_at` | `IS_BETWEEN` | Grant creation timestamp. Requires exactly **two** values: `[start, end]` (both inclusive). Accepts ISO 8601 format (`2024-01-01T00:00:00Z`). |\n| `expires_at` | `IS_BETWEEN` | Grant expiration timestamp. Same format as `granted_at`. Use this to find grants expiring within a specific window. |\n| `last_login_at` | `IS_BETWEEN` | Last login timestamp for the grant recipient. Same format as `granted_at`. Useful for identifying unused grants where the user hasn't logged in recently. |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n\n**Status Reference**\n\nGrants have a raw status and a **status bucket** used for filtering:\n\n| Filter value | Raw statuses included | Description |\n|---|---|---|\n| `ACTIVE` | GRANTED, EXTENDED | Currently valid grants |\n| `INACTIVE` | REVOKED, EXPIRED | No longer valid grants |\n| `REVOKED` | REVOKED | Only manually or system-revoked grants |\n\n**Grant types** (returned in responses, not used as filter attributes)\n\n| Type | Description |\n|---|---|\n| `BIRTHRIGHT` | Automatically assigned based on user attributes (department, role, etc.) |\n| `PREAPPROVED` | Pre-approved via an access policy — no approval workflow required |\n| `APPROVED` | Granted after completing an approval workflow |\n\n**Entitlement types** (filter via the entitlements endpoint, not on grants directly)\n\n| Type | Description |\n|---|---|\n| `GROUP` | Identity provider group membership (e.g. Azure AD group, Okta group) |\n| `ROLE` | Application role assignment |\n| `LICENSE` | Software license entitlement |\n| `REPO` | Repository access |\n| `OTHER` | Custom entitlement type |\n\n**Provisioning providers** (shown in grant responses)\n\n| Provider | Description |\n|---|---|\n| `OKTA` | Okta identity provider |\n| `AZURE_AD` | Microsoft Entra ID (Azure AD) |\n| `JUMPCLOUD` | JumpCloud directory |\n| `GOOGLE_WORKSPACE` | Google Workspace |\n| `MS_INTUNE` | Microsoft Intune device management |\n| `MANUAL` | Manual provisioning (service request created for IT team) |\n\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"status\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": \"ACTIVE\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"app\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 42\n      }\n    ]\n  },\n  {\n    \"attribute\": \"granted_at\",\n    \"operator\": \"IS_BETWEEN\",\n    \"values\": [\n      {\n        \"value\": \"2024-01-01T00:00:00Z\"\n      },\n      {\n        \"value\": \"2024-12-31T23:59:59Z\"\n      }\n    ]\n  },\n  {\n    \"attribute\": \"user\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": 123\n      },\n      {\n        \"value\": 456\n      }\n    ]\n  }\n]\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "iga",
+                "grants",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>",
+                  "description": "Free-text search across grant, entitlement, and user fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order for results. Common values: GRANTED_AT_DESC (newest first), GRANTED_AT_ASC (oldest first), EXPIRES_AT_ASC (expiring soonest first)."
+                },
+                {
+                  "disabled": false,
+                  "key": "policy_id",
+                  "value": "<string>",
+                  "description": "Filter grants linked to a specific access policy by its UUID key."
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<long>",
+                  "description": "Filter grants to entitlements under a specific app (from GET /iga/apps)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-indexed). Default 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25",
+                  "description": "Results per page (default 25, max 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token from previous response to fetch the next page. When provided, takes priority over page and per_page parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of grant IDs to filter by. When provided, returns only grants matching these IDs."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"attribute\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  },\n  {\n    \"attribute\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d4dc5dd-e6ac-4c59-8d18-878669397120",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "iga",
+                    "grants",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "UNPUBLISHED_DESC"
+                    },
+                    {
+                      "key": "policy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"attribute\": \"string\",\n    \"operator\": \"GREATER_THAN_EQUALS\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  },\n  {\n    \"attribute\": \"string\",\n    \"operator\": \"STARTS_WITH\",\n    \"values\": [\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      },\n      {\n        \"value\": {},\n        \"nested_filter\": {}\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b5c208f-7141-423e-a788-083ae79cc8b5",
+          "name": "Update a grant",
+          "request": {
+            "name": "Update a grant",
+            "description": {
+              "content": "Update an identity grant's metadata. Use this to change the associated policy, update the grantor, or adjust grant timestamps.\n\n**Updatable fields:**\n- `status` — transition the grant to a new status\n- `policy_id` or `policy_key` — reassign the grant to a different access policy\n- `granted_by` — update the grantor identifier\n- `granted_at` — correct the grant timestamp\n\nTo revoke a grant, use the dedicated `POST /iga/grants/{grant_id}/revoke` endpoint instead — it handles deprovisioning workflows.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "iga",
+                "grants",
+                ":grant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "grant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"policy_id\": \"<long>\",\n  \"policy_key\": \"<string>\",\n  \"granted_by\": \"<long>\",\n  \"granted_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1142d52a-ba36-4c35-a84c-e31b304d3f2c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "iga",
+                    "grants",
+                    ":grant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "grant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"REVOKED\",\n  \"policy_id\": \"<long>\",\n  \"policy_key\": \"<string>\",\n  \"granted_by\": \"<long>\",\n  \"granted_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87c388f2-7436-4ec6-b172-38974a6fd692",
+          "name": "Revoke a grant",
+          "request": {
+            "name": "Revoke a grant",
+            "description": {
+              "content": "Revoke an identity grant. Supports two modes depending on whether you want the identity provider to be notified:\n\n**Immediate revocation (default):** With `skip_deprovisioning=true` (the default), the grant is marked as `REVOKED` immediately in Atomicwork. No action is taken in the identity provider — use this when you've already removed access externally or when the grant is informational only.\n\n**Full deprovisioning:** With `skip_deprovisioning=false`, Atomicwork triggers the full deprovisioning workflow. Depending on the entitlement's provisioning config, this may:\n- Remove the user from an Azure AD or Okta group\n- Remove a JumpCloud or Google Workspace assignment\n- Create a manual service request for IT to action\n\nThe response includes a `revocation_status` object with `status` (IN_PROGRESS, COMPLETED, or FAILED) and a `schedule_id` you can use to track the deprovisioning execution.\n\n**Optional fields:**\n- `reason` — free-text reason for the revocation (recorded in grant history)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "iga",
+                "grants",
+                ":grant_id",
+                "revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "grant_id",
+                  "description": "(Required) The grant ID to revoke"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\",\n  \"skip_deprovisioning\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c12bf73-8f16-4528-a97f-6e348148f9ed",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "iga",
+                    "grants",
+                    ":grant_id",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "grant_id",
+                      "description": "(Required) The grant ID to revoke"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"skip_deprovisioning\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de181023-d0dc-4a1f-8a63-56d27a6fcd0c",
+          "name": "Get grant history",
+          "request": {
+            "name": "Get grant history",
+            "description": {
+              "content": "Retrieve the complete audit trail for a specific grant. Returns a paginated timeline of all lifecycle events — creation, extensions, revocations, and expirations — with timestamps and actors.\n\nEach history entry includes:\n- `event_type` — one of `GRANTED`, `EXTENDED`, `REVOKED`, or `EXPIRED`\n- `event_at` — when the event occurred (ISO 8601)\n- `event_by` — who or what triggered the event\n\n**Pagination:** Supports `page`, `per_page`, and `sort_order` (CREATED_AT_ASC or CREATED_AT_DESC). Default sort is newest first.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "iga",
+                "grants",
+                ":grant_id",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order for grant history results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "grant_id",
+                  "description": "(Required) The unique identifier of the grant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "241d1b63-a8aa-4531-b7f9-681bc53d4bf7",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "iga",
+                    "grants",
+                    ":grant_id",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "UPDATED_AT_DESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "grant_id",
+                      "description": "(Required) The unique identifier of the grant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cc3e5af-8d8a-4358-afe5-de7440b2c745",
+          "name": "List available apps",
+          "request": {
+            "name": "List available apps",
+            "description": {
+              "content": "List the identity resource apps connected to your workspace. This is the starting point for grant discovery — each app represents a connected identity provider (Okta, Azure AD, JumpCloud, Google Workspace, etc.) and contains entitlements that can be granted to users.\n\n**Typical flow:** Call this endpoint first to get `app_id` values, then call `GET /iga/entitlements?app_id={id}` to browse the entitlements (groups, roles, licenses) available in each app.\n\n**Pagination:** Supports `page` and `per_page` (default 25). Use `search_key` to filter apps by name.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "iga",
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>",
+                  "description": "Filter apps by name (partial match)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-indexed). Default 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25",
+                  "description": "Results per page (default 25)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "299fe444-e532-474d-9993-f8078d0a6aad",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "iga",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0138155e-713a-4320-a0b3-567230eb1056",
+          "name": "List available entitlements",
+          "request": {
+            "name": "List available entitlements",
+            "description": {
+              "content": "List the entitlements (groups, roles, licenses, repos) available for granting. Each entitlement belongs to an app and represents a specific access right that can be assigned to a user.\n\n**Filter by app:** Pass `app_id` (from `GET /iga/apps`) to list only entitlements under a specific identity provider app.\n\n**Filter by type:** Use the `type` parameter to narrow by entitlement category:\n- `GROUP` — identity provider group membership (e.g. Azure AD security group, Okta group)\n- `ROLE` — application role assignment\n\n**Filter by status:** Use `status` to filter by publication state:\n- `PUBLISHED` — available for granting\n- `DRAFT` — not yet available\n\n**Pagination:** Supports `page`, `per_page` (default 25), and `search_key` for name search.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "iga",
+                "entitlements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_key",
+                  "value": "<string>",
+                  "description": "Filter entitlements by name (partial match)."
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<long>",
+                  "description": "Filter entitlements under a specific app (from GET /iga/apps)."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by entitlement category: GROUP (IDP group membership), ROLE (application role)."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by publication state: PUBLISHED (available for granting), DRAFT (not yet available)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-indexed). Default 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25",
+                  "description": "Results per page (default 25)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c3f669b-df3e-418e-aee7-7465a709d990",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "iga",
+                    "entitlements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "ROLE"
+                    },
+                    {
+                      "key": "status",
+                      "value": "DRAFT"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "887d1ba2-7b0f-458e-9e89-3471387be21d",
+          "name": "Create an entitlement",
+          "request": {
+            "name": "Create an entitlement",
+            "description": {
+              "content": "Create a new identity entitlement. Requires app_id and type.\nThe entitlement can then be associated with policies and granted to users.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "iga",
+                "entitlements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"app_id\": \"<long>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"provisioning_config\": {\n    \"provider\": \"<string>\",\n    \"type\": \"<string>\",\n    \"value\": {\n      \"label\": \"<string>\",\n      \"icon\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string,null>\"\n      },\n      \"value\": \"<string>\"\n    }\n  },\n  \"deprovisioning_config\": {\n    \"provider\": \"<string>\",\n    \"type\": \"<string>\",\n    \"value\": {\n      \"value\": \"<string>\",\n      \"label\": \"<string>\",\n      \"icon\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string,null>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a217131d-a8ff-43f8-98de-fb7f02f713d9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "iga",
+                    "entitlements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"app_id\": \"<long>\",\n  \"description\": \"<string>\",\n  \"status\": \"PUBLISHED\",\n  \"provisioning_config\": {\n    \"provider\": \"OKTA\",\n    \"type\": \"OKTA_GROUP_PROVISIONING\",\n    \"value\": {\n      \"label\": \"string\",\n      \"icon\": {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"value\": \"string\"\n    }\n  },\n  \"deprovisioning_config\": {\n    \"provider\": \"MS_INTUNE\",\n    \"type\": \"AZURE_GROUP_DEPROVISIONING\",\n    \"value\": {\n      \"value\": \"string\",\n      \"label\": \"string\",\n      \"icon\": {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c02865f-a428-412d-91a4-7bf7ab26da6f",
+          "name": "Create a policy",
+          "request": {
+            "name": "Create a policy",
+            "description": {
+              "content": "Create a new identity policy. Requires name, type, and status.\nPolicies define access rules and can be associated with entitlements.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "iga",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "X-Workspace-Id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"<string>\",\n  \"app_id\": \"<long>\",\n  \"description\": \"<string>\",\n  \"condition\": {\n    \"type\": \"<string>\",\n    \"values\": [\n      \"<long>\",\n      \"<long>\"\n    ]\n  },\n  \"approvals\": {\n    \"type\": \"<string>\"\n  },\n  \"lifecycle\": {\n    \"type\": \"<string>\"\n  },\n  \"is_active\": \"<boolean>\",\n  \"entitlements\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"is_business_justification_required\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "752bfb34-3921-435b-ada6-a933364bb3eb",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "iga",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Workspace-Id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"SELF_SERVICE\",\n  \"status\": \"PUBLISHED\",\n  \"app_id\": \"<long>\",\n  \"description\": \"<string>\",\n  \"condition\": {\n    \"type\": \"string\",\n    \"values\": [\n      6469,\n      8251\n    ]\n  },\n  \"approvals\": {\n    \"type\": \"string\"\n  },\n  \"lifecycle\": {\n    \"type\": \"string\"\n  },\n  \"is_active\": \"<boolean>\",\n  \"entitlements\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"is_business_justification_required\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.atomicwork.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1ec3408f-9f1f-40dd-ac80-40a9e87c803b",
+    "name": "Atomicwork Public accessManagement API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
