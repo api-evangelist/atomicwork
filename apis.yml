@@ -53,6 +53,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Access Management
+  tags_raw:
   - accessManagement
   properties:
   - type: OpenAPI
@@ -67,6 +69,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Agent Groups
+  tags_raw:
   - agentGroups
   properties:
   - type: OpenAPI
@@ -81,6 +85,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Assets
+  tags_raw:
   - assets
   properties:
   - type: OpenAPI
@@ -95,6 +101,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Audit Logs
+  tags_raw:
   - auditLogs
   properties:
   - type: OpenAPI
@@ -108,7 +116,8 @@ apis:
   description: The businessHourConfig API from Atomicwork — 2 operation(s) for businesshourconfig.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - businessHourConfig
   properties:
   - type: OpenAPI
@@ -123,6 +132,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Change Management
+  tags_raw:
   - changeManagement
   properties:
   - type: OpenAPI
@@ -137,6 +148,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Custom Objects
+  tags_raw:
   - customObjects
   properties:
   - type: OpenAPI
@@ -151,6 +164,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Entities
+  tags_raw:
   - entities
   properties:
   - type: OpenAPI
@@ -165,6 +180,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Forms
+  tags_raw:
   - forms
   properties:
   - type: OpenAPI
@@ -179,6 +196,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Problems
+  tags_raw:
   - problems
   properties:
   - type: OpenAPI
@@ -193,6 +212,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Requests
+  tags_raw:
   - requests
   properties:
   - type: OpenAPI
@@ -207,6 +228,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Service Catalog
+  tags_raw:
   - serviceCatalog
   properties:
   - type: OpenAPI
@@ -221,6 +244,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Tags
+  tags_raw:
   - tags
   properties:
   - type: OpenAPI
@@ -235,6 +260,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - User
+  tags_raw:
   - users
   properties:
   - type: OpenAPI
@@ -249,6 +276,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Workflows
+  tags_raw:
   - workflows
   properties:
   - type: OpenAPI
@@ -263,6 +292,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Workspaces
+  tags_raw:
   - workspaces
   properties:
   - type: OpenAPI
