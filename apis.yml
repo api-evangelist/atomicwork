@@ -64,7 +64,8 @@ apis:
   description: The accessManagement API from Atomicwork — 8 operation(s) for accessmanagement.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags: []
+  tags:
+  - Access Management
   tags_raw:
   - accessManagement
   properties:
@@ -79,7 +80,8 @@ apis:
   description: The agentGroups API from Atomicwork — 3 operation(s) for agentgroups.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags: []
+  tags:
+  - Agent Groups
   tags_raw:
   - agentGroups
   properties:
@@ -110,7 +112,8 @@ apis:
   description: The auditLogs API from Atomicwork — 3 operation(s) for auditlogs.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags: []
+  tags:
+  - Audit Logs
   tags_raw:
   - auditLogs
   properties:
@@ -140,7 +143,8 @@ apis:
   description: The changeManagement API from Atomicwork — 7 operation(s) for changemanagement.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags: []
+  tags:
+  - Change Management
   tags_raw:
   - changeManagement
   properties:
@@ -204,7 +208,7 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
-  - problems
+  - Problems
   tags_raw:
   - problems
   properties:
@@ -235,7 +239,8 @@ apis:
   description: The serviceCatalog API from Atomicwork — 7 operation(s) for servicecatalog.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags: []
+  tags:
+  - Service Catalog
   tags_raw:
   - serviceCatalog
   properties:
