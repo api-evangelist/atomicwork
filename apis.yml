@@ -60,38 +60,6 @@ tags:
 - MCP
 - Enterprise
 apis:
-- aid: atomicwork:atomicwork-accessmanagement-api
-  name: Atomicwork accessManagement API
-  description: The accessManagement API from Atomicwork — 8 operation(s) for accessmanagement.
-  humanURL: https://developers.atomicwork.com/api-reference/introduction
-  baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags:
-  - Access Management
-  tags_raw:
-  - accessManagement
-  properties:
-  - type: OpenAPI
-    url: openapi/atomicwork-accessmanagement-api-openapi.yml
-  - type: Documentation
-    url: https://developers.atomicwork.com
-  - type: APIReference
-    url: https://developers.atomicwork.com/api-reference/introduction
-- aid: atomicwork:atomicwork-agentgroups-api
-  name: Atomicwork agentGroups API
-  description: The agentGroups API from Atomicwork — 3 operation(s) for agentgroups.
-  humanURL: https://developers.atomicwork.com/api-reference/introduction
-  baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags:
-  - Agent Groups
-  tags_raw:
-  - agentGroups
-  properties:
-  - type: OpenAPI
-    url: openapi/atomicwork-agentgroups-api-openapi.yml
-  - type: Documentation
-    url: https://developers.atomicwork.com
-  - type: APIReference
-    url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-assets-api
   name: Atomicwork assets API
   description: The assets API from Atomicwork — 7 operation(s) for assets.
@@ -108,22 +76,6 @@ apis:
     url: https://developers.atomicwork.com
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
-- aid: atomicwork:atomicwork-auditlogs-api
-  name: Atomicwork auditLogs API
-  description: The auditLogs API from Atomicwork — 3 operation(s) for auditlogs.
-  humanURL: https://developers.atomicwork.com/api-reference/introduction
-  baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags:
-  - Audit Logs
-  tags_raw:
-  - auditLogs
-  properties:
-  - type: OpenAPI
-    url: openapi/atomicwork-auditlogs-api-openapi.yml
-  - type: Documentation
-    url: https://developers.atomicwork.com
-  - type: APIReference
-    url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-businesshourconfig-api
   name: Atomicwork businessHourConfig API
   description: The businessHourConfig API from Atomicwork — 2 operation(s) for businesshourconfig.
@@ -135,38 +87,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/atomicwork-businesshourconfig-api-openapi.yml
-  - type: Documentation
-    url: https://developers.atomicwork.com
-  - type: APIReference
-    url: https://developers.atomicwork.com/api-reference/introduction
-- aid: atomicwork:atomicwork-changemanagement-api
-  name: Atomicwork changeManagement API
-  description: The changeManagement API from Atomicwork — 7 operation(s) for changemanagement.
-  humanURL: https://developers.atomicwork.com/api-reference/introduction
-  baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags:
-  - Change Management
-  tags_raw:
-  - changeManagement
-  properties:
-  - type: OpenAPI
-    url: openapi/atomicwork-changemanagement-api-openapi.yml
-  - type: Documentation
-    url: https://developers.atomicwork.com
-  - type: APIReference
-    url: https://developers.atomicwork.com/api-reference/introduction
-- aid: atomicwork:atomicwork-customobjects-api
-  name: Atomicwork customObjects API
-  description: The customObjects API from Atomicwork — 7 operation(s) for customobjects.
-  humanURL: https://developers.atomicwork.com/api-reference/introduction
-  baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags:
-  - Custom Objects
-  tags_raw:
-  - customObjects
-  properties:
-  - type: OpenAPI
-    url: openapi/atomicwork-customobjects-api-openapi.yml
   - type: Documentation
     url: https://developers.atomicwork.com
   - type: APIReference
@@ -235,22 +155,6 @@ apis:
     url: https://developers.atomicwork.com
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
-- aid: atomicwork:atomicwork-servicecatalog-api
-  name: Atomicwork serviceCatalog API
-  description: The serviceCatalog API from Atomicwork — 7 operation(s) for servicecatalog.
-  humanURL: https://developers.atomicwork.com/api-reference/introduction
-  baseURL: https://{tenant}.atomicwork.com/api/v1
-  tags:
-  - Service Catalog
-  tags_raw:
-  - serviceCatalog
-  properties:
-  - type: OpenAPI
-    url: openapi/atomicwork-servicecatalog-api-openapi.yml
-  - type: Documentation
-    url: https://developers.atomicwork.com
-  - type: APIReference
-    url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-tags-api
   name: Atomicwork tags API
   description: The tags API from Atomicwork — 2 operation(s) for tags.
@@ -311,6 +215,90 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/atomicwork-workspaces-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-access-management-api
+  name: Atomicwork Access Management API
+  description: The Access Management API from Atomicwork — 8 operation(s) for access management.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - Access Management
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-access-management-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-agent-groups-api
+  name: Atomicwork Agent Groups API
+  description: The Agent Groups API from Atomicwork — 3 operation(s) for agent groups.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - Agent Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-agent-groups-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-audit-logs-api
+  name: Atomicwork Audit Logs API
+  description: The Audit Logs API from Atomicwork — 3 operation(s) for audit logs.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - Audit Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-audit-logs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-change-management-api
+  name: Atomicwork Change Management API
+  description: The Change Management API from Atomicwork — 7 operation(s) for change management.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - Change Management
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-change-management-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-custom-objects-api
+  name: Atomicwork Custom Objects API
+  description: The Custom Objects API from Atomicwork — 7 operation(s) for custom objects.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - Custom Objects
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-custom-objects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-service-catalog-api
+  name: Atomicwork Service Catalog API
+  description: The Service Catalog API from Atomicwork — 7 operation(s) for service catalog.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - Service Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-service-catalog-api-openapi.yml
   - type: Documentation
     url: https://developers.atomicwork.com
   - type: APIReference
