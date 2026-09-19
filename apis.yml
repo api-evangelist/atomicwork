@@ -209,7 +209,7 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
-  - Workspaces
+  - Workspace
   tags_raw:
   - workspaces
   properties:
