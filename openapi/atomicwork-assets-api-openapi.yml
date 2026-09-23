@@ -1,19 +1,19 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Atomicwork Public accessManagement assets API
+  title: Atomicwork Public Assets API
   version: 1.0.0
 servers:
 - url: https://{tenant}.atomicwork.com
   description: Your Atomicwork tenant
 tags:
-- name: assets
+- name: Assets
 paths:
   /api/v1/assets:
     post:
       operationId: postapi-v-1-assets
       summary: Create Asset
       tags:
-      - assets
+      - Assets
       parameters:
       - name: X-Api-Key
         in: header
@@ -54,7 +54,7 @@ paths:
       operationId: getapi-v-1-assets-attributes
       summary: Get List of all Asset attributes
       tags:
-      - assets
+      - Assets
       parameters:
       - name: search_key
         in: query
@@ -103,10 +103,103 @@ paths:
   /api/v1/assets/list:
     post:
       operationId: postapi-v-1-assets-list
-      summary: Asset List with views, and filters.
-      description: "\n### Filtering\n\nThe request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.\n\nEach filter object has the following fields:\n\n| Field | Type | Description |\n|---|---|---|\n| `attribute` | string | The field to filter on (see Supported attributes below) |\n| `operator` | string | Comparison operator (see Available operators below) |\n| `values` | array | One or more `{ \"value\": <scalar> }` objects |\n\n**Supported attributes**\n\n| Attribute | Typical operator | Description |\n|---|---|---|\n| `status` | `IS_ANY_OF` | Asset status (e.g. `IN_USE`, `AVAILABLE`, `RETIRED`). |\n| `type_id` | `IS_ANY_OF` | Asset type ID. |\n| `assigned_to_id` | `IS_ANY_OF` | User ID the asset is assigned to. |\n\n**Available operators**\n\n| Operator | Meaning |\n|---|---|\n| `EQUALS` | Exact match |\n| `NOT_EQUALS` | Exclude exact match |\n| `IN` / `IS_ANY_OF` | Match any value in the list |\n| `IS_NOT_ANY_OF` | Exclude all listed values |\n| `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |\n| `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |\n| `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |\n| `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |\n| `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |\n\n**Example**\n\n```json\n[\n  {\n    \"attribute\": \"status\",\n    \"operator\": \"IS_ANY_OF\",\n    \"values\": [\n      {\n        \"value\": \"IN_USE\"\n      },\n      {\n        \"value\": \"AVAILABLE\"\n      }\n    ]\n  }\n]\n```\n"
+      summary: Asset List with views, and filters
+      description: '### Filtering
+
+
+        The request body is an **array of filter objects**. Send an empty array (`[]`) to retrieve all records.
+
+
+        Each filter object has the following fields:
+
+
+        | Field | Type | Description |
+
+        |---|---|---|
+
+        | `attribute` | string | The field to filter on (see Supported attributes below) |
+
+        | `operator` | string | Comparison operator (see Available operators below) |
+
+        | `values` | array | One or more `{ "value": }` objects |
+
+
+        **Supported attributes**
+
+
+        | Attribute | Typical operator | Description |
+
+        |---|---|---|
+
+        | `status` | `IS_ANY_OF` | Asset status (e.g. `IN_USE`, `AVAILABLE`, `RETIRED`). |
+
+        | `type_id` | `IS_ANY_OF` | Asset type ID. |
+
+        | `assigned_to_id` | `IS_ANY_OF` | User ID the asset is assigned to. |
+
+
+        **Available operators**
+
+
+        | Operator | Meaning |
+
+        |---|---|
+
+        | `EQUALS` | Exact match |
+
+        | `NOT_EQUALS` | Exclude exact match |
+
+        | `IN` / `IS_ANY_OF` | Match any value in the list |
+
+        | `IS_NOT_ANY_OF` | Exclude all listed values |
+
+        | `IS_BETWEEN` | Inclusive range — pass exactly two values: `[start, end]` |
+
+        | `IS_ON_OR_BEFORE` / `IS_ON_OR_AFTER` | Date/time boundary comparisons |
+
+        | `CONTAINS` / `TEXT_CONTAINS` | Substring or set membership |
+
+        | `IS_NULL` / `IS_NOT_NULL` | Null checks — `values` array can be empty |
+
+        | `STARTS_WITH` / `ENDS_WITH` | String prefix/suffix match |
+
+
+        **Example**
+
+
+        ```json
+
+        [
+
+        {
+
+        "attribute": "status",
+
+        "operator": "IS_ANY_OF",
+
+        "values": [
+
+        {
+
+        "value": "IN_USE"
+
+        },
+
+        {
+
+        "value": "AVAILABLE"
+
+        }
+
+        ]
+
+        }
+
+        ]
+
+        ```'
       tags:
-      - assets
+      - Assets
       parameters:
       - name: sort_order
         in: query
@@ -163,7 +256,7 @@ paths:
       operationId: getapi-v-1-assets-users-user-id-list
       summary: Get List of Assets for a user
       tags:
-      - assets
+      - Assets
       parameters:
       - name: user_id
         in: path
@@ -214,7 +307,7 @@ paths:
       operationId: getapi-v-1-assets-types-asset-type-id-form-fields
       summary: Get Form Fields of an AssetType
       tags:
-      - assets
+      - Assets
       parameters:
       - name: asset_type_id
         in: path
@@ -259,7 +352,7 @@ paths:
       operationId: getapi-v-1-assets-asset-id
       summary: Get Asset Details
       tags:
-      - assets
+      - Assets
       parameters:
       - name: asset_id
         in: path
@@ -309,7 +402,7 @@ paths:
       operationId: putapi-v-1-assets-asset-id
       summary: Update Asset
       tags:
-      - assets
+      - Assets
       parameters:
       - name: asset_id
         in: path
@@ -356,7 +449,7 @@ paths:
       operationId: deleteapi-v-1-assets-asset-id
       summary: Delete Asset
       tags:
-      - assets
+      - Assets
       parameters:
       - name: asset_id
         in: path
@@ -387,7 +480,7 @@ paths:
       operationId: getapi-v-1-assets-asset-id-activities
       summary: Get Asset Activities
       tags:
-      - assets
+      - Assets
       parameters:
       - name: asset_id
         in: path
@@ -451,77 +544,11 @@ paths:
                 $ref: '#/components/schemas/Assets_getapi_v1_assets__asset_id__activities_Response_200'
 components:
   schemas:
-    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
-      type: object
-      properties: {}
-      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
-    ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields:
-      type: object
-      properties: {}
-      title: ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields
-    ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields:
-      type: object
-      properties: {}
-      title: ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields
-    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        attribute:
-          type: string
-        operator:
-          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
-      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems
-    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
-        nested_filter:
-          description: Any type
-      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
-    Assets_getapi_v1_assets__asset_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets__asset_id_Response_200
-    Assets_putapi_v1_assets__asset_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_putapi_v1_assets__asset_id_Response_200
-    Assets_getapi_v1_assets__asset_id__activities_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets__asset_id__activities_Response_200
-    Assets_deleteapi_v1_assets__asset_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_deleteapi_v1_assets__asset_id_Response_200
-    Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200
     Assets_postapi_v1_assets_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Assets_postapi_v1_assets_Response_200
-    ApiV1AssetsListPostParametersSortOrder:
-      type: string
-      enum:
-      - CREATED_AT_DESC
-      - CREATED_AT_ASC
-      - UPDATED_AT_DESC
-      - NAME_ASC
-      - NAME_DESC
-      title: ApiV1AssetsListPostParametersSortOrder
     ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
       type: string
       enum:
@@ -549,21 +576,87 @@ components:
       - IS_ON_OR_AFTER
       - IS_WITHIN
       title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator
-    Assets_postapi_v1_assets_list_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_postapi_v1_assets_list_Response_200
-    Assets_getapi_v1_assets_attributes_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets_attributes_Response_200
     Assets_getapi_v1_assets_users__user_id__list_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Assets_getapi_v1_assets_users__user_id__list_Response_200
+    Assets_putapi_v1_assets__asset_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_putapi_v1_assets__asset_id_Response_200
+    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
+    ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      title: ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields
+    Assets_postapi_v1_assets_list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_postapi_v1_assets_list_Response_200
+    Assets_deleteapi_v1_assets__asset_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_deleteapi_v1_assets__asset_id_Response_200
+    Assets_getapi_v1_assets__asset_id__activities_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets__asset_id__activities_Response_200
+    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
+      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems
+    ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      title: ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields
+    Assets_getapi_v1_assets_attributes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets_attributes_Response_200
+    Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200
+    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
+    Assets_getapi_v1_assets__asset_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets__asset_id_Response_200
+    ApiV1AssetsListPostParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      - NAME_ASC
+      - NAME_DESC
+      title: ApiV1AssetsListPostParametersSortOrder
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

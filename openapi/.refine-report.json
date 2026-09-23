@@ -1,22 +1,7 @@
 {
   "provider": "atomicwork",
   "sources": [
-    "atomicwork-accessmanagement-api-openapi.yml",
-    "atomicwork-agentgroups-api-openapi.yml",
-    "atomicwork-assets-api-openapi.yml",
-    "atomicwork-auditlogs-api-openapi.yml",
-    "atomicwork-businesshourconfig-api-openapi.yml",
-    "atomicwork-changemanagement-api-openapi.yml",
-    "atomicwork-customobjects-api-openapi.yml",
-    "atomicwork-entities-api-openapi.yml",
-    "atomicwork-forms-api-openapi.yml",
-    "atomicwork-problems-api-openapi.yml",
-    "atomicwork-requests-api-openapi.yml",
-    "atomicwork-servicecatalog-api-openapi.yml",
-    "atomicwork-tags-api-openapi.yml",
-    "atomicwork-users-api-openapi.yml",
-    "atomicwork-workflows-api-openapi.yml",
-    "atomicwork-workspaces-api-openapi.yml"
+    "_original/atomicwork-public-api-openapi.yaml"
   ],
   "outputs": [
     "atomicwork-accessmanagement-api-openapi.yml",
@@ -36,9 +21,49 @@
     "atomicwork-workflows-api-openapi.yml",
     "atomicwork-workspaces-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 6 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "atomicwork-public-api-openapi.yaml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0; renamed 49 component key(s) illegal in 3.x (e.g. Access Management_getapi_v1_iga_apps_Response_200)",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: accessManagement",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: agentGroups",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: assets",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: auditLogs",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: businessHourConfig",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: changeManagement",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: customObjects",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: entities",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: forms",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: problems",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: requests",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: serviceCatalog",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: tags",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: users",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: workflows",
+    "atomicwork-public-api-openapi.yaml: declared missing tag: workspaces",
+    "superseded outputs removed: atomicwork-access-management-api-openapi.yml, atomicwork-agent-groups-api-openapi.yml, atomicwork-audit-logs-api-openapi.yml, atomicwork-change-management-api-openapi.yml, atomicwork-custom-objects-api-openapi.yml \u2026",
+    "apis.yml register: written (+6 apis, 16 total)"
+  ],
+  "skipped": [
+    "atomicwork-access-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-agent-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-audit-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-businesshourconfig-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-change-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-custom-objects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-entities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-forms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-problems-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-requests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-service-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "atomicwork-workspaces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

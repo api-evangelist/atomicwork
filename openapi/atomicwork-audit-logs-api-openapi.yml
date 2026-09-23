@@ -1,0 +1,256 @@
+openapi: 3.2.0
+info:
+  title: Atomicwork Public Audit Logs API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: Audit Logs
+paths:
+  /api/v1/audit-logs:
+    get:
+      operationId: getapi-v-1-audit-logs
+      summary: Get all audit logs
+      tags:
+      - Audit Logs
+      parameters:
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: next_page_token
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audit_Logs_getapi_v1_audit_logs_Response_200'
+  /api/v1/audit-logs/export:
+    post:
+      operationId: postapi-v-1-audit-logs-export
+      summary: Export audit logs to CSV
+      description: Triggers an export of audit logs to CSV file.
+      tags:
+      - Audit Logs
+      parameters:
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audit_Logs_postapi_v1_audit_logs_export_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                search_key:
+                  type: string
+                  description: Text search across log text, actor name, email, source IP, and event data
+                filters:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems'
+                  description: 'Structured filters (same shape as /audit-logs/list). Supported attributes - actor_id, module, event_type, event_at. If event_at is not supplied, defaults to the last 6 months.
+
+                    '
+                cc_emails:
+                  type: array
+                  items:
+                    type: string
+                  description: CC email addresses for the export notification
+  /api/v1/audit-logs/list:
+    post:
+      operationId: postapi-v-1-audit-logs-list
+      summary: List audit logs with filters
+      description: 'List audit logs with structured filters for actor, module, and event type
+
+        ### Filtering
+
+
+        Use the `filters` field to narrow results.'
+      tags:
+      - Audit Logs
+      parameters:
+      - name: X-Api-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audit_Logs_postapi_v1_audit_logs_list_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                search_key:
+                  type: string
+                page:
+                  type: integer
+                  default: 1
+                per_page:
+                  type: integer
+                  default: 25
+                next_page_token:
+                  type: string
+                filters:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItems'
+                sort_order:
+                  $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder'
+components:
+  schemas:
+    Audit_Logs_postapi_v1_audit_logs_list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Audit Logs_postapi_v1_audit_logs_list_Response_200
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder:
+      type: string
+      enum:
+      - EVENT_AT_DESC
+      - EVENT_AT_ASC
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
+    Audit_Logs_postapi_v1_audit_logs_export_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Audit Logs_postapi_v1_audit_logs_export_Response_200
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItems
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator:
+      type: string
+      enum:
+      - LIKE
+      - EQUALS
+      - IN
+      - NOT_EQUALS
+      - IS_BETWEEN
+      - IS_ANY_OF
+      - IS_NOT_ANY_OF
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator:
+      type: string
+      enum:
+      - LIKE
+      - EQUALS
+      - IN
+      - NOT_EQUALS
+      - IS_BETWEEN
+      - IS_ANY_OF
+      - IS_NOT_ANY_OF
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator
+    Audit_Logs_getapi_v1_audit_logs_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Audit Logs_getapi_v1_audit_logs_Response_200
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

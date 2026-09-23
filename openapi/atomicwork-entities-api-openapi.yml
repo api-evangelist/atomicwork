@@ -1,19 +1,19 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Atomicwork Public accessManagement entities API
+  title: Atomicwork Public Entities API
   version: 1.0.0
 servers:
 - url: https://{tenant}.atomicwork.com
   description: Your Atomicwork tenant
 tags:
-- name: entities
+- name: Entities
 paths:
   /api/v1/entities/{entity_type}/{display_id}/links:
     get:
       operationId: getapi-v-1-entities-entity-type-display-id-links
       summary: Get all linked entities with relationship information
       tags:
-      - entities
+      - Entities
       parameters:
       - name: entity_type
         in: path
@@ -75,11 +75,9 @@ paths:
       summary: Link multiple entities at once
       description: 'Creates multiple relationships between the source entity and target entities.
 
-        Each link can be a different relationship type and direction.
-
-        '
+        Each link can be a different relationship type and direction.'
       tags:
-      - entities
+      - Entities
       parameters:
       - name: entity_type
         in: path
@@ -136,26 +134,22 @@ paths:
               - entities
 components:
   schemas:
-    Entities_getapi_v1_entities__entity_type___display_id__links_Response_200:
+    ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItems:
       type: object
-      properties: {}
-      description: Empty response body
-      title: Entities_getapi_v1_entities__entity_type___display_id__links_Response_200
-    Entities_postapi_v1_entities__entity_type___display_id__links_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Entities_postapi_v1_entities__entity_type___display_id__links_Response_200
-    ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType:
-      type: string
-      enum:
-      - REQUEST
-      - CHANGE
-      - SERVICE_REQUEST
-      - INCIDENT
-      - PROBLEM
-      description: The entity type of the target display IDs
-      title: ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType
+      properties:
+        entity_type:
+          $ref: '#/components/schemas/ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType'
+          description: The entity type of the target display IDs
+        display_ids:
+          type: array
+          items:
+            type: string
+          description: List of target entity display IDs to link (e.g., REQ-123, CHG-456)
+      required:
+      - entity_type
+      - display_ids
+      description: A group of entities of the same type to link
+      title: ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItems
     ApiV1EntitiesEntityTypeDisplayIdLinksGetParametersEntityType:
       type: string
       enum:
@@ -175,22 +169,16 @@ components:
       - CHANGE_TEMPLATE
       - CUSTOM_OBJECT
       title: ApiV1EntitiesEntityTypeDisplayIdLinksGetParametersEntityType
-    ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItems:
-      type: object
-      properties:
-        entity_type:
-          $ref: '#/components/schemas/ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType'
-          description: The entity type of the target display IDs
-        display_ids:
-          type: array
-          items:
-            type: string
-          description: List of target entity display IDs to link (e.g., REQ-123, CHG-456)
-      required:
-      - entity_type
-      - display_ids
-      description: A group of entities of the same type to link
-      title: ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItems
+    ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - CHANGE
+      - SERVICE_REQUEST
+      - INCIDENT
+      - PROBLEM
+      description: The entity type of the target display IDs
+      title: ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType
     ApiV1EntitiesEntityTypeDisplayIdLinksPostParametersEntityType:
       type: string
       enum:
@@ -210,6 +198,16 @@ components:
       - CHANGE_TEMPLATE
       - CUSTOM_OBJECT
       title: ApiV1EntitiesEntityTypeDisplayIdLinksPostParametersEntityType
+    Entities_getapi_v1_entities__entity_type___display_id__links_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Entities_getapi_v1_entities__entity_type___display_id__links_Response_200
+    Entities_postapi_v1_entities__entity_type___display_id__links_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Entities_postapi_v1_entities__entity_type___display_id__links_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

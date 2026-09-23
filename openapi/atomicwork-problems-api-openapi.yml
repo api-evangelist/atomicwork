@@ -1,19 +1,19 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Atomicwork Public accessManagement problems API
+  title: Atomicwork Public Problems API
   version: 1.0.0
 servers:
 - url: https://{tenant}.atomicwork.com
   description: Your Atomicwork tenant
 tags:
-- name: problems
+- name: Problems
 paths:
   /api/v1/problems:
     post:
       operationId: postapi-v-1-problems
       summary: Create problem request
       tags:
-      - problems
+      - Problems
       parameters:
       - name: X-Api-Key
         in: header
@@ -169,7 +169,7 @@ paths:
       operationId: getapi-v-1-problems-display-id-assessment-form
       summary: Retrieve Problem Request Assessment Form
       tags:
-      - problems
+      - Problems
       parameters:
       - name: display_id
         in: path
@@ -198,7 +198,7 @@ paths:
       operationId: postapi-v-1-problems-display-id-assessment-form
       summary: Update Problem Request Assessment Form
       tags:
-      - problems
+      - Problems
       parameters:
       - name: display_id
         in: path
@@ -238,7 +238,7 @@ paths:
       operationId: getapi-v-1-problems-display-id-tasks
       summary: Retrieve Problem Request Tasks
       tags:
-      - problems
+      - Problems
       parameters:
       - name: display_id
         in: path
@@ -267,7 +267,7 @@ paths:
       operationId: postapi-v-1-problems-display-id-tasks
       summary: Create task for problem request
       tags:
-      - problems
+      - Problems
       parameters:
       - name: display_id
         in: path
@@ -315,7 +315,7 @@ paths:
       operationId: getapi-v-1-problems-display-id-tasks-task-id
       summary: Retrieve Problem Request Task
       tags:
-      - problems
+      - Problems
       parameters:
       - name: display_id
         in: path
@@ -351,7 +351,7 @@ paths:
       operationId: putapi-v-1-problems-display-id-tasks-task-id
       summary: Update Problem Request Task
       tags:
-      - problems
+      - Problems
       parameters:
       - name: display_id
         in: path
@@ -403,38 +403,6 @@ paths:
                   $ref: '#/components/schemas/ApiV1ProblemsDisplayIdTasksTaskIdPutRequestBodyContentApplicationJsonSchemaStatus'
 components:
   schemas:
-    Problems_postapi_v1_problems_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Problems_postapi_v1_problems_Response_200
-    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaCustomFields:
-      type: object
-      properties: {}
-      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaCustomFields
-    ApiV1ProblemsDisplayIdTasksTaskIdPutRequestBodyContentApplicationJsonSchemaStatus:
-      type: string
-      enum:
-      - OPEN
-      - IN_PROGRESS
-      - COMPLETE
-      title: ApiV1ProblemsDisplayIdTasksTaskIdPutRequestBodyContentApplicationJsonSchemaStatus
-    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaItemFields:
-      type: object
-      properties: {}
-      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaItemFields
-    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
     ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaConversationInfo:
       type: object
       properties:
@@ -453,14 +421,21 @@ components:
       properties: {}
       description: Empty response body
       title: Problems_getapi_v1_problems__display_id__tasks__task_id_Response_200
-    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaExternalSource:
+    ApiV1ProblemsDisplayIdAssessmentFormPostRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      title: ApiV1ProblemsDisplayIdAssessmentFormPostRequestBodyContentApplicationJsonSchemaFormFields
+    Problems_postapi_v1_problems__display_id__assessment_form_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_postapi_v1_problems__display_id__assessment_form_Response_200
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType:
       type: string
       enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaExternalSource
-    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestSource:
+      - REQUEST_SETTINGS
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
       type: string
       enum:
       - EMAIL
@@ -471,62 +446,24 @@ components:
       - JOURNEY
       - API
       - UNIVERSAL_AGENT
-      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestSource
-    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType:
-      type: string
-      enum:
-      - REQUEST_SETTINGS
-      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType
-    Problems_postapi_v1_problems__display_id__assessment_form_Response_200:
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
+    Problems_postapi_v1_problems_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Problems_postapi_v1_problems__display_id__assessment_form_Response_200
-    Problems_getapi_v1_problems__display_id__tasks_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Problems_getapi_v1_problems__display_id__tasks_Response_200
-    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType'
-      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom
-    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
-      type: string
-      enum:
-      - ESD_NOTE
-      - SLACK_NOTE
-      - EMAIL_NOTE
-      - RATING
-      - TEMPLATE
-      - WORKFLOW_NOTE
-      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsType
-    Problems_putapi_v1_problems__display_id__tasks__task_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Problems_putapi_v1_problems__display_id__tasks__task_id_Response_200
+      title: Problems_postapi_v1_problems_Response_200
     Problems_getapi_v1_problems__display_id__assessment_form_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Problems_getapi_v1_problems__display_id__assessment_form_Response_200
-    Problems_postapi_v1_problems__display_id__tasks_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Problems_postapi_v1_problems__display_id__tasks_Response_200
-    ApiV1ProblemsDisplayIdTasksPostRequestBodyContentApplicationJsonSchemaStatus:
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaExternalSource:
       type: string
       enum:
-      - OPEN
-      - IN_PROGRESS
-      - COMPLETE
-      title: ApiV1ProblemsDisplayIdTasksPostRequestBodyContentApplicationJsonSchemaStatus
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaExternalSource
     ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType:
       type: string
       enum:
@@ -534,10 +471,27 @@ components:
       - SNOW
       - JSM_BRIDGE
       title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType
-    ApiV1ProblemsDisplayIdAssessmentFormPostRequestBodyContentApplicationJsonSchemaFormFields:
+    Problems_getapi_v1_problems__display_id__tasks_Response_200:
       type: object
       properties: {}
-      title: ApiV1ProblemsDisplayIdAssessmentFormPostRequestBodyContentApplicationJsonSchemaFormFields
+      description: Empty response body
+      title: Problems_getapi_v1_problems__display_id__tasks_Response_200
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaItemFields:
+      type: object
+      properties: {}
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaItemFields
+    Problems_putapi_v1_problems__display_id__tasks__task_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_putapi_v1_problems__display_id__tasks__task_id_Response_200
+    ApiV1ProblemsDisplayIdTasksPostRequestBodyContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - OPEN
+      - IN_PROGRESS
+      - COMPLETE
+      title: ApiV1ProblemsDisplayIdTasksPostRequestBodyContentApplicationJsonSchemaStatus
     ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItems:
       type: object
       properties:
@@ -589,6 +543,52 @@ components:
           format: date-time
           description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
       title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItems
+    Problems_postapi_v1_problems__display_id__tasks_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Problems_postapi_v1_problems__display_id__tasks_Response_200
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestSource
+    ApiV1ProblemsDisplayIdTasksTaskIdPutRequestBodyContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - OPEN
+      - IN_PROGRESS
+      - COMPLETE
+      title: ApiV1ProblemsDisplayIdTasksTaskIdPutRequestBodyContentApplicationJsonSchemaStatus
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaCustomFields:
+      type: object
+      properties: {}
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaCustomFields
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType'
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom
+    ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1ProblemsPostRequestBodyContentApplicationJsonSchemaNotesItemsType
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

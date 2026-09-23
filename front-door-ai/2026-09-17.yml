@@ -1,0 +1,34 @@
+# Front Door AI Index — atomicwork — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: atomicwork
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.atomicwork.com
+  final_host: www.atomicwork.com
+  ownership: own
+  owner: atomicwork
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 69
+  host_score: 69
+  density: 48.15
+  words: 1433
+  tiers:
+    agentic: 7
+    core: 58
+    model: 4
+  ambiguous: 3
+  top_terms:
+    AI: 58
+    agentic: 4
+    agent: 2
+    prompts: 2
+    Anthropic: 1
+    Claude: 1
+    Gemini: 1
+    MCP: 1
+    OpenAI: 1
+    automation: 1
