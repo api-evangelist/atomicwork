@@ -158,42 +158,18 @@ paths:
                   $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder'
 components:
   schemas:
-    Audit_Logs_postapi_v1_audit_logs_list_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Audit Logs_postapi_v1_audit_logs_list_Response_200
-    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems:
-      type: object
-      properties:
-        attribute:
-          type: string
-        operator:
-          $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator'
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
-      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems
-    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
-      type: object
-      properties: {}
-      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
-    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder:
-      type: string
-      enum:
-      - EVENT_AT_DESC
-      - EVENT_AT_ASC
-      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder
     ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
       type: object
       properties: {}
       title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
-    Audit_Logs_postapi_v1_audit_logs_export_Response_200:
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
       type: object
-      properties: {}
-      description: Empty response body
-      title: Audit Logs_postapi_v1_audit_logs_export_Response_200
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
     ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
       type: object
       properties:
@@ -202,6 +178,15 @@ components:
         nested_filter:
           description: Any type
       title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
+    Audit_Logs_postapi_v1_audit_logs_list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Audit Logs_postapi_v1_audit_logs_list_Response_200
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
     ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItems:
       type: object
       properties:
@@ -214,6 +199,11 @@ components:
           items:
             $ref: '#/components/schemas/ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
       title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItems
+    Audit_Logs_getapi_v1_audit_logs_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Audit Logs_getapi_v1_audit_logs_Response_200
     ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator:
       type: string
       enum:
@@ -225,14 +215,18 @@ components:
       - IS_ANY_OF
       - IS_NOT_ANY_OF
       title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator
-    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
+    ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems:
       type: object
       properties:
-        value:
-          $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue'
-        nested_filter:
-          description: Any type
-      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
+      title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItems
     ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator:
       type: string
       enum:
@@ -244,11 +238,17 @@ components:
       - IS_ANY_OF
       - IS_NOT_ANY_OF
       title: ApiV1AuditLogsExportPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator
-    Audit_Logs_getapi_v1_audit_logs_Response_200:
+    ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder:
+      type: string
+      enum:
+      - EVENT_AT_DESC
+      - EVENT_AT_ASC
+      title: ApiV1AuditLogsListPostRequestBodyContentApplicationJsonSchemaSortOrder
+    Audit_Logs_postapi_v1_audit_logs_export_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Audit Logs_getapi_v1_audit_logs_Response_200
+      title: Audit Logs_postapi_v1_audit_logs_export_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

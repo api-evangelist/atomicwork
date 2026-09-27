@@ -245,31 +245,11 @@ paths:
                 $ref: '#/components/schemas/Tags_deleteapi_v1_tags__id_Response_200'
 components:
   schemas:
-    Tags_putapi_v1_tags__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Tags_putapi_v1_tags__id_Response_200
-    Tags_getapi_v1_tags_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Tags_getapi_v1_tags_Response_200
     Tags_postapi_v1_tags_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Tags_postapi_v1_tags_Response_200
-    Tags_getapi_v1_tags__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Tags_getapi_v1_tags__id_Response_200
-    Tags_deleteapi_v1_tags__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Tags_deleteapi_v1_tags__id_Response_200
     ApiV1TagsPostRequestBodyContentApplicationJsonSchemaContextType:
       type: string
       enum:
@@ -277,6 +257,11 @@ components:
       - ASSET
       - WORKSPACE
       title: ApiV1TagsPostRequestBodyContentApplicationJsonSchemaContextType
+    Tags_getapi_v1_tags__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_getapi_v1_tags__id_Response_200
     ApiV1TagsIdPutRequestBodyContentApplicationJsonSchemaContextType:
       type: string
       enum:
@@ -284,6 +269,21 @@ components:
       - ASSET
       - WORKSPACE
       title: ApiV1TagsIdPutRequestBodyContentApplicationJsonSchemaContextType
+    Tags_getapi_v1_tags_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_getapi_v1_tags_Response_200
+    Tags_deleteapi_v1_tags__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_deleteapi_v1_tags__id_Response_200
+    Tags_putapi_v1_tags__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_putapi_v1_tags__id_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

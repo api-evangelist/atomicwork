@@ -746,23 +746,105 @@ paths:
                 $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItems'
 components:
   schemas:
-    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        attribute:
-          type: string
-        operator:
-          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
-      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItems
-    Change_Management_postapi_v1_change_management_changes_create_with_files_Response_200:
+    ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaType
+    Change_Management_getapi_v1_agent_change_management_change_templates_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Change Management_postapi_v1_change_management_changes_create_with_files_Response_200
+      title: Change Management_getapi_v1_agent_change_management_change_templates_Response_200
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsType
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      - RAPID7
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSource:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSource
+    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaCustomFields:
+      type: object
+      properties: {}
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaCustomFields
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference:
+      oneOf:
+      - $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference0'
+      - $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference1'
+      - $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference2'
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference
+    Change_Management_postapi_v1_change_management_changes__display_id__notes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_postapi_v1_change_management_changes__display_id__notes_Response_200
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaTemplateFields:
+      type: object
+      properties: {}
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaTemplateFields
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference1:
+      type: object
+      properties:
+        type:
+          type: string
+        project_id:
+          type: string
+        release_id:
+          type: string
+        organization_id:
+          type: string
+        correlation_id:
+          type: string
+        organization_url:
+          type: string
+      required:
+      - type
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference1
+    ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      - RAPID7
+      title: ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaSource
     ApiV1AgentChangeManagementChangeTemplatesGetParametersStatus:
       type: string
       enum:
@@ -770,21 +852,54 @@ components:
       - DRAFT
       - ARCHIVED
       title: ApiV1AgentChangeManagementChangeTemplatesGetParametersStatus
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference2:
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference0:
       type: object
       properties:
         type:
           type: string
-        issue_id:
+        project_id:
+          type: string
+        build_id:
+          type: string
+        organization_id:
+          type: string
+        correlation_id:
+          type: string
+        organization_url:
           type: string
       required:
       - type
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference2
-    Change_Management_getapi_v1_agent_change_management_change_templates_Response_200:
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference0
+    Change_Management_patchapi_v1_change_management_changes__display_id_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Change Management_getapi_v1_agent_change_management_change_templates_Response_200
+      title: Change Management_patchapi_v1_change_management_changes__display_id_Response_200
+    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostParametersSortOrder
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaConversationInfo:
+      type: object
+      properties:
+        channel_name:
+          type: string
+        channel_id:
+          type: string
+        start_timestamp:
+          type: string
+          format: unix-timestamp
+      required:
+      - start_timestamp
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaConversationInfo
+    Change_Management_postapi_v1_change_management_changes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_postapi_v1_change_management_changes_Response_200
     ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItems:
       type: object
       properties:
@@ -811,6 +926,41 @@ components:
             type: integer
             format: int64
       title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItems
+    Change_Management_postapi_v1_change_management_changes_create_with_files_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_postapi_v1_change_management_changes_create_with_files_Response_200
+    Change_Management_getapi_v1_change_management_changes__display_id__notes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_getapi_v1_change_management_changes__display_id__notes_Response_200
+    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
+    Change_Management_postapi_v1_workspaces__workspace_id__change_management_changes_list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Change Management_postapi_v1_workspaces__workspace_id__change_management_changes_list_Response_200
+    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
+      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItems
     ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
       type: string
       enum:
@@ -838,176 +988,26 @@ components:
       - IS_ON_OR_AFTER
       - IS_WITHIN
       title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsOperator
-    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostParametersSortOrder:
-      type: string
-      enum:
-      - CREATED_AT_DESC
-      - CREATED_AT_ASC
-      - UPDATED_AT_DESC
-      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostParametersSortOrder
-    Change_Management_getapi_v1_change_management_changes__display_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Change Management_getapi_v1_change_management_changes__display_id_Response_200
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      - RAPID7
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference1:
-      type: object
-      properties:
-        type:
-          type: string
-        project_id:
-          type: string
-        release_id:
-          type: string
-        organization_id:
-          type: string
-        correlation_id:
-          type: string
-        organization_url:
-          type: string
-      required:
-      - type
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference1
-    Change_Management_postapi_v1_change_management_changes__display_id__notes_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Change Management_postapi_v1_change_management_changes__display_id__notes_Response_200
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSource:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSource
-    Change_Management_postapi_v1_change_management_changes_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Change Management_postapi_v1_change_management_changes_Response_200
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaCustomFields:
-      type: object
-      properties: {}
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaCustomFields
-    Change_Management_getapi_v1_change_management_changes__display_id__notes_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Change Management_getapi_v1_change_management_changes__display_id__notes_Response_200
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaTemplateFields:
-      type: object
-      properties: {}
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaTemplateFields
-    ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaType:
-      type: string
-      enum:
-      - ESD_NOTE
-      - SLACK_NOTE
-      - EMAIL_NOTE
-      - RATING
-      - TEMPLATE
-      - WORKFLOW_NOTE
-      title: ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaType
-    ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      - RAPID7
-      title: ApiV1ChangeManagementChangesDisplayIdNotesPostRequestBodyContentApplicationJsonSchemaSource
-    Change_Management_patchapi_v1_change_management_changes__display_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Change Management_patchapi_v1_change_management_changes__display_id_Response_200
     Change_Management_getapi_v1_change_management_changes__display_id__activity_notes_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Change Management_getapi_v1_change_management_changes__display_id__activity_notes_Response_200
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference0:
+    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference2:
       type: object
       properties:
         type:
           type: string
-        project_id:
-          type: string
-        build_id:
-          type: string
-        organization_id:
-          type: string
-        correlation_id:
-          type: string
-        organization_url:
+        issue_id:
           type: string
       required:
       - type
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference0
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference:
-      oneOf:
-      - $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference0'
-      - $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference1'
-      - $ref: '#/components/schemas/ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference2'
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
-      type: string
-      enum:
-      - ESD_NOTE
-      - SLACK_NOTE
-      - EMAIL_NOTE
-      - RATING
-      - TEMPLATE
-      - WORKFLOW_NOTE
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaNotesItemsType
-    Change_Management_postapi_v1_workspaces__workspace_id__change_management_changes_list_Response_200:
+      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaExternalSystemEntityReference2
+    Change_Management_getapi_v1_change_management_changes__display_id_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Change Management_postapi_v1_workspaces__workspace_id__change_management_changes_list_Response_200
-    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
-        nested_filter:
-          description: Any type
-      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
-    ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaConversationInfo:
-      type: object
-      properties:
-        channel_name:
-          type: string
-        channel_id:
-          type: string
-        start_timestamp:
-          type: string
-          format: unix-timestamp
-      required:
-      - start_timestamp
-      title: ApiV1ChangeManagementChangesPostRequestBodyContentApplicationJsonSchemaConversationInfo
-    ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
-      type: object
-      properties: {}
-      title: ApiV1WorkspacesWorkspaceIdChangeManagementChangesListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
+      title: Change Management_getapi_v1_change_management_changes__display_id_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

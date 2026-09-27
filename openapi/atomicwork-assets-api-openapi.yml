@@ -549,6 +549,54 @@ components:
       properties: {}
       description: Empty response body
       title: Assets_postapi_v1_assets_Response_200
+    Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200
+    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
+    Assets_postapi_v1_assets_list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_postapi_v1_assets_list_Response_200
+    Assets_getapi_v1_assets__asset_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets__asset_id_Response_200
+    Assets_getapi_v1_assets_users__user_id__list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets_users__user_id__list_Response_200
+    ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      title: ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields
+    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
+      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems
+    ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      title: ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields
     ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
       type: string
       enum:
@@ -576,29 +624,29 @@ components:
       - IS_ON_OR_AFTER
       - IS_WITHIN
       title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator
-    Assets_getapi_v1_assets_users__user_id__list_Response_200:
+    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
+    ApiV1AssetsListPostParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      - NAME_ASC
+      - NAME_DESC
+      title: ApiV1AssetsListPostParametersSortOrder
+    Assets_getapi_v1_assets_attributes_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Assets_getapi_v1_assets_users__user_id__list_Response_200
+      title: Assets_getapi_v1_assets_attributes_Response_200
     Assets_putapi_v1_assets__asset_id_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Assets_putapi_v1_assets__asset_id_Response_200
-    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
-      type: object
-      properties: {}
-      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
-    ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields:
-      type: object
-      properties: {}
-      title: ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields
-    Assets_postapi_v1_assets_list_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_postapi_v1_assets_list_Response_200
     Assets_deleteapi_v1_assets__asset_id_Response_200:
       type: object
       properties: {}
@@ -609,54 +657,6 @@ components:
       properties: {}
       description: Empty response body
       title: Assets_getapi_v1_assets__asset_id__activities_Response_200
-    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        attribute:
-          type: string
-        operator:
-          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
-      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems
-    ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields:
-      type: object
-      properties: {}
-      title: ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields
-    Assets_getapi_v1_assets_attributes_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets_attributes_Response_200
-    Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200
-    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
-        nested_filter:
-          description: Any type
-      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
-    Assets_getapi_v1_assets__asset_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets__asset_id_Response_200
-    ApiV1AssetsListPostParametersSortOrder:
-      type: string
-      enum:
-      - CREATED_AT_DESC
-      - CREATED_AT_ASC
-      - UPDATED_AT_DESC
-      - NAME_ASC
-      - NAME_DESC
-      title: ApiV1AssetsListPostParametersSortOrder
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1538,6 +1538,19 @@ components:
       properties: {}
       description: Empty response body
       title: Requests_postapi_v1_requests_list_Response_200
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaConversationInfo:
+      type: object
+      properties:
+        channel_name:
+          type: string
+        channel_id:
+          type: string
+        start_timestamp:
+          type: string
+          format: unix-timestamp
+      required:
+      - start_timestamp
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaConversationInfo
     ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData2:
       type: object
       properties:
@@ -1650,248 +1663,6 @@ components:
 
             '
       title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData2
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsType:
-      type: string
-      enum:
-      - ESD_NOTE
-      - SLACK_NOTE
-      - EMAIL_NOTE
-      - RATING
-      - TEMPLATE
-      - WORKFLOW_NOTE
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsType
-    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          $ref: '#/components/schemas/ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType'
-      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom
-    Requests_patchapi_v1_requests__requestId_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_patchapi_v1_requests__requestId_Response_200
-    ApiV1WorkspacesWorkspaceIdRequestsListPostParametersRequestTypeFilterSchemaItems:
-      type: string
-      enum:
-      - REQUEST
-      - INCIDENT
-      - SERVICE_REQUEST
-      - PROBLEM
-      - CHANGE
-      - MAJOR_INCIDENT
-      title: ApiV1WorkspacesWorkspaceIdRequestsListPostParametersRequestTypeFilterSchemaItems
-    Requests_patchapi_v1_requests__request_id__items__item_instance_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_patchapi_v1_requests__request_id__items__item_instance_id_Response_200
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaItemFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaItemFields
-    Requests_putapi_v1_requests__requestId__modify_followers_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_putapi_v1_requests__requestId__modify_followers_Response_200
-    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaCustomFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaCustomFields
-    Requests_getapi_v1_requests_v2__requestId_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_getapi_v1_requests_v2__requestId_Response_200
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItems:
-      type: object
-      properties:
-        user_id:
-          type: integer
-          format: int64
-        conversation_id:
-          type: integer
-          format: int64
-          description: When set, the reply is mirrored into this conversation's thread (UAG).
-        description:
-          type: string
-        mentions:
-          type: array
-          items:
-            type: integer
-            format: int64
-        is_private:
-          type: boolean
-          default: false
-        source:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsSource'
-        type:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsType'
-        attachments:
-          type: array
-          items:
-            type: integer
-            format: int64
-        cc_emails:
-          type: array
-          items:
-            type: string
-        bcc_emails:
-          type: array
-          items:
-            type: string
-        is_broadcast:
-          type: boolean
-          default: false
-        external_id:
-          type: string
-        external_source_type:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsExternalSourceType'
-        email_content:
-          type: string
-        event_created_at:
-          type: string
-          format: date-time
-          description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItems
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData1:
-      type: object
-      properties:
-        request_type:
-          type: string
-        request_source:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestSource'
-        description:
-          type: string
-        email_content:
-          type: string
-        plain_text_description_override:
-          type: string
-          description: 'Internal-only override for the persisted plain-text rendering of the description. When non-empty, AbstractRequestService persists it as RequestDetail.description instead of running HTMLSanitizerUtil.getPlainText() on the HTML description.
-
-            Set ONLY by the email ingestion path (EmailIntentBasedRequestCreationService), which derives it from reqDescription via normalizeHtmlToPlainText(getPlainTextForRichHtml(...)) so system-generated HTML emails (BlackLine offboarding, etc.) avoid mashed table cells and blank-line storms.
-
-            Annotated @JsonIgnore so external HTTP clients cannot set it via the request body — without that annotation, any caller of POST /requests, /service-requests, /incidents could write arbitrary unsanitized text into RequestDetail.description, bypassing the getPlainText() pipeline. The Lombok @SuperBuilder still exposes a setter for in-process Java callers (the email path), since builder access does not go through Jackson.
-
-            '
-        status:
-          type: string
-        priority:
-          type: string
-        parent_request_id:
-          type: integer
-          format: int64
-        agent_group:
-          type: integer
-          format: int64
-        assignee:
-          type: integer
-          format: int64
-        subject:
-          type: string
-        notes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1NotesItems'
-        workspace_id:
-          type: integer
-          format: int64
-        conversation_info:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ConversationInfo'
-        tags:
-          type: array
-          items:
-            type: integer
-            format: int64
-        cc_emails:
-          type: array
-          items:
-            type: string
-        bcc_emails:
-          type: array
-          items:
-            type: string
-        attachments:
-          type: array
-          items:
-            type: integer
-            format: int64
-        requester:
-          type: integer
-          format: int64
-        to_email:
-          type: string
-        request_created_from:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFrom'
-        custom_fields:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1CustomFields'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        external_id:
-          type: string
-        external_source:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ExternalSource'
-        resolution_time:
-          type: string
-          format: date-time
-          description: 'When the ticket was resolved in the source system. Only accepted during migration (requires external_id or external_source).
-
-            '
-        first_response_time:
-          type: string
-          format: date-time
-          description: 'When the first agent response occurred in the source system. Only accepted during migration (requires external_id or external_source).
-
-            '
-        first_response_due_time:
-          type: string
-          format: date-time
-          description: 'SLA due time for first response from the source system. Only accepted during migration (requires external_id or external_source).
-
-            '
-        resolution_due_time:
-          type: string
-          format: date-time
-          description: 'SLA due time for resolution from the source system. Only accepted during migration (requires external_id or external_source).
-
-            '
-        closed_status_at:
-          type: string
-          format: date-time
-          description: 'When the ticket was moved to closed status in the source system. Only accepted during migration (requires external_id or external_source). When provided with a closed status, also sets resolution_time if not explicitly provided.
-
-            '
-        item_id:
-          type: integer
-          format: int64
-        item_fields:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ItemFields'
-        impact:
-          type: string
-        urgency:
-          type: string
-        category:
-          type: string
-        subcategory:
-          type: string
-        assets:
-          type: array
-          items:
-            type: integer
-            format: int64
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData1
-    Requests_postapi_v1_requests__request_id__items__item_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_postapi_v1_requests__request_id__items__item_id_Response_200
     ApiV1WorkspacesWorkspaceIdRequestsListPostParametersSortOrder:
       type: string
       enum:
@@ -1906,759 +1677,11 @@ components:
       - NAME_ASC
       - NAME_DESC
       title: ApiV1WorkspacesWorkspaceIdRequestsListPostParametersSortOrder
-    ApiV1RequestsRequestIdItemsItemIdPostRequestBodyContentApplicationJsonSchemaFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsRequestIdItemsItemIdPostRequestBodyContentApplicationJsonSchemaFields
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFrom:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFromType'
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFrom
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestSource
-    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteExternalSourceType:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteExternalSourceType
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf3ItemFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf3ItemFields
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData:
-      oneOf:
-      - $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData0'
-      - $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData1'
-      - $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData2'
-      - $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData3'
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData
-    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaExternalSource:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaExternalSource
-    ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaType:
-      type: string
-      enum:
-      - ESD_NOTE
-      - SLACK_NOTE
-      - EMAIL_NOTE
-      - RATING
-      - TEMPLATE
-      - WORKFLOW_NOTE
-      title: ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaType
-    Requests_getapi_v1_requests__request_id__items__item_instance_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_getapi_v1_requests__request_id__items__item_instance_id_Response_200
-    ApiV1RequestsMajorIncidentPostRequestBodyContentApplicationJsonSchemaRequestSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsMajorIncidentPostRequestBodyContentApplicationJsonSchemaRequestSource
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType:
-      type: string
-      enum:
-      - REQUEST_SETTINGS
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType
-    Requests_getapi_v1_requests__requestId__activity_notes_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_getapi_v1_requests__requestId__activity_notes_Response_200
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ConversationInfo:
-      type: object
-      properties:
-        channel_name:
-          type: string
-        channel_id:
-          type: string
-        start_timestamp:
-          type: string
-          format: unix-timestamp
-      required:
-      - start_timestamp
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ConversationInfo
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteSource
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFromType:
-      type: string
-      enum:
-      - REQUEST_SETTINGS
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFromType
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsType:
-      type: string
-      enum:
-      - ESD_NOTE
-      - SLACK_NOTE
-      - EMAIL_NOTE
-      - RATING
-      - TEMPLATE
-      - WORKFLOW_NOTE
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsType
-    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaConversationInfo:
-      type: object
-      properties:
-        channel_name:
-          type: string
-        channel_id:
-          type: string
-        start_timestamp:
-          type: string
-          format: unix-timestamp
-      required:
-      - start_timestamp
-      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaConversationInfo
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ItemFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ItemFields
     ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFromType:
       type: string
       enum:
       - REQUEST_SETTINGS
       title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFromType
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData0:
-      type: object
-      properties:
-        request_type:
-          type: string
-        request_source:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestSource'
-        description:
-          type: string
-        email_content:
-          type: string
-        plain_text_description_override:
-          type: string
-          description: 'Internal-only override for the persisted plain-text rendering of the description. When non-empty, AbstractRequestService persists it as RequestDetail.description instead of running HTMLSanitizerUtil.getPlainText() on the HTML description.
-
-            Set ONLY by the email ingestion path (EmailIntentBasedRequestCreationService), which derives it from reqDescription via normalizeHtmlToPlainText(getPlainTextForRichHtml(...)) so system-generated HTML emails (BlackLine offboarding, etc.) avoid mashed table cells and blank-line storms.
-
-            Annotated @JsonIgnore so external HTTP clients cannot set it via the request body — without that annotation, any caller of POST /requests, /service-requests, /incidents could write arbitrary unsanitized text into RequestDetail.description, bypassing the getPlainText() pipeline. The Lombok @SuperBuilder still exposes a setter for in-process Java callers (the email path), since builder access does not go through Jackson.
-
-            '
-        status:
-          type: string
-        priority:
-          type: string
-        parent_request_id:
-          type: integer
-          format: int64
-        agent_group:
-          type: integer
-          format: int64
-        assignee:
-          type: integer
-          format: int64
-        subject:
-          type: string
-        notes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItems'
-        workspace_id:
-          type: integer
-          format: int64
-        conversation_info:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ConversationInfo'
-        tags:
-          type: array
-          items:
-            type: integer
-            format: int64
-        cc_emails:
-          type: array
-          items:
-            type: string
-        bcc_emails:
-          type: array
-          items:
-            type: string
-        attachments:
-          type: array
-          items:
-            type: integer
-            format: int64
-        requester:
-          type: integer
-          format: int64
-        to_email:
-          type: string
-        request_created_from:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFrom'
-        custom_fields:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0CustomFields'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        external_id:
-          type: string
-        external_source:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ExternalSource'
-        resolution_time:
-          type: string
-          format: date-time
-          description: 'When the ticket was resolved in the source system. Only accepted during migration (requires external_id or external_source).
-
-            '
-        first_response_time:
-          type: string
-          format: date-time
-          description: 'When the first agent response occurred in the source system. Only accepted during migration (requires external_id or external_source).
-
-            '
-        first_response_due_time:
-          type: string
-          format: date-time
-          description: 'SLA due time for first response from the source system. Only accepted during migration (requires external_id or external_source).
-
-            '
-        resolution_due_time:
-          type: string
-          format: date-time
-          description: 'SLA due time for resolution from the source system. Only accepted during migration (requires external_id or external_source).
-
-            '
-        closed_status_at:
-          type: string
-          format: date-time
-          description: 'When the ticket was moved to closed status in the source system. Only accepted during migration (requires external_id or external_source). When provided with a closed status, also sets resolution_time if not explicitly provided.
-
-            '
-        item_id:
-          type: integer
-          format: int64
-        item_fields:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ItemFields'
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData0
-    ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
-      type: object
-      properties: {}
-      title: ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaCustomFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaCustomFields
-    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
-    ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaExternalSourceType:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaExternalSourceType
-    Requests_patchapi_v1_requests__requestId__add_followers_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_patchapi_v1_requests__requestId__add_followers_Response_200
-    Requests_putapi_v1_requests__requestId__trash_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_putapi_v1_requests__requestId__trash_Response_200
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ExternalSource:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ExternalSource
-    Requests_postapi_v1_requests__requestId__move_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_postapi_v1_requests__requestId__move_Response_200
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1CustomFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1CustomFields
-    Requests_getapi_v1_requests__request_id__items_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_getapi_v1_requests__request_id__items_Response_200
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsExternalSourceType:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsExternalSourceType
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsSource
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaRequestNote:
-      type: object
-      properties:
-        description:
-          type: string
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaRequestNote
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          $ref: '#/components/schemas/ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType'
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2ExternalSource:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2ExternalSource
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFromType:
-      type: string
-      enum:
-      - REQUEST_SETTINGS
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFromType
-    Requests_postapi_v1_requests_major_incident_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_postapi_v1_requests_major_incident_Response_200
-    ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
-        nested_filter:
-          description: Any type
-      title: ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
-    Requests_postapi_v1_requests_items__item_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_postapi_v1_requests_items__item_id_Response_200
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItems:
-      type: object
-      properties:
-        user_id:
-          type: integer
-          format: int64
-        conversation_id:
-          type: integer
-          format: int64
-          description: When set, the reply is mirrored into this conversation's thread (UAG).
-        description:
-          type: string
-        mentions:
-          type: array
-          items:
-            type: integer
-            format: int64
-        is_private:
-          type: boolean
-          default: false
-        source:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsSource'
-        type:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsType'
-        attachments:
-          type: array
-          items:
-            type: integer
-            format: int64
-        cc_emails:
-          type: array
-          items:
-            type: string
-        bcc_emails:
-          type: array
-          items:
-            type: string
-        is_broadcast:
-          type: boolean
-          default: false
-        external_id:
-          type: string
-        external_source_type:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsExternalSourceType'
-        email_content:
-          type: string
-        event_created_at:
-          type: string
-          format: date-time
-          description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItems
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ConversationInfo:
-      type: object
-      properties:
-        channel_name:
-          type: string
-        channel_id:
-          type: string
-        start_timestamp:
-          type: string
-          format: unix-timestamp
-      required:
-      - start_timestamp
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ConversationInfo
-    Requests_postapi_v1_requests_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_postapi_v1_requests_Response_200
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteType:
-      type: string
-      enum:
-      - ESD_NOTE
-      - SLACK_NOTE
-      - EMAIL_NOTE
-      - RATING
-      - TEMPLATE
-      - WORKFLOW_NOTE
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteType
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1NotesItems:
-      type: object
-      properties:
-        user_id:
-          type: integer
-          format: int64
-        conversation_id:
-          type: integer
-          format: int64
-          description: When set, the reply is mirrored into this conversation's thread (UAG).
-        description:
-          type: string
-        mentions:
-          type: array
-          items:
-            type: integer
-            format: int64
-        is_private:
-          type: boolean
-          default: false
-        source:
-          description: Any type
-        type:
-          description: Any type
-        attachments:
-          type: array
-          items:
-            type: integer
-            format: int64
-        cc_emails:
-          type: array
-          items:
-            type: string
-        bcc_emails:
-          type: array
-          items:
-            type: string
-        is_broadcast:
-          type: boolean
-          default: false
-        external_id:
-          type: string
-        external_source_type:
-          description: Any type
-        email_content:
-          type: string
-        event_created_at:
-          type: string
-          format: date-time
-          description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1NotesItems
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItems:
-      type: object
-      properties:
-        user_id:
-          type: integer
-          format: int64
-        conversation_id:
-          type: integer
-          format: int64
-          description: When set, the reply is mirrored into this conversation's thread (UAG).
-        description:
-          type: string
-        mentions:
-          type: array
-          items:
-            type: integer
-            format: int64
-        is_private:
-          type: boolean
-          default: false
-        source:
-          $ref: '#/components/schemas/ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsSource'
-        type:
-          $ref: '#/components/schemas/ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsType'
-        attachments:
-          type: array
-          items:
-            type: integer
-            format: int64
-        cc_emails:
-          type: array
-          items:
-            type: string
-        bcc_emails:
-          type: array
-          items:
-            type: string
-        is_broadcast:
-          type: boolean
-          default: false
-        external_id:
-          type: string
-        external_source_type:
-          $ref: '#/components/schemas/ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType'
-        email_content:
-          type: string
-        event_created_at:
-          type: string
-          format: date-time
-          description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItems
-    ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
-      type: string
-      enum:
-      - EQUALS
-      - NOT_EQUALS
-      - CONTAINS
-      - NOT_CONTAINS
-      - IN
-      - NOT_IN
-      - GREATER_THAN
-      - LESS_THAN
-      - GREATER_THAN_EQUALS
-      - LESS_THAN_EQUALS
-      - IS_BETWEEN
-      - IS_NULL
-      - IS_NOT_NULL
-      - STARTS_WITH
-      - ENDS_WITH
-      - TEXT_CONTAINS
-      - TEXT_DOES_NOT_CONTAINS
-      - IS_ANY_OF
-      - IS_NOT_ANY_OF
-      - IS_EXACTLY
-      - IS_ON_OR_BEFORE
-      - IS_ON_OR_AFTER
-      - IS_WITHIN
-      title: ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf3CustomFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf3CustomFields
-    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestSource
-    ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        attribute:
-          type: string
-        operator:
-          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
-      title: ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItems
-    ApiV1RequestsBulkActionsBulkActionTypePostParametersBulkActionType:
-      type: string
-      enum:
-      - assign-agent
-      - close
-      - delete
-      - status_update
-      - category
-      - add_tags
-      - link-to-major-incident
-      title: ApiV1RequestsBulkActionsBulkActionTypePostParametersBulkActionType
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2ConversationInfo:
-      type: object
-      properties:
-        channel_name:
-          type: string
-        channel_id:
-          type: string
-        start_timestamp:
-          type: string
-          format: unix-timestamp
-      required:
-      - start_timestamp
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2ConversationInfo
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFrom:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFromType'
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFrom
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFrom:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFromType'
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFrom
-    Requests_postapi_v1_requests__requestId__notes_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_postapi_v1_requests__requestId__notes_Response_200
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaExternalSource:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaExternalSource
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsExternalSourceType:
-      type: string
-      enum:
-      - SAAS_GENIE
-      - SNOW
-      - JSM_BRIDGE
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsExternalSourceType
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2CustomFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2CustomFields
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
-      type: string
-      enum:
-      - ESD_NOTE
-      - SLACK_NOTE
-      - EMAIL_NOTE
-      - RATING
-      - TEMPLATE
-      - WORKFLOW_NOTE
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsType
-    ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaSource
-    ApiV1RequestsRequestIdItemsItemInstanceIdPatchRequestBodyContentApplicationJsonSchemaItemFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsRequestIdItemsItemInstanceIdPatchRequestBodyContentApplicationJsonSchemaItemFields
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0CustomFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0CustomFields
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestSource
     ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData3:
       type: object
       properties:
@@ -2789,78 +1812,6 @@ components:
             type: integer
             format: int64
       title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData3
-    Requests_patchapi_v1_requests_v2__requestId_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_patchapi_v1_requests_v2__requestId_Response_200
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestSource
-    Requests_getapi_v1_workspaces__workspace_id__requests_impact_options_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_getapi_v1_workspaces__workspace_id__requests_impact_options_Response_200
-    Requests_postapi_v1_workspaces__workspace_id__requests_list_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_postapi_v1_workspaces__workspace_id__requests_list_Response_200
-    Requests_getapi_v1_requests__requestId_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_getapi_v1_requests__requestId_Response_200
-    ApiV1RequestsV2RequestIdPatchRequestBodyContentMultipartFormDataSchemaDataJson:
-      type: object
-      properties:
-        custom_fields:
-          type: object
-          additionalProperties:
-            description: Any type
-        service_items:
-          type: array
-          items:
-            description: Any type
-          description: 'Optional catalogue answers to apply alongside this request PATCH.
-
-            Each entry is sent to RequestCatalogueManager.patchCatalogueItemInstance
-
-            in the same transaction as the request write, so the whole change is
-
-            atomic. Equivalent in effect to calling
-
-            PATCH /api/requests/{displayId}/service-items/{itemInstanceId}
-
-            for each entry, but bundled into one call.'
-      title: ApiV1RequestsV2RequestIdPatchRequestBodyContentMultipartFormDataSchemaDataJson
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestSource:
-      type: string
-      enum:
-      - EMAIL
-      - SLACK
-      - TEAMS
-      - PORTAL
-      - WORKFLOW
-      - JOURNEY
-      - API
-      - UNIVERSAL_AGENT
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestSource
-    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType:
-      type: string
-      enum:
-      - REQUEST_SETTINGS
-      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType
     ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsSource:
       type: string
       enum:
@@ -2873,61 +1824,72 @@ components:
       - API
       - UNIVERSAL_AGENT
       title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsSource
-    ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
+    Requests_getapi_v1_requests__request_id__items__item_instance_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_getapi_v1_requests__request_id__items__item_instance_id_Response_200
+    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1CustomFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1CustomFields
+    ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
       type: object
       properties:
         value:
-          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
+          $ref: '#/components/schemas/ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
         nested_filter:
           description: Any type
-      title: ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
+      title: ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
     Requests_getapi_v1_requests__requestId__notes_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Requests_getapi_v1_requests__requestId__notes_Response_200
-    ApiV1RequestsListPostParametersSortOrder:
+    ApiV1RequestsRequestIdItemsItemIdPostRequestBodyContentApplicationJsonSchemaFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsRequestIdItemsItemIdPostRequestBodyContentApplicationJsonSchemaFields
+    Requests_getapi_v1_requests__requestId__activity_notes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_getapi_v1_requests__requestId__activity_notes_Response_200
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestSource:
       type: string
       enum:
-      - CREATED_AT_DESC
-      - CREATED_AT_ASC
-      - UPDATED_AT_DESC
-      - SLA_DUE_AT_DESC
-      - SLA_DUE_AT_ASC
-      - ADDED_COMMENT_DESC
-      - PERFORMER_DESC
-      - PERFORMER_ASC
-      - NAME_ASC
-      - NAME_DESC
-      title: ApiV1RequestsListPostParametersSortOrder
-    ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestSource
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFromType:
       type: string
       enum:
-      - EQUALS
-      - NOT_EQUALS
-      - CONTAINS
-      - NOT_CONTAINS
-      - IN
-      - NOT_IN
-      - GREATER_THAN
-      - LESS_THAN
-      - GREATER_THAN_EQUALS
-      - LESS_THAN_EQUALS
-      - IS_BETWEEN
-      - IS_NULL
-      - IS_NOT_NULL
-      - STARTS_WITH
-      - ENDS_WITH
-      - TEXT_CONTAINS
-      - TEXT_DOES_NOT_CONTAINS
-      - IS_ANY_OF
-      - IS_NOT_ANY_OF
-      - IS_EXACTLY
-      - IS_ON_OR_BEFORE
-      - IS_ON_OR_AFTER
-      - IS_WITHIN
-      title: ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator
-    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
+      - REQUEST_SETTINGS
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFromType
+    Requests_postapi_v1_requests_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_postapi_v1_requests_Response_200
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsType:
       type: string
       enum:
       - ESD_NOTE
@@ -2936,28 +1898,20 @@ components:
       - RATING
       - TEMPLATE
       - WORKFLOW_NOTE
-      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsType
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ItemFields:
-      type: object
-      properties: {}
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ItemFields
-    Requests_postapi_v1_requests_bulk_actions__bulk_action_type_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Requests_postapi_v1_requests_bulk_actions__bulk_action_type_Response_200
-    ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
-      type: object
-      properties: {}
-      title: ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ExternalSource:
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsType
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsExternalSourceType:
       type: string
       enum:
       - SAAS_GENIE
       - SNOW
       - JSM_BRIDGE
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ExternalSource
-    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaConversationInfo:
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsExternalSourceType
+    Requests_patchapi_v1_requests__request_id__items__item_instance_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_patchapi_v1_requests__request_id__items__item_instance_id_Response_200
+    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaConversationInfo:
       type: object
       properties:
         channel_name:
@@ -2969,25 +1923,69 @@ components:
           format: unix-timestamp
       required:
       - start_timestamp
-      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaConversationInfo
-    Requests_getapi_v1_requests__requestId__followers_Response_200:
+      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaConversationInfo
+    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType:
+      type: string
+      enum:
+      - REQUEST_SETTINGS
+      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType
+    ApiV1WorkspacesWorkspaceIdRequestsListPostParametersRequestTypeFilterSchemaItems:
+      type: string
+      enum:
+      - REQUEST
+      - INCIDENT
+      - SERVICE_REQUEST
+      - PROBLEM
+      - CHANGE
+      - MAJOR_INCIDENT
+      title: ApiV1WorkspacesWorkspaceIdRequestsListPostParametersRequestTypeFilterSchemaItems
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsSource
+    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestSource
+    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsType
+    Requests_postapi_v1_requests__request_id__items__item_id_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Requests_getapi_v1_requests__requestId__followers_Response_200
-    ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        attribute:
-          type: string
-        operator:
-          $ref: '#/components/schemas/ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
-      title: ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItems
-    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNote:
+      title: Requests_postapi_v1_requests__request_id__items__item_id_Response_200
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItems:
       type: object
       properties:
         user_id:
@@ -3008,9 +2006,9 @@ components:
           type: boolean
           default: false
         source:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteSource'
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsSource'
         type:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteType'
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsType'
         attachments:
           type: array
           items:
@@ -3030,14 +2028,45 @@ components:
         external_id:
           type: string
         external_source_type:
-          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteExternalSourceType'
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsExternalSourceType'
         email_content:
           type: string
         event_created_at:
           type: string
           format: date-time
           description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
-      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNote
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItems
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ItemFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ItemFields
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0CustomFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0CustomFields
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ConversationInfo:
+      type: object
+      properties:
+        channel_name:
+          type: string
+        channel_id:
+          type: string
+        start_timestamp:
+          type: string
+          format: unix-timestamp
+      required:
+      - start_timestamp
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ConversationInfo
+    ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaType
     ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItems:
       type: object
       properties:
@@ -3089,6 +2118,977 @@ components:
           format: date-time
           description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
       title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItems
+    ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaSource
+    Requests_patchapi_v1_requests__requestId_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_patchapi_v1_requests__requestId_Response_200
+    ApiV1RequestsListPostParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      - SLA_DUE_AT_DESC
+      - SLA_DUE_AT_ASC
+      - ADDED_COMMENT_DESC
+      - PERFORMER_DESC
+      - PERFORMER_ASC
+      - NAME_ASC
+      - NAME_DESC
+      title: ApiV1RequestsListPostParametersSortOrder
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1NotesItems:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        conversation_id:
+          type: integer
+          format: int64
+          description: When set, the reply is mirrored into this conversation's thread (UAG).
+        description:
+          type: string
+        mentions:
+          type: array
+          items:
+            type: integer
+            format: int64
+        is_private:
+          type: boolean
+          default: false
+        source:
+          description: Any type
+        type:
+          description: Any type
+        attachments:
+          type: array
+          items:
+            type: integer
+            format: int64
+        cc_emails:
+          type: array
+          items:
+            type: string
+        bcc_emails:
+          type: array
+          items:
+            type: string
+        is_broadcast:
+          type: boolean
+          default: false
+        external_id:
+          type: string
+        external_source_type:
+          description: Any type
+        email_content:
+          type: string
+        event_created_at:
+          type: string
+          format: date-time
+          description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1NotesItems
+    ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
+      type: string
+      enum:
+      - EQUALS
+      - NOT_EQUALS
+      - CONTAINS
+      - NOT_CONTAINS
+      - IN
+      - NOT_IN
+      - GREATER_THAN
+      - LESS_THAN
+      - GREATER_THAN_EQUALS
+      - LESS_THAN_EQUALS
+      - IS_BETWEEN
+      - IS_NULL
+      - IS_NOT_NULL
+      - STARTS_WITH
+      - ENDS_WITH
+      - TEXT_CONTAINS
+      - TEXT_DOES_NOT_CONTAINS
+      - IS_ANY_OF
+      - IS_NOT_ANY_OF
+      - IS_EXACTLY
+      - IS_ON_OR_BEFORE
+      - IS_ON_OR_AFTER
+      - IS_WITHIN
+      title: ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaRequestNote:
+      type: object
+      properties:
+        description:
+          type: string
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaRequestNote
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf3CustomFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf3CustomFields
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestSource
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestSource
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf3ItemFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf3ItemFields
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFrom:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFromType'
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFrom
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ConversationInfo:
+      type: object
+      properties:
+        channel_name:
+          type: string
+        channel_id:
+          type: string
+        start_timestamp:
+          type: string
+          format: unix-timestamp
+      required:
+      - start_timestamp
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ConversationInfo
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2CustomFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2CustomFields
+    Requests_getapi_v1_workspaces__workspace_id__requests_impact_options_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_getapi_v1_workspaces__workspace_id__requests_impact_options_Response_200
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNote:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        conversation_id:
+          type: integer
+          format: int64
+          description: When set, the reply is mirrored into this conversation's thread (UAG).
+        description:
+          type: string
+        mentions:
+          type: array
+          items:
+            type: integer
+            format: int64
+        is_private:
+          type: boolean
+          default: false
+        source:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteSource'
+        type:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteType'
+        attachments:
+          type: array
+          items:
+            type: integer
+            format: int64
+        cc_emails:
+          type: array
+          items:
+            type: string
+        bcc_emails:
+          type: array
+          items:
+            type: string
+        is_broadcast:
+          type: boolean
+          default: false
+        external_id:
+          type: string
+        external_source_type:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteExternalSourceType'
+        email_content:
+          type: string
+        event_created_at:
+          type: string
+          format: date-time
+          description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNote
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteType
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteExternalSourceType:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteExternalSourceType
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsExternalSourceType:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsExternalSourceType
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2ExternalSource:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2ExternalSource
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2ConversationInfo:
+      type: object
+      properties:
+        channel_name:
+          type: string
+        channel_id:
+          type: string
+        start_timestamp:
+          type: string
+          format: unix-timestamp
+      required:
+      - start_timestamp
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2ConversationInfo
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItemsSource
+    Requests_postapi_v1_requests__requestId__move_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_postapi_v1_requests__requestId__move_Response_200
+    Requests_getapi_v1_requests_v2__requestId_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_getapi_v1_requests_v2__requestId_Response_200
+    ApiV1RequestsBulkActionsBulkActionTypePostParametersBulkActionType:
+      type: string
+      enum:
+      - assign-agent
+      - close
+      - delete
+      - status_update
+      - category
+      - add_tags
+      - link-to-major-incident
+      title: ApiV1RequestsBulkActionsBulkActionTypePostParametersBulkActionType
+    Requests_getapi_v1_requests__request_id__items_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_getapi_v1_requests__request_id__items_Response_200
+    ApiV1RequestsRequestIdItemsItemInstanceIdPatchRequestBodyContentApplicationJsonSchemaItemFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsRequestIdItemsItemInstanceIdPatchRequestBodyContentApplicationJsonSchemaItemFields
+    Requests_getapi_v1_requests__requestId__followers_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_getapi_v1_requests__requestId__followers_Response_200
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFromType:
+      type: string
+      enum:
+      - REQUEST_SETTINGS
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFromType
+    Requests_postapi_v1_requests_items__item_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_postapi_v1_requests_items__item_id_Response_200
+    ApiV1RequestsV2RequestIdPatchRequestBodyContentMultipartFormDataSchemaDataJson:
+      type: object
+      properties:
+        custom_fields:
+          type: object
+          additionalProperties:
+            description: Any type
+        service_items:
+          type: array
+          items:
+            description: Any type
+          description: 'Optional catalogue answers to apply alongside this request PATCH.
+
+            Each entry is sent to RequestCatalogueManager.patchCatalogueItemInstance
+
+            in the same transaction as the request write, so the whole change is
+
+            atomic. Equivalent in effect to calling
+
+            PATCH /api/requests/{displayId}/service-items/{itemInstanceId}
+
+            for each entry, but bundled into one call.'
+      title: ApiV1RequestsV2RequestIdPatchRequestBodyContentMultipartFormDataSchemaDataJson
+    ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
+    ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
+      title: ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItems
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestSource
+    Requests_postapi_v1_requests__requestId__notes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_postapi_v1_requests__requestId__notes_Response_200
+    Requests_postapi_v1_requests_major_incident_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_postapi_v1_requests_major_incident_Response_200
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaCustomFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaCustomFields
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaWorkflowRequestNoteSource
+    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsType
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFrom:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFromType'
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFrom
+    Requests_putapi_v1_requests__requestId__modify_followers_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_putapi_v1_requests__requestId__modify_followers_Response_200
+    ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
+    ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaExternalSourceType:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsRequestIdNotesPostRequestBodyContentApplicationJsonSchemaExternalSourceType
+    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaExternalSource:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaExternalSource
+    Requests_patchapi_v1_requests__requestId__add_followers_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_patchapi_v1_requests__requestId__add_followers_Response_200
+    Requests_postapi_v1_workspaces__workspace_id__requests_list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_postapi_v1_workspaces__workspace_id__requests_list_Response_200
+    ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
+      type: string
+      enum:
+      - EQUALS
+      - NOT_EQUALS
+      - CONTAINS
+      - NOT_CONTAINS
+      - IN
+      - NOT_IN
+      - GREATER_THAN
+      - LESS_THAN
+      - GREATER_THAN_EQUALS
+      - LESS_THAN_EQUALS
+      - IS_BETWEEN
+      - IS_NULL
+      - IS_NOT_NULL
+      - STARTS_WITH
+      - ENDS_WITH
+      - TEXT_CONTAINS
+      - TEXT_DOES_NOT_CONTAINS
+      - IS_ANY_OF
+      - IS_NOT_ANY_OF
+      - IS_EXACTLY
+      - IS_ON_OR_BEFORE
+      - IS_ON_OR_AFTER
+      - IS_WITHIN
+      title: ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator
+    ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1WorkspacesWorkspaceIdRequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaItemFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaItemFields
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItems:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        conversation_id:
+          type: integer
+          format: int64
+          description: When set, the reply is mirrored into this conversation's thread (UAG).
+        description:
+          type: string
+        mentions:
+          type: array
+          items:
+            type: integer
+            format: int64
+        is_private:
+          type: boolean
+          default: false
+        source:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsSource'
+        type:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsType'
+        attachments:
+          type: array
+          items:
+            type: integer
+            format: int64
+        cc_emails:
+          type: array
+          items:
+            type: string
+        bcc_emails:
+          type: array
+          items:
+            type: string
+        is_broadcast:
+          type: boolean
+          default: false
+        external_id:
+          type: string
+        external_source_type:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItemsExternalSourceType'
+        email_content:
+          type: string
+        event_created_at:
+          type: string
+          format: date-time
+          description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2NotesItems
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItems:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        conversation_id:
+          type: integer
+          format: int64
+          description: When set, the reply is mirrored into this conversation's thread (UAG).
+        description:
+          type: string
+        mentions:
+          type: array
+          items:
+            type: integer
+            format: int64
+        is_private:
+          type: boolean
+          default: false
+        source:
+          $ref: '#/components/schemas/ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsSource'
+        type:
+          $ref: '#/components/schemas/ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsType'
+        attachments:
+          type: array
+          items:
+            type: integer
+            format: int64
+        cc_emails:
+          type: array
+          items:
+            type: string
+        bcc_emails:
+          type: array
+          items:
+            type: string
+        is_broadcast:
+          type: boolean
+          default: false
+        external_id:
+          type: string
+        external_source_type:
+          $ref: '#/components/schemas/ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsExternalSourceType'
+        email_content:
+          type: string
+        event_created_at:
+          type: string
+          format: date-time
+          description: Event creation timestamp. When provided via public API, also backdates the note's created time, SLA metrics, and activity timestamps. Must not be in the future or before the request's creation time.
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItems
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData0:
+      type: object
+      properties:
+        request_type:
+          type: string
+        request_source:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestSource'
+        description:
+          type: string
+        email_content:
+          type: string
+        plain_text_description_override:
+          type: string
+          description: 'Internal-only override for the persisted plain-text rendering of the description. When non-empty, AbstractRequestService persists it as RequestDetail.description instead of running HTMLSanitizerUtil.getPlainText() on the HTML description.
+
+            Set ONLY by the email ingestion path (EmailIntentBasedRequestCreationService), which derives it from reqDescription via normalizeHtmlToPlainText(getPlainTextForRichHtml(...)) so system-generated HTML emails (BlackLine offboarding, etc.) avoid mashed table cells and blank-line storms.
+
+            Annotated @JsonIgnore so external HTTP clients cannot set it via the request body — without that annotation, any caller of POST /requests, /service-requests, /incidents could write arbitrary unsanitized text into RequestDetail.description, bypassing the getPlainText() pipeline. The Lombok @SuperBuilder still exposes a setter for in-process Java callers (the email path), since builder access does not go through Jackson.
+
+            '
+        status:
+          type: string
+        priority:
+          type: string
+        parent_request_id:
+          type: integer
+          format: int64
+        agent_group:
+          type: integer
+          format: int64
+        assignee:
+          type: integer
+          format: int64
+        subject:
+          type: string
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0NotesItems'
+        workspace_id:
+          type: integer
+          format: int64
+        conversation_info:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ConversationInfo'
+        tags:
+          type: array
+          items:
+            type: integer
+            format: int64
+        cc_emails:
+          type: array
+          items:
+            type: string
+        bcc_emails:
+          type: array
+          items:
+            type: string
+        attachments:
+          type: array
+          items:
+            type: integer
+            format: int64
+        requester:
+          type: integer
+          format: int64
+        to_email:
+          type: string
+        request_created_from:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0RequestCreatedFrom'
+        custom_fields:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0CustomFields'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        external_id:
+          type: string
+        external_source:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ExternalSource'
+        resolution_time:
+          type: string
+          format: date-time
+          description: 'When the ticket was resolved in the source system. Only accepted during migration (requires external_id or external_source).
+
+            '
+        first_response_time:
+          type: string
+          format: date-time
+          description: 'When the first agent response occurred in the source system. Only accepted during migration (requires external_id or external_source).
+
+            '
+        first_response_due_time:
+          type: string
+          format: date-time
+          description: 'SLA due time for first response from the source system. Only accepted during migration (requires external_id or external_source).
+
+            '
+        resolution_due_time:
+          type: string
+          format: date-time
+          description: 'SLA due time for resolution from the source system. Only accepted during migration (requires external_id or external_source).
+
+            '
+        closed_status_at:
+          type: string
+          format: date-time
+          description: 'When the ticket was moved to closed status in the source system. Only accepted during migration (requires external_id or external_source). When provided with a closed status, also sets resolution_time if not explicitly provided.
+
+            '
+        item_id:
+          type: integer
+          format: int64
+        item_fields:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ItemFields'
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData0
+    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType'
+      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ExternalSource:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ExternalSource
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType:
+      type: string
+      enum:
+      - REQUEST_SETTINGS
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType
+    Requests_patchapi_v1_requests_v2__requestId_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_patchapi_v1_requests_v2__requestId_Response_200
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFromType'
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaRequestCreatedFrom
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ItemFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf0ItemFields
+    ApiV1RequestsMajorIncidentPostRequestBodyContentApplicationJsonSchemaRequestSource:
+      type: string
+      enum:
+      - EMAIL
+      - SLACK
+      - TEAMS
+      - PORTAL
+      - WORKFLOW
+      - JOURNEY
+      - API
+      - UNIVERSAL_AGENT
+      title: ApiV1RequestsMajorIncidentPostRequestBodyContentApplicationJsonSchemaRequestSource
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaExternalSource:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaExternalSource
+    ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
+      title: ApiV1RequestsListPostRequestBodyContentApplicationJsonSchemaItems
+    ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsType:
+      type: string
+      enum:
+      - ESD_NOTE
+      - SLACK_NOTE
+      - EMAIL_NOTE
+      - RATING
+      - TEMPLATE
+      - WORKFLOW_NOTE
+      title: ApiV1RequestsItemsItemIdPostRequestBodyContentApplicationJsonSchemaNotesItemsType
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData:
+      oneOf:
+      - $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData0'
+      - $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData1'
+      - $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData2'
+      - $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData3'
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData1:
+      type: object
+      properties:
+        request_type:
+          type: string
+        request_source:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestSource'
+        description:
+          type: string
+        email_content:
+          type: string
+        plain_text_description_override:
+          type: string
+          description: 'Internal-only override for the persisted plain-text rendering of the description. When non-empty, AbstractRequestService persists it as RequestDetail.description instead of running HTMLSanitizerUtil.getPlainText() on the HTML description.
+
+            Set ONLY by the email ingestion path (EmailIntentBasedRequestCreationService), which derives it from reqDescription via normalizeHtmlToPlainText(getPlainTextForRichHtml(...)) so system-generated HTML emails (BlackLine offboarding, etc.) avoid mashed table cells and blank-line storms.
+
+            Annotated @JsonIgnore so external HTTP clients cannot set it via the request body — without that annotation, any caller of POST /requests, /service-requests, /incidents could write arbitrary unsanitized text into RequestDetail.description, bypassing the getPlainText() pipeline. The Lombok @SuperBuilder still exposes a setter for in-process Java callers (the email path), since builder access does not go through Jackson.
+
+            '
+        status:
+          type: string
+        priority:
+          type: string
+        parent_request_id:
+          type: integer
+          format: int64
+        agent_group:
+          type: integer
+          format: int64
+        assignee:
+          type: integer
+          format: int64
+        subject:
+          type: string
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1NotesItems'
+        workspace_id:
+          type: integer
+          format: int64
+        conversation_info:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ConversationInfo'
+        tags:
+          type: array
+          items:
+            type: integer
+            format: int64
+        cc_emails:
+          type: array
+          items:
+            type: string
+        bcc_emails:
+          type: array
+          items:
+            type: string
+        attachments:
+          type: array
+          items:
+            type: integer
+            format: int64
+        requester:
+          type: integer
+          format: int64
+        to_email:
+          type: string
+        request_created_from:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1RequestCreatedFrom'
+        custom_fields:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1CustomFields'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        external_id:
+          type: string
+        external_source:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ExternalSource'
+        resolution_time:
+          type: string
+          format: date-time
+          description: 'When the ticket was resolved in the source system. Only accepted during migration (requires external_id or external_source).
+
+            '
+        first_response_time:
+          type: string
+          format: date-time
+          description: 'When the first agent response occurred in the source system. Only accepted during migration (requires external_id or external_source).
+
+            '
+        first_response_due_time:
+          type: string
+          format: date-time
+          description: 'SLA due time for first response from the source system. Only accepted during migration (requires external_id or external_source).
+
+            '
+        resolution_due_time:
+          type: string
+          format: date-time
+          description: 'SLA due time for resolution from the source system. Only accepted during migration (requires external_id or external_source).
+
+            '
+        closed_status_at:
+          type: string
+          format: date-time
+          description: 'When the ticket was moved to closed status in the source system. Only accepted during migration (requires external_id or external_source). When provided with a closed status, also sets resolution_time if not explicitly provided.
+
+            '
+        item_id:
+          type: integer
+          format: int64
+        item_fields:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ItemFields'
+        impact:
+          type: string
+        urgency:
+          type: string
+        category:
+          type: string
+        subcategory:
+          type: string
+        assets:
+          type: array
+          items:
+            type: integer
+            format: int64
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaData1
+    Requests_getapi_v1_requests__requestId_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_getapi_v1_requests__requestId_Response_200
+    Requests_postapi_v1_requests_bulk_actions__bulk_action_type_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_postapi_v1_requests_bulk_actions__bulk_action_type_Response_200
+    ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaCustomFields:
+      type: object
+      properties: {}
+      title: ApiV1RequestsPostRequestBodyContentApplicationJsonSchemaCustomFields
+    Requests_putapi_v1_requests__requestId__trash_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Requests_putapi_v1_requests__requestId__trash_Response_200
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFrom:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFromType'
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf2RequestCreatedFrom
+    ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ExternalSource:
+      type: string
+      enum:
+      - SAAS_GENIE
+      - SNOW
+      - JSM_BRIDGE
+      title: ApiV1RequestsRequestIdMovePostRequestBodyContentApplicationJsonSchemaDataOneOf1ExternalSource
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

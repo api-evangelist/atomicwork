@@ -64,7 +64,7 @@ tags:
 - Enterprise
 apis:
 - aid: atomicwork:atomicwork-assets-api
-  name: Atomicwork assets API
+  name: Atomicwork Assets API
   description: The assets API from Atomicwork — 7 operation(s) for assets.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
@@ -80,7 +80,7 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-businesshourconfig-api
-  name: Atomicwork businessHourConfig API
+  name: Atomicwork Business Hour Config API
   description: The businessHourConfig API from Atomicwork — 2 operation(s) for businesshourconfig.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
@@ -95,7 +95,7 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-entities-api
-  name: Atomicwork entities API
+  name: Atomicwork Entities API
   description: The entities API from Atomicwork — 1 operation(s) for entities.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
@@ -111,7 +111,7 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-forms-api
-  name: Atomicwork forms API
+  name: Atomicwork Forms API
   description: The forms API from Atomicwork — 5 operation(s) for forms.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
@@ -127,7 +127,7 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-problems-api
-  name: Atomicwork problems API
+  name: Atomicwork Problems API
   description: The problems API from Atomicwork — 4 operation(s) for problems.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
@@ -143,7 +143,7 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-requests-api
-  name: Atomicwork requests API
+  name: Atomicwork Requests API
   description: The requests API from Atomicwork — 19 operation(s) for requests.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
@@ -159,7 +159,7 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-tags-api
-  name: Atomicwork tags API
+  name: Atomicwork Tags API
   description: The tags API from Atomicwork — 2 operation(s) for tags.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
@@ -175,7 +175,7 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-users-api
-  name: Atomicwork users API
+  name: Atomicwork Users API
   description: The users API from Atomicwork — 10 operation(s) for users.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
@@ -191,7 +191,7 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-workflows-api
-  name: Atomicwork workflows API
+  name: Atomicwork Workflows API
   description: The workflows API from Atomicwork — 14 operation(s) for workflows.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
@@ -207,7 +207,7 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-workspaces-api
-  name: Atomicwork workspaces API
+  name: Atomicwork Workspaces API
   description: The workspaces API from Atomicwork — 3 operation(s) for workspaces.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1

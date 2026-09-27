@@ -520,58 +520,11 @@ paths:
                 $ref: '#/components/schemas/Forms_getapi_v1_forms__entity_type___reference_key__entities_Response_200'
 components:
   schemas:
-    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersEntityType:
-      type: string
-      enum:
-      - REQUEST
-      - SERVICE_REQUEST
-      - QUESTION_REQUEST
-      - INCIDENT_REQUEST
-      - INCIDENT
-      - PROBLEM_REQUEST
-      - PROBLEM
-      - USER
-      - SERVICE_ITEM
-      - CUSTOM_FORM
-      - SURVEY
-      - ASSET
-      - CHANGE
-      - CHANGE_TEMPLATE
-      - CUSTOM_OBJECT
-      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersEntityType
-    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersEntityType:
-      type: string
-      enum:
-      - REQUEST
-      - SERVICE_REQUEST
-      - QUESTION_REQUEST
-      - INCIDENT_REQUEST
-      - INCIDENT
-      - PROBLEM_REQUEST
-      - PROBLEM
-      - USER
-      - SERVICE_ITEM
-      - CUSTOM_FORM
-      - SURVEY
-      - ASSET
-      - CHANGE
-      - CHANGE_TEMPLATE
-      - CUSTOM_OBJECT
-      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersEntityType
     Forms_getapi_v1_forms_requests_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Forms_getapi_v1_forms_requests_Response_200
-    ApiV1FormsRequestsGetParametersChannelType:
-      type: string
-      enum:
-      - SLACK
-      - MS_TEAMS
-      - EMAIL
-      - ATOMICINBOX
-      - UNIVERSAL_AGENT
-      title: ApiV1FormsRequestsGetParametersChannelType
     ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersView:
       type: string
       enum:
@@ -592,36 +545,6 @@ components:
       - MAJOR_INCIDENT_CREATE
       - APPROVERS
       title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersView
-    Forms_getapi_v1_forms__entity_type___reference_key__entities_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Forms_getapi_v1_forms__entity_type___reference_key__entities_Response_200
-    Forms_getapi_v1_forms_custom_form_template__form_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Forms_getapi_v1_forms_custom_form_template__form_id_Response_200
-    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersRequestType:
-      type: string
-      enum:
-      - REQUEST
-      - INCIDENT
-      - SERVICE_REQUEST
-      - PROBLEM
-      - CHANGE
-      - MAJOR_INCIDENT
-      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersRequestType
-    ApiV1FormsRequestsGetParametersRequestType:
-      type: string
-      enum:
-      - REQUEST
-      - INCIDENT
-      - SERVICE_REQUEST
-      - PROBLEM
-      - CHANGE
-      - MAJOR_INCIDENT
-      title: ApiV1FormsRequestsGetParametersRequestType
     ApiV1FormsRequestsGetParametersSupportedObjects:
       type: string
       enum:
@@ -631,53 +554,18 @@ components:
       - PROBLEM
       - CHANGE
       title: ApiV1FormsRequestsGetParametersSupportedObjects
-    ApiV1FormsCustomFormTemplateFormIdGetParametersContextType:
+    Forms_getapi_v1_forms__entity_type___reference_key__options_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Forms_getapi_v1_forms__entity_type___reference_key__options_Response_200
+    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersFieldEntitySource:
       type: string
       enum:
-      - JOURNEY
-      - WORKFLOW
-      - CHANGE_TEMPLATE
-      - PROBLEM_REQUEST
-      - CHANGE
-      - REQUEST
-      title: ApiV1FormsCustomFormTemplateFormIdGetParametersContextType
-    ApiV1FormsChangesGetParametersEventType:
-      type: string
-      enum:
-      - CREATE
-      - VIEW_OR_UPDATE
-      - VIEW
-      - UPDATE
-      - CLOSE
-      title: ApiV1FormsChangesGetParametersEventType
-    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersSubview:
-      type: string
-      enum:
-      - CONDITION
-      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersSubview
-    ApiV1FormsRequestsGetParametersRequestFormType:
-      type: string
-      enum:
-      - REQUEST
-      - QUESTION_REQUEST
-      - INCIDENT_REQUEST
-      - SERVICE_REQUEST
-      - PROBLEM_REQUEST
-      title: ApiV1FormsRequestsGetParametersRequestFormType
-    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersUserType:
-      type: string
-      enum:
-      - EMPLOYEE
-      - EXTERNAL
-      - AI_EMPLOYEE
-      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersUserType
-    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersExternalFieldType:
-      type: string
-      enum:
-      - USER
-      - PROFORMA
-      description: JSM (Jira Service Management) field type identifier
-      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersExternalFieldType
+      - JSM
+      - SERVICE_NOW
+      - INTERNAL
+      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersFieldEntitySource
     ApiV1FormsRequestsGetParametersView:
       type: string
       enum:
@@ -698,16 +586,35 @@ components:
       - MAJOR_INCIDENT_CREATE
       - APPROVERS
       title: ApiV1FormsRequestsGetParametersView
-    Forms_getapi_v1_forms__entity_type___reference_key__options_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Forms_getapi_v1_forms__entity_type___reference_key__options_Response_200
-    Forms_getapi_v1_forms_changes_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Forms_getapi_v1_forms_changes_Response_200
+    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - INCIDENT
+      - PROBLEM_REQUEST
+      - PROBLEM
+      - USER
+      - SERVICE_ITEM
+      - CUSTOM_FORM
+      - SURVEY
+      - ASSET
+      - CHANGE
+      - CHANGE_TEMPLATE
+      - CUSTOM_OBJECT
+      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersEntityType
+    ApiV1FormsCustomFormTemplateFormIdGetParametersContextType:
+      type: string
+      enum:
+      - JOURNEY
+      - WORKFLOW
+      - CHANGE_TEMPLATE
+      - PROBLEM_REQUEST
+      - CHANGE
+      - REQUEST
+      title: ApiV1FormsCustomFormTemplateFormIdGetParametersContextType
     ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersRequestSubType:
       type: string
       enum:
@@ -728,6 +635,40 @@ components:
       - CHANGE_ATTRIBUTE_PLACEHOLDERS
       - CHANGE_TEMPLATE_ATTRIBUTES_SETTINGS
       title: ApiV1FormsChangesGetParametersView
+    ApiV1FormsRequestsGetParametersRequestType:
+      type: string
+      enum:
+      - REQUEST
+      - INCIDENT
+      - SERVICE_REQUEST
+      - PROBLEM
+      - CHANGE
+      - MAJOR_INCIDENT
+      title: ApiV1FormsRequestsGetParametersRequestType
+    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - INCIDENT
+      - PROBLEM_REQUEST
+      - PROBLEM
+      - USER
+      - SERVICE_ITEM
+      - CUSTOM_FORM
+      - SURVEY
+      - ASSET
+      - CHANGE
+      - CHANGE_TEMPLATE
+      - CUSTOM_OBJECT
+      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersEntityType
+    Forms_getapi_v1_forms_custom_form_template__form_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Forms_getapi_v1_forms_custom_form_template__form_id_Response_200
     ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersView:
       type: string
       enum:
@@ -748,13 +689,72 @@ components:
       - MAJOR_INCIDENT_CREATE
       - APPROVERS
       title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersView
-    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersFieldEntitySource:
+    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersUserType:
       type: string
       enum:
-      - JSM
-      - SERVICE_NOW
-      - INTERNAL
-      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersFieldEntitySource
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersUserType
+    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersRequestType:
+      type: string
+      enum:
+      - REQUEST
+      - INCIDENT
+      - SERVICE_REQUEST
+      - PROBLEM
+      - CHANGE
+      - MAJOR_INCIDENT
+      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersRequestType
+    Forms_getapi_v1_forms__entity_type___reference_key__entities_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Forms_getapi_v1_forms__entity_type___reference_key__entities_Response_200
+    Forms_getapi_v1_forms_changes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Forms_getapi_v1_forms_changes_Response_200
+    ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersExternalFieldType:
+      type: string
+      enum:
+      - USER
+      - PROFORMA
+      description: JSM (Jira Service Management) field type identifier
+      title: ApiV1FormsEntityTypeReferenceKeyOptionsGetParametersExternalFieldType
+    ApiV1FormsChangesGetParametersEventType:
+      type: string
+      enum:
+      - CREATE
+      - VIEW_OR_UPDATE
+      - VIEW
+      - UPDATE
+      - CLOSE
+      title: ApiV1FormsChangesGetParametersEventType
+    ApiV1FormsRequestsGetParametersRequestFormType:
+      type: string
+      enum:
+      - REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - SERVICE_REQUEST
+      - PROBLEM_REQUEST
+      title: ApiV1FormsRequestsGetParametersRequestFormType
+    ApiV1FormsRequestsGetParametersChannelType:
+      type: string
+      enum:
+      - SLACK
+      - MS_TEAMS
+      - EMAIL
+      - ATOMICINBOX
+      - UNIVERSAL_AGENT
+      title: ApiV1FormsRequestsGetParametersChannelType
+    ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersSubview:
+      type: string
+      enum:
+      - CONDITION
+      title: ApiV1FormsEntityTypeReferenceKeyEntitiesGetParametersSubview
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
