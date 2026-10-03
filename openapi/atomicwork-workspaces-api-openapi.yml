@@ -177,6 +177,31 @@ paths:
                 $ref: '#/components/schemas/Workspaces_getapi_v1_workspaces__id__members_Response_200'
 components:
   schemas:
+    ApiV1WorkspacesIdMembersGetParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      - UPDATED_AT_ASC
+      - NAME_EMAIL_ASC
+      - NAME_EMAIL_DESC
+      title: ApiV1WorkspacesIdMembersGetParametersSortOrder
+    Workspaces_getapi_v1_workspaces__id__members_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workspaces_getapi_v1_workspaces__id__members_Response_200
+    Workspaces_getapi_v1_workspaces__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workspaces_getapi_v1_workspaces__id_Response_200
+    Workspaces_getapi_v1_workspaces_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workspaces_getapi_v1_workspaces_Response_200
     ApiV1WorkspacesGetParametersSupportedObjectsSchemaItems:
       type: string
       enum:
@@ -193,31 +218,6 @@ components:
       - EXTERNAL
       - AI_EMPLOYEE
       title: ApiV1WorkspacesIdMembersGetParametersTypesSchemaItems
-    Workspaces_getapi_v1_workspaces__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workspaces_getapi_v1_workspaces__id_Response_200
-    Workspaces_getapi_v1_workspaces_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workspaces_getapi_v1_workspaces_Response_200
-    ApiV1WorkspacesIdMembersGetParametersSortOrder:
-      type: string
-      enum:
-      - CREATED_AT_DESC
-      - CREATED_AT_ASC
-      - UPDATED_AT_DESC
-      - UPDATED_AT_ASC
-      - NAME_EMAIL_ASC
-      - NAME_EMAIL_DESC
-      title: ApiV1WorkspacesIdMembersGetParametersSortOrder
-    Workspaces_getapi_v1_workspaces__id__members_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workspaces_getapi_v1_workspaces__id__members_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
