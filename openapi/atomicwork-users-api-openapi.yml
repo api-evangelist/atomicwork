@@ -890,113 +890,52 @@ paths:
                 $ref: '#/components/schemas/Users_getapi_v1_users__email__email_lookup_Response_200'
 components:
   schemas:
-    ApiV1UsersPostRequestBodyContentApplicationJsonSchemaExternalAppType:
-      type: string
-      enum:
-      - MICROSOFT
-      - OKTA
-      - GOOGLE
-      - RAPID7
-      - JUMPCLOUD
-      title: ApiV1UsersPostRequestBodyContentApplicationJsonSchemaExternalAppType
-    Users_postapi_v1_users__user_id__properties_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Users_postapi_v1_users__user_id__properties_Response_200
-    ApiV1UsersWorkspacesInvitePostRequestBodyContentApplicationJsonSchemaWorkspacesItems:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        roles:
-          type: array
-          items:
-            type: integer
-            format: int64
-      title: ApiV1UsersWorkspacesInvitePostRequestBodyContentApplicationJsonSchemaWorkspacesItems
-    ApiV1UsersListGetParametersUserStatus:
-      type: string
-      enum:
-      - ACTIVE
-      - INACTIVE
-      - ALL
-      title: ApiV1UsersListGetParametersUserStatus
-    ApiV1UsersInvitePostRequestBodyContentApplicationJsonSchemaType:
+    ApiV1UsersGetParametersTypesSchemaItems:
       type: string
       enum:
       - EMPLOYEE
       - EXTERNAL
       - AI_EMPLOYEE
-      title: ApiV1UsersInvitePostRequestBodyContentApplicationJsonSchemaType
-    ApiV1UsersListGetParametersSortOrder:
-      type: string
-      enum:
-      - CREATED_AT_DESC
-      - CREATED_AT_ASC
-      - UPDATED_AT_DESC
-      - UPDATED_AT_ASC
-      - NAME_EMAIL_ASC
-      - NAME_EMAIL_DESC
-      title: ApiV1UsersListGetParametersSortOrder
-    Users_patchapi_v1_users__user_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Users_patchapi_v1_users__user_id_Response_200
-    Users_patchapi_v1_users__email__restore_by_email_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Users_patchapi_v1_users__email__restore_by_email_Response_200
-    ApiV1UsersPostRequestBodyContentApplicationJsonSchemaType:
+      title: ApiV1UsersGetParametersTypesSchemaItems
+    ApiV1UsersListGetParametersTypesSchemaItems:
       type: string
       enum:
       - EMPLOYEE
       - EXTERNAL
       - AI_EMPLOYEE
-      title: ApiV1UsersPostRequestBodyContentApplicationJsonSchemaType
-    ApiV1UsersSegmentIdListGetParametersType:
-      type: string
-      enum:
-      - EMPLOYEE
-      - EXTERNAL
-      - AI_EMPLOYEE
-      title: ApiV1UsersSegmentIdListGetParametersType
-    Users_patchapi_v1_users__user_id__restore_Response_200:
+      title: ApiV1UsersListGetParametersTypesSchemaItems
+    Users_getapi_v1_users_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Users_patchapi_v1_users__user_id__restore_Response_200
+      title: Users_getapi_v1_users_Response_200
     Users_getapi_v1_users_list_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Users_getapi_v1_users_list_Response_200
-    Users_postapi_v1_users_invite_Response_200:
+    Users_postapi_v1_users__user_id__properties_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Users_postapi_v1_users_invite_Response_200
-    Users_putapi_v1_users__user_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Users_putapi_v1_users__user_id_Response_200
-    ApiV1UsersPostRequestBodyContentApplicationJsonSchemaCustomFields:
-      type: object
-      properties: {}
-      title: ApiV1UsersPostRequestBodyContentApplicationJsonSchemaCustomFields
-    ApiV1UsersUserIdPutRequestBodyContentApplicationJsonSchemaExternalAppType:
+      title: Users_postapi_v1_users__user_id__properties_Response_200
+    ApiV1UsersListGetParametersInvitationStatus:
       type: string
       enum:
-      - MICROSOFT
-      - OKTA
-      - GOOGLE
-      - RAPID7
-      - JUMPCLOUD
-      title: ApiV1UsersUserIdPutRequestBodyContentApplicationJsonSchemaExternalAppType
+      - ADDED
+      - EMAIL_INVITE_SENT
+      - ACCEPTED
+      title: ApiV1UsersListGetParametersInvitationStatus
+    Users_patchapi_v1_users__user_id__restore_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Users_patchapi_v1_users__user_id__restore_Response_200
+    Users_postapi_v1_users_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Users_postapi_v1_users_Response_200
     ApiV1UsersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems:
       type: object
       properties:
@@ -1009,11 +948,64 @@ components:
             type: integer
             format: int64
       title: ApiV1UsersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems
-    Users_postapi_v1_users_workspaces_invite_Response_200:
+    ApiV1UsersWorkspacesInvitePostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1UsersWorkspacesInvitePostRequestBodyContentApplicationJsonSchemaType
+    Users_postapi_v1_users_invite_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Users_postapi_v1_users_workspaces_invite_Response_200
+      title: Users_postapi_v1_users_invite_Response_200
+    ApiV1UsersUserIdPutRequestBodyContentApplicationJsonSchemaExternalAppType:
+      type: string
+      enum:
+      - MICROSOFT
+      - OKTA
+      - GOOGLE
+      - RAPID7
+      - JUMPCLOUD
+      title: ApiV1UsersUserIdPutRequestBodyContentApplicationJsonSchemaExternalAppType
+    ApiV1UsersInvitePostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1UsersInvitePostRequestBodyContentApplicationJsonSchemaType
+    ApiV1UsersSegmentIdListGetParametersType:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1UsersSegmentIdListGetParametersType
+    ApiV1UsersUserIdPutRequestBodyContentApplicationJsonSchemaCustomFields:
+      type: object
+      properties: {}
+      title: ApiV1UsersUserIdPutRequestBodyContentApplicationJsonSchemaCustomFields
+    Users_patchapi_v1_users__email__restore_by_email_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Users_patchapi_v1_users__email__restore_by_email_Response_200
+    ApiV1UsersPostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1UsersPostRequestBodyContentApplicationJsonSchemaType
+    ApiV1UsersListGetParametersUserStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
+      - ALL
+      title: ApiV1UsersListGetParametersUserStatus
     ApiV1UsersSegmentIdListGetParametersSortOrder:
       type: string
       enum:
@@ -1024,45 +1016,6 @@ components:
       - NAME_EMAIL_ASC
       - NAME_EMAIL_DESC
       title: ApiV1UsersSegmentIdListGetParametersSortOrder
-    ApiV1UsersWorkspacesInvitePostRequestBodyContentApplicationJsonSchemaType:
-      type: string
-      enum:
-      - EMPLOYEE
-      - EXTERNAL
-      - AI_EMPLOYEE
-      title: ApiV1UsersWorkspacesInvitePostRequestBodyContentApplicationJsonSchemaType
-    ApiV1UsersListGetParametersTypesSchemaItems:
-      type: string
-      enum:
-      - EMPLOYEE
-      - EXTERNAL
-      - AI_EMPLOYEE
-      title: ApiV1UsersListGetParametersTypesSchemaItems
-    Users_getapi_v1_users__segment_id__list_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Users_getapi_v1_users__segment_id__list_Response_200
-    Users_getapi_v1_users__user_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Users_getapi_v1_users__user_id_Response_200
-    Users_getapi_v1_users_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Users_getapi_v1_users_Response_200
-    Users_deleteapi_v1_users__user_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Users_deleteapi_v1_users__user_id_Response_200
-    Users_postapi_v1_users_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Users_postapi_v1_users_Response_200
     ApiV1UsersInvitePostRequestBodyContentApplicationJsonSchemaWorkspacesItems:
       type: object
       properties:
@@ -1080,29 +1033,76 @@ components:
       properties: {}
       description: Empty response body
       title: Users_getapi_v1_users__email__email_lookup_Response_200
-    ApiV1UsersGetParametersTypesSchemaItems:
-      type: string
-      enum:
-      - EMPLOYEE
-      - EXTERNAL
-      - AI_EMPLOYEE
-      title: ApiV1UsersGetParametersTypesSchemaItems
-    ApiV1UsersUserIdPutRequestBodyContentApplicationJsonSchemaCustomFields:
+    ApiV1UsersWorkspacesInvitePostRequestBodyContentApplicationJsonSchemaWorkspacesItems:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        roles:
+          type: array
+          items:
+            type: integer
+            format: int64
+      title: ApiV1UsersWorkspacesInvitePostRequestBodyContentApplicationJsonSchemaWorkspacesItems
+    Users_getapi_v1_users__segment_id__list_Response_200:
       type: object
       properties: {}
-      title: ApiV1UsersUserIdPutRequestBodyContentApplicationJsonSchemaCustomFields
-    ApiV1UsersListGetParametersInvitationStatus:
-      type: string
-      enum:
-      - ADDED
-      - EMAIL_INVITE_SENT
-      - ACCEPTED
-      title: ApiV1UsersListGetParametersInvitationStatus
+      description: Empty response body
+      title: Users_getapi_v1_users__segment_id__list_Response_200
+    Users_putapi_v1_users__user_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Users_putapi_v1_users__user_id_Response_200
     ApiV1UsersListGetParametersExpandSchemaItems:
       type: string
       enum:
       - WORKSPACES
       title: ApiV1UsersListGetParametersExpandSchemaItems
+    Users_patchapi_v1_users__user_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Users_patchapi_v1_users__user_id_Response_200
+    Users_postapi_v1_users_workspaces_invite_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Users_postapi_v1_users_workspaces_invite_Response_200
+    ApiV1UsersListGetParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      - UPDATED_AT_ASC
+      - NAME_EMAIL_ASC
+      - NAME_EMAIL_DESC
+      title: ApiV1UsersListGetParametersSortOrder
+    ApiV1UsersPostRequestBodyContentApplicationJsonSchemaExternalAppType:
+      type: string
+      enum:
+      - MICROSOFT
+      - OKTA
+      - GOOGLE
+      - RAPID7
+      - JUMPCLOUD
+      title: ApiV1UsersPostRequestBodyContentApplicationJsonSchemaExternalAppType
+    ApiV1UsersPostRequestBodyContentApplicationJsonSchemaCustomFields:
+      type: object
+      properties: {}
+      title: ApiV1UsersPostRequestBodyContentApplicationJsonSchemaCustomFields
+    Users_getapi_v1_users__user_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Users_getapi_v1_users__user_id_Response_200
+    Users_deleteapi_v1_users__user_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Users_deleteapi_v1_users__user_id_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

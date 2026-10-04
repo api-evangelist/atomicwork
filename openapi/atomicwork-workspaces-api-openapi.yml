@@ -177,6 +177,25 @@ paths:
                 $ref: '#/components/schemas/Workspaces_getapi_v1_workspaces__id__members_Response_200'
 components:
   schemas:
+    ApiV1WorkspacesGetParametersSupportedObjectsSchemaItems:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT
+      - PROBLEM
+      - CHANGE
+      title: ApiV1WorkspacesGetParametersSupportedObjectsSchemaItems
+    Workspaces_getapi_v1_workspaces_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workspaces_getapi_v1_workspaces_Response_200
+    Workspaces_getapi_v1_workspaces__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workspaces_getapi_v1_workspaces__id_Response_200
     ApiV1WorkspacesIdMembersGetParametersSortOrder:
       type: string
       enum:
@@ -192,25 +211,6 @@ components:
       properties: {}
       description: Empty response body
       title: Workspaces_getapi_v1_workspaces__id__members_Response_200
-    Workspaces_getapi_v1_workspaces__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workspaces_getapi_v1_workspaces__id_Response_200
-    Workspaces_getapi_v1_workspaces_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workspaces_getapi_v1_workspaces_Response_200
-    ApiV1WorkspacesGetParametersSupportedObjectsSchemaItems:
-      type: string
-      enum:
-      - REQUEST
-      - SERVICE_REQUEST
-      - INCIDENT
-      - PROBLEM
-      - CHANGE
-      title: ApiV1WorkspacesGetParametersSupportedObjectsSchemaItems
     ApiV1WorkspacesIdMembersGetParametersTypesSchemaItems:
       type: string
       enum:

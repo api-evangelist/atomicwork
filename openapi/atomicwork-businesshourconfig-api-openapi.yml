@@ -105,16 +105,16 @@ paths:
                 $ref: '#/components/schemas/Business_Hour_Config_getapi_v1_workspaces__workspace_id__business_hour_config__id_Response_200'
 components:
   schemas:
-    Business_Hour_Config_getapi_v1_workspaces__workspace_id__business_hour_config_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Business Hour Config_getapi_v1_workspaces__workspace_id__business_hour_config_Response_200
     Business_Hour_Config_getapi_v1_workspaces__workspace_id__business_hour_config__id_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Business Hour Config_getapi_v1_workspaces__workspace_id__business_hour_config__id_Response_200
+    Business_Hour_Config_getapi_v1_workspaces__workspace_id__business_hour_config_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Business Hour Config_getapi_v1_workspaces__workspace_id__business_hour_config_Response_200
     ApiV1WorkspacesWorkspaceIdBusinessHourConfigGetParametersType:
       type: string
       enum:

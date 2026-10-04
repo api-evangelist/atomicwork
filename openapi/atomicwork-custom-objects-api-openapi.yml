@@ -532,26 +532,49 @@ paths:
                   type: string
 components:
   schemas:
-    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItems:
+    Custom_Objects_patchapi_v1_custom_objects_by_id__id_Response_200:
       type: object
-      properties:
-        attribute:
-          type: string
-        operator:
-          $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator'
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
-      description: 'Filter condition for the custom object list view. Extends BaseListFilterDTO using the standard attribute/operator/values pattern. The attribute field holds either a top-level field name (e.g. "display_id", "created_at"), a column_key for custom fields (e.g. "cf_shorttext_001"), or a custom field reference_key. For ID-shaped custom fields (relationship, entity-reference, dropdown, and multi-dropdown), value -1 or null means blank. Blank filters match indexed field slots with null/empty values, indexed slots containing the historical -1 sentinel, and records where the nested field slot does not exist.
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_patchapi_v1_custom_objects_by_id__id_Response_200
+    Custom_Objects_putapi_v1_custom_objects_by_id__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_putapi_v1_custom_objects_by_id__id_Response_200
+    Custom_Objects_deleteapi_v1_custom_objects_by_id__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_deleteapi_v1_custom_objects_by_id__id_Response_200
+    ApiV1CustomObjectsPostRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      description: 'Custom field values keyed by field reference_key. Must include
+
+        display_name, the reserved system field for every custom object type.
+
+        form_fields.display_name is trimmed, must be non-empty/non-whitespace,
+
+        and must be at most 255 characters.
 
         '
-      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItems
+      title: ApiV1CustomObjectsPostRequestBodyContentApplicationJsonSchemaFormFields
     Custom_Objects_postapi_v1_custom_objects__objectTypeId__list_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Custom Objects_postapi_v1_custom_objects__objectTypeId__list_Response_200
+    Custom_Objects_getapi_v1_custom_objects_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_getapi_v1_custom_objects_Response_200
+    Custom_Objects_postapi_v1_custom_objects_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_postapi_v1_custom_objects_Response_200
     Custom_Objects_getapi_v1_custom_objects_view_fields_Response_200:
       type: object
       properties: {}
@@ -568,29 +591,26 @@ components:
       - DISPLAY_ID_DESC
       description: Sort order for custom object list view results
       title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaSort
-    Custom_Objects_putapi_v1_custom_objects_by_id__id_Response_200:
+    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItems:
       type: object
-      properties: {}
-      description: Empty response body
-      title: Custom Objects_putapi_v1_custom_objects_by_id__id_Response_200
-    Custom_Objects_getapi_v1_custom_objects_by_id__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Custom Objects_getapi_v1_custom_objects_by_id__id_Response_200
-    ApiV1CustomObjectsPostRequestBodyContentApplicationJsonSchemaFormFields:
-      type: object
-      properties: {}
-      description: 'Custom field values keyed by field reference_key. Must include
-
-        display_name, the reserved system field for every custom object type.
-
-        form_fields.display_name is trimmed, must be non-empty/non-whitespace,
-
-        and must be at most 255 characters.
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems'
+      description: 'Filter condition for the custom object list view. Extends BaseListFilterDTO using the standard attribute/operator/values pattern. The attribute field holds either a top-level field name (e.g. "display_id", "created_at"), a column_key for custom fields (e.g. "cf_shorttext_001"), or a custom field reference_key. For ID-shaped custom fields (relationship, entity-reference, dropdown, and multi-dropdown), value -1 or null means blank. Blank filters match indexed field slots with null/empty values, indexed slots containing the historical -1 sentinel, and records where the nested field slot does not exist.
 
         '
-      title: ApiV1CustomObjectsPostRequestBodyContentApplicationJsonSchemaFormFields
+      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItems
+    Custom_Objects_getapi_v1_custom_objects_by_id__id__relationships_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_getapi_v1_custom_objects_by_id__id__relationships_Response_200
     ApiV1CustomObjectsByIdIdPutRequestBodyContentApplicationJsonSchemaFormFields:
       type: object
       properties: {}
@@ -604,14 +624,10 @@ components:
 
         '
       title: ApiV1CustomObjectsByIdIdPutRequestBodyContentApplicationJsonSchemaFormFields
-    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
+    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
       type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue'
-        nested_filter:
-          description: Any type
-      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
+      properties: {}
+      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
     ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator:
       type: string
       enum:
@@ -639,40 +655,19 @@ components:
       - IS_ON_OR_AFTER
       - IS_WITHIN
       title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsOperator
-    Custom_Objects_postapi_v1_custom_objects_Response_200:
+    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue'
+        nested_filter:
+          description: Any type
+      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItems
+    Custom_Objects_getapi_v1_custom_objects_by_id__id_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Custom Objects_postapi_v1_custom_objects_Response_200
-    ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue:
-      type: object
-      properties: {}
-      title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaFiltersItemsValuesItemsValue
-    Custom_Objects_deleteapi_v1_custom_objects_by_id__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Custom Objects_deleteapi_v1_custom_objects_by_id__id_Response_200
-    Custom_Objects_postapi_v1_custom_objects__objectTypeId__list_download_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Custom Objects_postapi_v1_custom_objects__objectTypeId__list_download_Response_200
-    Custom_Objects_patchapi_v1_custom_objects_by_id__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Custom Objects_patchapi_v1_custom_objects_by_id__id_Response_200
-    Custom_Objects_getapi_v1_custom_objects_by_id__id__relationships_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Custom Objects_getapi_v1_custom_objects_by_id__id__relationships_Response_200
-    Custom_Objects_getapi_v1_custom_objects_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Custom Objects_getapi_v1_custom_objects_Response_200
+      title: Custom Objects_getapi_v1_custom_objects_by_id__id_Response_200
     ApiV1CustomObjectsByIdIdPatchRequestBodyContentApplicationJsonSchemaFormFields:
       type: object
       properties: {}
@@ -694,6 +689,11 @@ components:
       - WORKSPACE
       description: Scope of the object type (GLOBAL or WORKSPACE)
       title: ApiV1CustomObjectsObjectTypeIdListPostRequestBodyContentApplicationJsonSchemaScope
+    Custom_Objects_postapi_v1_custom_objects__objectTypeId__list_download_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Custom Objects_postapi_v1_custom_objects__objectTypeId__list_download_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

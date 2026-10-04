@@ -629,66 +629,33 @@ paths:
               - app_id
 components:
   schemas:
-    ? ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItemsUnit
-    : type: string
-      enum:
-      - HOURS
-      - DAYS
-      - WEEKS
-      - MONTHS
-      description: Time unit for duration specifications
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItemsUnit
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettings:
-      type: object
-      properties:
-        enable_expiry_notifications:
-          type: boolean
-          default: false
-          description: Whether expiry notifications are enabled
-        notification_timings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettingsNotificationTimingsItems'
-          default: []
-          description: List of notification timings specifying when to send notifications before expiry
-      description: Notification settings for time-based access policies. Can be used globally or per-duration.
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettings
-    Access_Management_postapi_v1_iga_policies_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Access Management_postapi_v1_iga_policies_Response_200
-    ApiV1IgaEntitlementsGetParametersType:
+    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigType:
       type: string
       enum:
-      - GROUP
-      - ROLE
-      title: ApiV1IgaEntitlementsGetParametersType
-    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigProvider:
-      type: string
-      enum:
-      - OKTA
-      - AZURE_AD
-      - MS_INTUNE
-      - JUMPCLOUD
-      - GOOGLE_WORKSPACE
-      - TUEBORA
-      - MANUAL
-      description: Provisioning provider
-      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigProvider
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItems:
+      - OKTA_GROUP_PROVISIONING
+      - AZURE_GROUP_PROVISIONING
+      - INTUNE_GROUP_PROVISIONING
+      - JUMPCLOUD_GROUP_PROVISIONING
+      - GOOGLE_WORKSPACE_GROUP_PROVISIONING
+      - MANUAL_PROVISIONING
+      description: Type of provisioning configuration
+      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigType
+    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfig:
       type: object
       properties:
-        duration:
-          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsDuration'
-          description: Represents a duration with a value and time unit. Includes ID field for AI-agent friendly selection.
-        notification_settings:
-          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettings'
-          description: Notification settings for time-based access policies. Can be used globally or per-duration.
+        provider:
+          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigProvider'
+          description: Provisioning provider
+        type:
+          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigType'
+          description: Type of provisioning configuration
+        value:
+          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValue'
       required:
-      - duration
-      description: Represents an access duration option with optional per-duration notification settings
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItems
+      - provider
+      - type
+      - value
+      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfig
     ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaStatus:
       type: string
       enum:
@@ -697,41 +664,34 @@ components:
       - ARCHIVED
       - UNPUBLISHED
       title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaStatus
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems0:
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals1:
       type: object
       properties:
         type:
           type: string
-        criteria:
-          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0Criteria'
-        approvers_data:
+        steps:
           type: array
           items:
-            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0ApproversDataItems'
+            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems'
       required:
       - type
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems0
-    ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
-      type: object
-      properties: {}
-      title: ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
-    Access_Management_postapi_v1_iga_grants_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Access Management_postapi_v1_iga_grants_Response_200
-    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaStatus:
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals1
+    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigType:
       type: string
       enum:
-      - UNPUBLISHED
-      - PUBLISHED
-      description: Status of the entitlement. Defaults to PUBLISHED if not specified.
-      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaStatus
-    Access_Management_putapi_v1_iga_grants__grant_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Access Management_putapi_v1_iga_grants__grant_id_Response_200
+      - OKTA_GROUP_DEPROVISIONING
+      - AZURE_GROUP_DEPROVISIONING
+      - INTUNE_GROUP_DEPROVISIONING
+      - JUMPCLOUD_GROUP_DEPROVISIONING
+      - GOOGLE_WORKSPACE_GROUP_DEPROVISIONING
+      - MANUAL_DEPROVISIONING
+      description: Type of deprovisioning configuration
+      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigType
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle:
+      oneOf:
+      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle0'
+      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle1'
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle
     ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaType:
       type: string
       enum:
@@ -744,26 +704,37 @@ components:
       - DRAFT
       - PUBLISHED
       title: ApiV1IgaEntitlementsGetParametersStatus
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle1:
+    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigProvider:
+      type: string
+      enum:
+      - OKTA
+      - AZURE_AD
+      - MS_INTUNE
+      - JUMPCLOUD
+      - GOOGLE_WORKSPACE
+      - TUEBORA
+      - MANUAL
+      description: Provisioning provider
+      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigProvider
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals0:
       type: object
       properties:
         type:
           type: string
-        allowed_access_durations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItems'
-          description: List of allowed access duration options. Each can have its own notification settings.
-        global_notification_settings:
-          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettings'
-          description: Notification settings for time-based access policies. Can be used globally or per-duration.
-        allow_user_to_extend:
-          type: boolean
-          default: false
-          description: Whether users can request an extension to their access
       required:
       - type
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle1
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals0
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems1:
+      type: object
+      properties:
+        type:
+          type: string
+        policy_id:
+          type: integer
+          format: int64
+      required:
+      - type
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems1
     ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigValueIcon:
       type: object
       properties:
@@ -779,69 +750,38 @@ components:
           - 'null'
           description: Icon URL (for OKTA/AZURE)
       title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigValueIcon
-    Access_Management_getapi_v1_iga_apps_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Access Management_getapi_v1_iga_apps_Response_200
-    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigType:
-      type: string
-      enum:
-      - OKTA_GROUP_PROVISIONING
-      - AZURE_GROUP_PROVISIONING
-      - INTUNE_GROUP_PROVISIONING
-      - JUMPCLOUD_GROUP_PROVISIONING
-      - GOOGLE_WORKSPACE_GROUP_PROVISIONING
-      - MANUAL_PROVISIONING
-      description: Type of provisioning configuration
-      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigType
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettings:
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals:
+      oneOf:
+      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals0'
+      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals1'
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition0:
       type: object
       properties:
-        enable_expiry_notifications:
-          type: boolean
-          default: false
-          description: Whether expiry notifications are enabled
-        notification_timings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItems'
-          default: []
-          description: List of notification timings specifying when to send notifications before expiry
-      description: Notification settings for time-based access policies. Can be used globally or per-duration.
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettings
-    Access_Management_postapi_v1_iga_entitlements_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Access Management_postapi_v1_iga_entitlements_Response_200
-    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValueIcon:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Icon name
         type:
           type: string
-          description: Icon type
-        url:
-          type:
-          - string
-          - 'null'
-          description: Icon URL (for OKTA/AZURE)
-      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValueIcon
-    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigValue:
+        values:
+          type: array
+          items:
+            type: integer
+            format: int64
+      required:
+      - type
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition0
+    ApiV1IgaGrantsGrantIdHistoryGetParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_ASC
+      - CREATED_AT_DESC
+      - UPDATED_AT_ASC
+      - UPDATED_AT_DESC
+      description: Sort order for grant history
+      title: ApiV1IgaGrantsGrantIdHistoryGetParametersSortOrder
+    Access_Management_getapi_v1_iga_grants__grant_id__history_Response_200:
       type: object
-      properties:
-        value:
-          type: string
-          description: Group ID (for OKTA/AZURE) or Workspace ID (for MANUAL)
-        label:
-          type: string
-          description: Group label/name (for OKTA/AZURE) or Workspace name (for MANUAL)
-        icon:
-          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigValueIcon'
-      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigValue
+      properties: {}
+      description: Empty response body
+      title: Access Management_getapi_v1_iga_grants__grant_id__history_Response_200
     ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0ApproversDataItems:
       type: object
       properties:
@@ -857,56 +797,6 @@ components:
           $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0ApproversDataItemsCardinality'
           description: "Indicates whether the approver row resolves to a single user (SINGLE) or multiple\nusers (MULTI). Populated server-side on approval-policy GET responses; null on writes.\n\nRules:\n- EXPRESSION: SINGLE/MULTI per the placeholder template (ApprovalPlaceholder catalog).\n  Null on unknown templates.\n- AGENT_GROUP: always MULTI — the resolver fans the group out to every member at\n  evaluation time, so the FE picker should render the multi-user badge and auto-toggle\n  the criteria selector.\n- Other types (EXACT, STANDARD_BASED, OPTION_BASED): null.\n"
       title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0ApproversDataItems
-    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigType:
-      type: string
-      enum:
-      - OKTA_GROUP_DEPROVISIONING
-      - AZURE_GROUP_DEPROVISIONING
-      - INTUNE_GROUP_DEPROVISIONING
-      - JUMPCLOUD_GROUP_DEPROVISIONING
-      - GOOGLE_WORKSPACE_GROUP_DEPROVISIONING
-      - MANUAL_DEPROVISIONING
-      description: Type of deprovisioning configuration
-      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigType
-    Access_Management_getapi_v1_iga_grants__grant_id__history_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Access Management_getapi_v1_iga_grants__grant_id__history_Response_200
-    ApiV1IgaGrantsGrantIdHistoryGetParametersSortOrder:
-      type: string
-      enum:
-      - CREATED_AT_ASC
-      - CREATED_AT_DESC
-      - UPDATED_AT_ASC
-      - UPDATED_AT_DESC
-      description: Sort order for grant history
-      title: ApiV1IgaGrantsGrantIdHistoryGetParametersSortOrder
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle0:
-      type: object
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle0
-    ? ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItems
-    : type: object
-      properties:
-        id:
-          type: string
-          description: 'Unique identifier in format: {value}_{unit}'
-        value:
-          type: integer
-          description: The numeric value of the duration
-        unit:
-          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItemsUnit'
-          description: Time unit for duration specifications
-      required:
-      - value
-      - unit
-      description: Represents a duration with a value and time unit. Includes ID field for AI-agent friendly selection.
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItems
     ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfig:
       type: object
       properties:
@@ -923,19 +813,105 @@ components:
       - type
       - value
       title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfig
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals0:
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItems:
       type: object
       properties:
+        duration:
+          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsDuration'
+          description: Represents a duration with a value and time unit. Includes ID field for AI-agent friendly selection.
+        notification_settings:
+          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettings'
+          description: Notification settings for time-based access policies. Can be used globally or per-duration.
+      required:
+      - duration
+      description: Represents an access duration option with optional per-duration notification settings
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItems
+    Access_Management_getapi_v1_iga_entitlements_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Access Management_getapi_v1_iga_entitlements_Response_200
+    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValue:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Group label/name (for OKTA/AZURE) or Workspace name (for MANUAL)
+        icon:
+          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValueIcon'
+        value:
+          type: string
+          description: Group ID (for OKTA/AZURE) or Workspace ID (for MANUAL)
+      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValue
+    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigProvider:
+      type: string
+      enum:
+      - OKTA
+      - AZURE_AD
+      - MS_INTUNE
+      - JUMPCLOUD
+      - GOOGLE_WORKSPACE
+      - TUEBORA
+      - MANUAL
+      description: Deprovisioning provider
+      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigProvider
+    ApiV1IgaEntitlementsGetParametersType:
+      type: string
+      enum:
+      - GROUP
+      - ROLE
+      title: ApiV1IgaEntitlementsGetParametersType
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettings:
+      type: object
+      properties:
+        enable_expiry_notifications:
+          type: boolean
+          default: false
+          description: Whether expiry notifications are enabled
+        notification_timings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItems'
+          default: []
+          description: List of notification timings specifying when to send notifications before expiry
+      description: Notification settings for time-based access policies. Can be used globally or per-duration.
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettings
+    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValueIcon:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Icon name
         type:
           type: string
-      required:
-      - type
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals0
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems:
+          description: Icon type
+        url:
+          type:
+          - string
+          - 'null'
+          description: Icon URL (for OKTA/AZURE)
+      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValueIcon
+    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - UNPUBLISHED
+      - PUBLISHED
+      description: Status of the entitlement. Defaults to PUBLISHED if not specified.
+      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaStatus
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition:
       oneOf:
-      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems0'
-      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems1'
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems
+      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition0'
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition
+    Access_Management_postapi_v1_iga_grants_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Access Management_postapi_v1_iga_grants_Response_200
+    Access_Management_postapi_v1_iga_grants_list_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Access Management_postapi_v1_iga_grants_list_Response_200
     ApiV1IgaGrantsGrantIdPutRequestBodyContentApplicationJsonSchemaStatus:
       type: string
       enum:
@@ -944,55 +920,6 @@ components:
       - EXTENDED
       - REVOKED
       title: ApiV1IgaGrantsGrantIdPutRequestBodyContentApplicationJsonSchemaStatus
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition:
-      oneOf:
-      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition0'
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition0:
-      type: object
-      properties:
-        type:
-          type: string
-        values:
-          type: array
-          items:
-            type: integer
-            format: int64
-      required:
-      - type
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaCondition0
-    ApiV1IgaGrantsListPostParametersSortOrder:
-      type: string
-      enum:
-      - CREATED_AT_ASC
-      - CREATED_AT_DESC
-      - UPDATED_AT_ASC
-      - UPDATED_AT_DESC
-      - NAME_ASC
-      - NAME_DESC
-      - PUBLISHED_DESC
-      - UNPUBLISHED_DESC
-      - EXPIRES_AT_ASC
-      - EXPIRES_AT_DESC
-      - GRANTED_AT_ASC
-      - GRANTED_AT_DESC
-      title: ApiV1IgaGrantsListPostParametersSortOrder
-    ? ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettingsNotificationTimingsItems
-    : type: object
-      properties:
-        id:
-          type: string
-          description: 'Unique identifier in format: {value}_{unit}'
-        value:
-          type: integer
-          description: The numeric value of the duration
-        unit:
-          description: Any type
-      required:
-      - value
-      - unit
-      description: Represents a duration with a value and time unit. Includes ID field for AI-agent friendly selection.
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettingsNotificationTimingsItems
     ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
       type: string
       enum:
@@ -1020,71 +947,67 @@ components:
       - IS_ON_OR_AFTER
       - IS_WITHIN
       title: ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsOperator
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems0:
+      type: object
+      properties:
+        type:
+          type: string
+        criteria:
+          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0Criteria'
+        approvers_data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0ApproversDataItems'
+      required:
+      - type
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems0
+    Access_Management_getapi_v1_iga_apps_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Access Management_getapi_v1_iga_apps_Response_200
+    Access_Management_putapi_v1_iga_grants__grant_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Access Management_putapi_v1_iga_grants__grant_id_Response_200
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettings:
+      type: object
+      properties:
+        enable_expiry_notifications:
+          type: boolean
+          default: false
+          description: Whether expiry notifications are enabled
+        notification_timings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettingsNotificationTimingsItems'
+          default: []
+          description: List of notification timings specifying when to send notifications before expiry
+      description: Notification settings for time-based access policies. Can be used globally or per-duration.
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettings
     Access_Management_postapi_v1_iga_grants__grant_id__revoke_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Access Management_postapi_v1_iga_grants__grant_id__revoke_Response_200
-    Access_Management_postapi_v1_iga_grants_list_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Access Management_postapi_v1_iga_grants_list_Response_200
-    ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
+    ? ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItems
+    : type: object
       properties:
-        attribute:
+        id:
           type: string
-        operator:
-          $ref: '#/components/schemas/ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
-      title: ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItems
-    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigProvider:
-      type: string
-      enum:
-      - OKTA
-      - AZURE_AD
-      - MS_INTUNE
-      - JUMPCLOUD
-      - GOOGLE_WORKSPACE
-      - TUEBORA
-      - MANUAL
-      description: Deprovisioning provider
-      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigProvider
-    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValue:
-      type: object
-      properties:
-        label:
-          type: string
-          description: Group label/name (for OKTA/AZURE) or Workspace name (for MANUAL)
-        icon:
-          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValueIcon'
+          description: 'Unique identifier in format: {value}_{unit}'
         value:
-          type: string
-          description: Group ID (for OKTA/AZURE) or Workspace ID (for MANUAL)
-      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValue
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0ApproversDataItemsCardinality:
-      type: string
-      enum:
-      - SINGLE
-      - MULTI
-      description: "Indicates whether the approver row resolves to a single user (SINGLE) or multiple\nusers (MULTI). Populated server-side on approval-policy GET responses; null on writes.\n\nRules:\n- EXPRESSION: SINGLE/MULTI per the placeholder template (ApprovalPlaceholder catalog).\n  Null on unknown templates.\n- AGENT_GROUP: always MULTI — the resolver fans the group out to every member at\n  evaluation time, so the FE picker should render the multi-user badge and auto-toggle\n  the criteria selector.\n- Other types (EXACT, STANDARD_BASED, OPTION_BASED): null.\n"
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0ApproversDataItemsCardinality
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals1:
-      type: object
-      properties:
-        type:
-          type: string
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems'
+          type: integer
+          description: The numeric value of the duration
+        unit:
+          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItemsUnit'
+          description: Time unit for duration specifications
       required:
-      - type
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals1
+      - value
+      - unit
+      description: Represents a duration with a value and time unit. Includes ID field for AI-agent friendly selection.
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItems
     ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
       type: object
       properties:
@@ -1093,28 +1016,26 @@ components:
         nested_filter:
           description: Any type
       title: ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
-    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfig:
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle0:
       type: object
       properties:
-        provider:
-          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigProvider'
-          description: Provisioning provider
         type:
-          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigType'
-          description: Type of provisioning configuration
-        value:
-          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfigValue'
+          type: string
       required:
-      - provider
       - type
-      - value
-      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaProvisioningConfig
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0Criteria:
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle0
+    Access_Management_postapi_v1_iga_entitlements_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Access Management_postapi_v1_iga_entitlements_Response_200
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0ApproversDataItemsCardinality:
       type: string
       enum:
-      - FIRST_DECISION
-      - EVERYONE
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0Criteria
+      - SINGLE
+      - MULTI
+      description: "Indicates whether the approver row resolves to a single user (SINGLE) or multiple\nusers (MULTI). Populated server-side on approval-policy GET responses; null on writes.\n\nRules:\n- EXPRESSION: SINGLE/MULTI per the placeholder template (ApprovalPlaceholder catalog).\n  Null on unknown templates.\n- AGENT_GROUP: always MULTI — the resolver fans the group out to every member at\n  evaluation time, so the FE picker should render the multi-user badge and auto-toggle\n  the criteria selector.\n- Other types (EXACT, STANDARD_BASED, OPTION_BASED): null.\n"
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0ApproversDataItemsCardinality
     ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsDuration:
       type: object
       properties:
@@ -1132,6 +1053,73 @@ components:
       - unit
       description: Represents a duration with a value and time unit. Includes ID field for AI-agent friendly selection.
       title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsDuration
+    ? ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettingsNotificationTimingsItems
+    : type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique identifier in format: {value}_{unit}'
+        value:
+          type: integer
+          description: The numeric value of the duration
+        unit:
+          description: Any type
+      required:
+      - value
+      - unit
+      description: Represents a duration with a value and time unit. Includes ID field for AI-agent friendly selection.
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsNotificationSettingsNotificationTimingsItems
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0Criteria:
+      type: string
+      enum:
+      - FIRST_DECISION
+      - EVERYONE
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItemsOneOf0Criteria
+    ApiV1IgaGrantsListPostParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_ASC
+      - CREATED_AT_DESC
+      - UPDATED_AT_ASC
+      - UPDATED_AT_DESC
+      - NAME_ASC
+      - NAME_DESC
+      - PUBLISHED_DESC
+      - UNPUBLISHED_DESC
+      - EXPIRES_AT_ASC
+      - EXPIRES_AT_DESC
+      - GRANTED_AT_ASC
+      - GRANTED_AT_DESC
+      title: ApiV1IgaGrantsListPostParametersSortOrder
+    ? ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItemsUnit
+    : type: string
+      enum:
+      - HOURS
+      - DAYS
+      - WEEKS
+      - MONTHS
+      description: Time unit for duration specifications
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettingsNotificationTimingsItemsUnit
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle1:
+      type: object
+      properties:
+        type:
+          type: string
+        allowed_access_durations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItems'
+          description: List of allowed access duration options. Each can have its own notification settings.
+        global_notification_settings:
+          $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1GlobalNotificationSettings'
+          description: Notification settings for time-based access policies. Can be used globally or per-duration.
+        allow_user_to_extend:
+          type: boolean
+          default: false
+          description: Whether users can request an extension to their access
+      required:
+      - type
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle1
     ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsDurationUnit:
       type: string
       enum:
@@ -1141,32 +1129,44 @@ components:
       - MONTHS
       description: Time unit for duration specifications
       title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycleOneOf1AllowedAccessDurationsItemsDurationUnit
-    Access_Management_getapi_v1_iga_entitlements_Response_200:
+    Access_Management_postapi_v1_iga_policies_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Access Management_getapi_v1_iga_entitlements_Response_200
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle:
-      oneOf:
-      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle0'
-      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle1'
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaLifecycle
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems1:
+      title: Access Management_postapi_v1_iga_policies_Response_200
+    ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
+      type: object
+      properties: {}
+      title: ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
+    ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigValue:
       type: object
       properties:
-        type:
+        value:
           type: string
-        policy_id:
-          type: integer
-          format: int64
-      required:
-      - type
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems1
-    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals:
+          description: Group ID (for OKTA/AZURE) or Workspace ID (for MANUAL)
+        label:
+          type: string
+          description: Group label/name (for OKTA/AZURE) or Workspace name (for MANUAL)
+        icon:
+          $ref: '#/components/schemas/ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigValueIcon'
+      title: ApiV1IgaEntitlementsPostRequestBodyContentApplicationJsonSchemaDeprovisioningConfigValue
+    ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
+      title: ApiV1IgaGrantsListPostRequestBodyContentApplicationJsonSchemaItems
+    ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems:
       oneOf:
-      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals0'
-      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals1'
-      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovals
+      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems0'
+      - $ref: '#/components/schemas/ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems1'
+      title: ApiV1IgaPoliciesPostRequestBodyContentApplicationJsonSchemaApprovalsOneOf1StepsItems
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

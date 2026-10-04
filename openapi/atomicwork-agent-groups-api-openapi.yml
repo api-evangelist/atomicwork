@@ -253,13 +253,17 @@ paths:
                 $ref: '#/components/schemas/Agent_Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200'
 components:
   schemas:
-    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType:
+    ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType:
       type: string
       enum:
-      - EMPLOYEE
-      - EXTERNAL
-      - AI_EMPLOYEE
-      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType
+      - DROPDOWN
+      - LIST
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType
+    Agent_Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200
     ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems:
       type: object
       properties:
@@ -287,6 +291,23 @@ components:
       properties: {}
       description: Empty response body
       title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType
+    Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
+    Agent_Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
     ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter:
       type: string
       enum:
@@ -294,27 +315,6 @@ components:
       - ASSIGNABLE
       - NOT_ASSIGNABLE
       title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter
-    Agent_Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Agent Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
-    Agent_Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Agent Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200
-    ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType:
-      type: string
-      enum:
-      - DROPDOWN
-      - LIST
-      title: ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType
-    Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
