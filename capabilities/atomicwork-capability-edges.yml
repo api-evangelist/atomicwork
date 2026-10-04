@@ -1,0 +1,82 @@
+slug: atomicwork
+provider: Atomicwork
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Change Management
+  spec_file: atomicwork-change-management-api-openapi.yml
+  capability_id: BC-600.30
+  capability_id_l1: BC-600
+  capability_name: IT Service Management
+  confidence: 0.9
+  evidence: POST /api/v1/change-management/changes  Create Change in workspace; GET /api/v1/agent/change-management/change-templates  Retrieve
+    all the templates a logged in user can raise changes from
+  reason: ITIL change records raised from change templates with notes and activity trails — this is the
+    change-management discipline of IT service management, explicitly listed under BC-600.30, and not
+    organisational change management (BC-910).
+- tag: Access Management
+  spec_file: atomicwork-access-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: POST /api/v1/iga/grants  Create a grant for a user; POST /api/v1/iga/grants/{grant_id}/revoke  Revoke
+    a grant; GET /api/v1/iga/entitlements  List available entitlements
+  reason: 'Identity governance and administration surface: grants, entitlements, access policies with
+    approval steps and provisioning/deprovisioning config. This is enterprise identity and access management,
+    not SaaS subscription entitlement, because the entitlements are per-app access rights granted to internal
+    users.'
+- tag: Problems
+  spec_file: atomicwork-problems-api-openapi.yml
+  capability_id: BC-600.30
+  capability_id_l1: BC-600
+  capability_name: IT Service Management
+  confidence: 0.88
+  evidence: POST /api/v1/problems  Create problem request; GET /api/v1/problems/{display_id}/assessment-form  Retrieve
+    Problem Request Assessment Form
+  reason: Problem records with assessment forms and remediation tasks are the ITIL problem-management
+    process, explicitly within IT Service Management. 'Problems' here is a ticket type, not a generic
+    issue concept.
+- tag: Service Catalog
+  spec_file: atomicwork-service-catalog-api-openapi.yml
+  capability_id: BC-600.30
+  capability_id_l1: BC-600
+  capability_name: IT Service Management
+  confidence: 0.85
+  evidence: GET /api/v1/workspaces/{workspaceId}/service-catalog/{categoryId}/items  Get Service Items
+    List; POST /api/v1/workspaces/{workspaceId}/catalogue/categories  Create category
+  reason: Catalogue categories and service items with their request fields are the service catalogue,
+    named directly in the BC-600.30 definition. Not a product catalogue or pricing capability.
+- tag: Requests
+  spec_file: atomicwork-requests-api-openapi.yml
+  capability_id: BC-600.30
+  capability_id_l1: BC-600
+  capability_name: IT Service Management
+  confidence: 0.82
+  evidence: POST /api/v1/requests  Create request; POST /api/v1/requests/{requestId}/move  Move Request;
+    Requests_postapi_v1_requests_major_incident_Response_200
+  reason: Service-desk ticket lifecycle — create, filter, patch, move, followers, notes, major incident
+    — which is the incident/service-request core of IT service management. Slight ambiguity only because
+    Atomicwork is also used by HR teams (ESM), but the mechanics are ITSM ticketing.
+- tag: Assets
+  spec_file: atomicwork-assets-api-openapi.yml
+  capability_id: BC-600.30
+  capability_id_l1: BC-600
+  capability_name: IT Service Management
+  confidence: 0.7
+  evidence: POST /api/v1/assets  Create Asset; GET /api/v1/assets/users/{user_id}/list  Get List of Assets
+    for a user; GET /api/v1/assets/types/{asset_type_id}/form-fields
+  reason: Asset records with types, attributes, user assignment and activity history form the CMDB the
+    vendor describes ('assets and a CMDB'), which sits within IT service management configuration/asset
+    practice. Confidence moderated because IT asset management is not an explicit L2 and the surface is
+    generic record CRUD.

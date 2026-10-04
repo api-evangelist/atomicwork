@@ -307,6 +307,9 @@ apis:
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
 common:
+- type: CapabilityMap
+  url: capabilities/atomicwork-capability-edges.yml
+  name: Atomicwork Business Capability Map
 - type: Website
   url: https://www.atomicwork.com
 - type: DeveloperPortal
