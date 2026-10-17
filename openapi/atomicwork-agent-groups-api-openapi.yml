@@ -253,17 +253,34 @@ paths:
                 $ref: '#/components/schemas/Agent_Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200'
 components:
   schemas:
+    Agent_Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_DESC
+      - CREATED_AT_ASC
+      - UPDATED_AT_DESC
+      - UPDATED_AT_ASC
+      - NAME_EMAIL_ASC
+      - NAME_EMAIL_DESC
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersSortOrder
     ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType:
       type: string
       enum:
       - DROPDOWN
       - LIST
       title: ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType
-    Agent_Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Agent Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType
     ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems:
       type: object
       properties:
@@ -276,28 +293,18 @@ components:
             type: integer
             format: int64
       title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems
-    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersSortOrder:
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter:
       type: string
       enum:
-      - CREATED_AT_DESC
-      - CREATED_AT_ASC
-      - UPDATED_AT_DESC
-      - UPDATED_AT_ASC
-      - NAME_EMAIL_ASC
-      - NAME_EMAIL_DESC
-      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersSortOrder
+      - ALL
+      - ASSIGNABLE
+      - NOT_ASSIGNABLE
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter
     Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200
-    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType:
-      type: string
-      enum:
-      - EMPLOYEE
-      - EXTERNAL
-      - AI_EMPLOYEE
-      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType
     Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
       type: object
       properties: {}
@@ -308,13 +315,6 @@ components:
       properties: {}
       description: Empty response body
       title: Agent Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
-    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter:
-      type: string
-      enum:
-      - ALL
-      - ASSIGNABLE
-      - NOT_ASSIGNABLE
-      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
