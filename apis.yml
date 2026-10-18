@@ -228,6 +228,8 @@ apis:
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
+  - Identity and Access Management
+  tags_raw:
   - Access Management
   properties:
   - type: OpenAPI
