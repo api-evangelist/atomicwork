@@ -10,7 +10,7 @@ tags:
 paths:
   /api/v1/tags:
     get:
-      operationId: getapi-v-1-tags
+      operationId: tags_getapi_v1_tags
       summary: Get tags
       tags:
       - Tags
@@ -21,6 +21,8 @@ paths:
         required: true
         schema:
           type: integer
+          minimum: 1
+          maximum: 100
           default: 1
       - name: per_page
         in: query
@@ -28,6 +30,8 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
+          maximum: 100
           default: 25
       - name: context_type
         in: query
@@ -48,11 +52,6 @@ paths:
         required: false
         schema:
           type: string
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -65,17 +64,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tags_getapi_v1_tags_Response_200'
+      security:
+      - ApiKeyAuth: []
     post:
-      operationId: postapi-v-1-tags
+      operationId: tags_postapi_v1_tags
       summary: Create Tag Option
       tags:
       - Tags
       parameters:
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -96,6 +92,7 @@ paths:
               properties:
                 name:
                   type: string
+                  minLength: 1
                 context_type:
                   $ref: '#/components/schemas/ApiV1TagsPostRequestBodyContentApplicationJsonSchemaContextType'
                 context_id:
@@ -105,9 +102,11 @@ paths:
                   type: string
               required:
               - name
+      security:
+      - ApiKeyAuth: []
   /api/v1/tags/{id}:
     get:
-      operationId: getapi-v-1-tags-id
+      operationId: tags_getapi_v1_tags__id
       summary: Get tag
       tags:
       - Tags
@@ -132,11 +131,6 @@ paths:
         required: false
         schema:
           type: string
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -149,8 +143,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tags_getapi_v1_tags__id_Response_200'
+      security:
+      - ApiKeyAuth: []
     put:
-      operationId: putapi-v-1-tags-id
+      operationId: tags_putapi_v1_tags__id
       summary: Update Tag Option
       tags:
       - Tags
@@ -162,11 +158,6 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -190,6 +181,7 @@ paths:
                   format: int64
                 name:
                   type: string
+                  minLength: 1
                 context_type:
                   $ref: '#/components/schemas/ApiV1TagsIdPutRequestBodyContentApplicationJsonSchemaContextType'
                 color_code:
@@ -200,8 +192,10 @@ paths:
               required:
               - id
               - name
+      security:
+      - ApiKeyAuth: []
     delete:
-      operationId: deleteapi-v-1-tags-id
+      operationId: tags_deleteapi_v1_tags__id
       summary: Delete Tag Option
       tags:
       - Tags
@@ -226,11 +220,6 @@ paths:
         required: false
         schema:
           type: string
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -243,6 +232,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tags_deleteapi_v1_tags__id_Response_200'
+      security:
+      - ApiKeyAuth: []
 components:
   schemas:
     Tags_postapi_v1_tags_Response_200:
@@ -255,16 +246,6 @@ components:
       properties: {}
       description: Empty response body
       title: Tags_getapi_v1_tags__id_Response_200
-    Tags_getapi_v1_tags_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Tags_getapi_v1_tags_Response_200
-    Tags_deleteapi_v1_tags__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Tags_deleteapi_v1_tags__id_Response_200
     ApiV1TagsPostRequestBodyContentApplicationJsonSchemaContextType:
       type: string
       enum:
@@ -284,6 +265,16 @@ components:
       properties: {}
       description: Empty response body
       title: Tags_putapi_v1_tags__id_Response_200
+    Tags_getapi_v1_tags_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_getapi_v1_tags_Response_200
+    Tags_deleteapi_v1_tags__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Tags_deleteapi_v1_tags__id_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

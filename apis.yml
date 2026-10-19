@@ -222,14 +222,40 @@ apis:
     url: https://developers.atomicwork.com
   - type: APIReference
     url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-assignees-api
+  name: Atomicwork Assignees API
+  description: The assignees API from Atomicwork — 1 operation(s) for assignees.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - assignees
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-assignees-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
+- aid: atomicwork:atomicwork-importjobs-api
+  name: Atomicwork Import Jobs API
+  description: The importJobs API from Atomicwork — 15 operation(s) for importjobs.
+  humanURL: https://developers.atomicwork.com/api-reference/introduction
+  baseURL: https://{tenant}.atomicwork.com/api/v1
+  tags:
+  - importJobs
+  properties:
+  - type: OpenAPI
+    url: openapi/atomicwork-importjobs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.atomicwork.com
+  - type: APIReference
+    url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-access-management-api
   name: Atomicwork Access Management API
   description: The Access Management API from Atomicwork — 8 operation(s) for access management.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
-  - Identity and Access Management
-  tags_raw:
   - Access Management
   properties:
   - type: OpenAPI
@@ -254,7 +280,7 @@ apis:
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-audit-logs-api
   name: Atomicwork Audit Logs API
-  description: The Audit Logs API from Atomicwork — 3 operation(s) for audit logs.
+  description: The Audit Logs API from Atomicwork — 2 operation(s) for audit logs.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:
@@ -296,7 +322,7 @@ apis:
     url: https://developers.atomicwork.com/api-reference/introduction
 - aid: atomicwork:atomicwork-service-catalog-api
   name: Atomicwork Service Catalog API
-  description: The Service Catalog API from Atomicwork — 7 operation(s) for service catalog.
+  description: The Service Catalog API from Atomicwork — 8 operation(s) for service catalog.
   humanURL: https://developers.atomicwork.com/api-reference/introduction
   baseURL: https://{tenant}.atomicwork.com/api/v1
   tags:

@@ -1,0 +1,73 @@
+openapi: 3.2.0
+info:
+  title: Atomicwork Public Assignees API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: assignees
+paths:
+  /api/v1/assignees:
+    get:
+      operationId: assignees_getapi_v1_assignees
+      summary: Search assignee candidates (Users, AI Coworkers, Agent Groups)
+      tags:
+      - assignees
+      parameters:
+      - name: search_key
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+          minLength: 0
+      - name: workspace_id
+        in: query
+        description: Agent groups are always scoped to this workspace. When workspace_members_only is true (default), users and AI coworkers are also restricted to members of this workspace. AI coworkers are only returned when the AI_WORKERS feature flag is enabled for the tenant.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: workspace_members_only
+        in: query
+        description: When true (default), user and AI coworker candidates are restricted to members of the given workspace — use for private notes. When false, users and AI coworkers are searched tenant-wide — use for public replies. Agent groups are always workspace-scoped regardless of this value.
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: limit
+        in: query
+        description: Max results returned per assignee type (not a combined total). Up to `limit` users and `limit` agent groups are always returned; up to `limit` AI coworkers are returned only when the AI_WORKERS feature flag is enabled. Defaults to 10.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignees_getapi_v1_assignees_Response_200'
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    Assignees_getapi_v1_assignees_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assignees_getapi_v1_assignees_Response_200
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

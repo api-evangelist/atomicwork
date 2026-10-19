@@ -10,7 +10,7 @@ tags:
 paths:
   /api/v1/workspaces/{id}/request-automations/{type}:
     get:
-      operationId: getapi-v-1-workspaces-id-request-automations-type
+      operationId: workflows_getapi_v1_workspaces__id__request_automations__type
       summary: Get request automation definitions
       tags:
       - Workflows
@@ -46,6 +46,7 @@ paths:
         required: false
         schema:
           type: string
+          minLength: 1
       - name: trigger_type
         in: query
         description: Filter by trigger type (SCHEDULED_RECURRING or EVENT)
@@ -72,11 +73,6 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -89,9 +85,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__id__request_automations__type_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{id}/request-automations/{type}/{request_key}:
     get:
-      operationId: getapi-v-1-workspaces-id-request-automations-type-request-key
+      operationId: workflows_getapi_v1_workspaces__id__request_automations__type___request_key
       summary: Get Request automation Definition of a Workspace
       tags:
       - Workflows
@@ -115,11 +113,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -132,9 +125,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__id__request_automations__type___request_key_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{id}/request-automations/{request_key}/clone:
     post:
-      operationId: postapi-v-1-workspaces-id-request-automations-request-key-clone
+      operationId: workflows_postapi_v1_workspaces__id__request_automations__request_key__clone
       summary: Clone a Request automations of a Workspace
       tags:
       - Workflows
@@ -149,11 +144,6 @@ paths:
       - name: request_key
         in: path
         description: Automation UUID — the `key` field returned by list/get endpoints.
-        required: true
-        schema:
-          type: string
-      - name: X-Api-Key
-        in: header
         required: true
         schema:
           type: string
@@ -179,9 +169,12 @@ paths:
                   type: string
                 description:
                   type: string
+                  maxLength: 300
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{id}/request-automations/{type}/actions:
     get:
-      operationId: getapi-v-1-workspaces-id-request-automations-type-actions
+      operationId: workflows_getapi_v1_workspaces__id__request_automations__type__actions
       summary: Get actions for request automations
       tags:
       - Workflows
@@ -199,11 +192,6 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/ApiV1WorkspacesIdRequestAutomationsTypeActionsGetParametersType'
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -216,9 +204,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__id__request_automations__type__actions_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{id}/request-automations/{type}/query-conditions:
     get:
-      operationId: getapi-v-1-workspaces-id-request-automations-type-query-conditions
+      operationId: workflows_getapi_v1_workspaces__id__request_automations__type__query_conditions
       summary: Get placeholders, adhoc query conditions for request automation
       tags:
       - Workflows
@@ -281,11 +271,6 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersTriggerType'
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -298,9 +283,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__id__request_automations__type__query_conditions_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspaceId}/request-automations/{request_entity_type}/placeholders:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-request-automations-request-entity-type-placeholders
+      operationId: workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__placeholders
       summary: Get placeholder fields
       tags:
       - Workflows
@@ -375,11 +362,6 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePlaceholdersGetParametersTriggerType'
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -392,9 +374,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__placeholders_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspaceId}/request-automations/{request_entity_type}/previous-actions-with-output-fields:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-request-automations-request-entity-type-previous-actions-with-output-fields
+      operationId: workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__previous_actions_with_output_fields
       summary: Get previous actions with output fields
       tags:
       - Workflows
@@ -430,11 +414,6 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePreviousActionsWithOutputFieldsGetParametersFilterEntity'
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -447,9 +426,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__previous_actions_with_output_fields_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspaceId}/request-automations/{request_entity_type}/actions/{action_type}/output-fields:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-request-automations-request-entity-type-actions-action-type-output-fields
+      operationId: workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields
       summary: Get output fields for action
       tags:
       - Workflows
@@ -497,11 +478,6 @@ paths:
         required: false
         schema:
           type: string
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -514,9 +490,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields_Response_200'
+      security:
+      - ApiKeyAuth: []
   ? /api/v1/workspaces/{workspaceId}/request-automations/{request_entity_type}/actions/{action_type}/output-fields/{field_name}/options
   : get:
-      operationId: getapi-v-1-workspaces-workspace-id-request-automations-request-entity-type-actions-action-type-output-fields-field-name-options
+      operationId: workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields__field_name__options
       summary: Get output fields for action
       tags:
       - Workflows
@@ -558,11 +536,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -575,9 +548,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields__field_name__options_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspaceId}/request-automations/{type}/update-request-fields:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-request-automations-type-update-request-fields
+      operationId: workflows_getapi_v1_workspaces__workspaceId__request_automations__type__update_request_fields
       summary: Get details of a request field
       tags:
       - Workflows
@@ -595,11 +570,6 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeUpdateRequestFieldsGetParametersType'
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -612,9 +582,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__workspaceId__request_automations__type__update_request_fields_Response_200'
+      security:
+      - ApiKeyAuth: []
   ? /api/v1/workspaces/{workspace_id}/request-automations/{type}/{automation_key}/versions/{current_version_id}/diff-of-workflows-version
   : get:
-      operationId: getapi-v-1-workspaces-workspace-id-request-automations-type-automation-key-versions-current-version-id-diff-of-workflows-version
+      operationId: workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__current_version_id__diff_of_workflows_version
       summary: Generate description for the difference in workflows of the versions
       tags:
       - Workflows
@@ -645,11 +617,6 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -662,9 +629,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__current_version_id__diff_of_workflows_version_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspace_id}/request-automations/{type}/{automation_key}/versions:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-request-automations-type-automation-key-versions
+      operationId: workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions
       summary: List versions of a request automation
       tags:
       - Workflows
@@ -702,11 +671,6 @@ paths:
         schema:
           type: integer
           default: 20
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -719,9 +683,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspace_id}/request-automations/{type}/{automation_key}/versions/{version_id}:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-request-automations-type-automation-key-versions-version-id
+      operationId: workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__version_id
       summary: Get specific version of a request automation
       tags:
       - Workflows
@@ -752,11 +718,6 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -769,9 +730,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__version_id_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspace_id}/request-automations/{type}/paged:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-request-automations-type-paged
+      operationId: workflows_getapi_v1_workspaces__workspace_id__request_automations__type__paged
       summary: List request automations with pagination
       tags:
       - Workflows
@@ -815,11 +778,6 @@ paths:
         schema:
           type: integer
           default: 20
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -832,16 +790,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflows_getapi_v1_workspaces__workspace_id__request_automations__type__paged_Response_200'
+      security:
+      - ApiKeyAuth: []
 components:
   schemas:
-    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypePagedGetParametersTriggerType:
+    ? Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__current_version_id__diff_of_workflows_version_Response_200
+    : type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__current_version_id__diff_of_workflows_version_Response_200
+    ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsGetParametersRequestEntityType:
       type: string
-      enum:
-      - EVENT
-      - SCHEDULED_RECURRING
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypePagedGetParametersTriggerType
-    ? ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsCurrentVersionIdDiffOfWorkflowsVersionGetParametersType
-    : type: string
       enum:
       - QUESTION_REQUEST
       - SERVICE_REQUEST
@@ -851,18 +810,10 @@ components:
       - NOTIFICATIONS
       - CUSTOM_OBJECT
       - ASSET
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsCurrentVersionIdDiffOfWorkflowsVersionGetParametersType
-    Workflows_getapi_v1_workspaces__workspace_id__request_automations__type__paged_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__workspace_id__request_automations__type__paged_Response_200
-    ApiV1WorkspacesIdRequestAutomationsTypeGetParametersTriggerType:
-      type: string
-      enum:
-      - EVENT
-      - SCHEDULED_RECURRING
-      title: ApiV1WorkspacesIdRequestAutomationsTypeGetParametersTriggerType
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsGetParametersRequestEntityType
     ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePreviousActionsWithOutputFieldsGetParametersRequestEntityType:
       type: string
       enum:
@@ -874,126 +825,21 @@ components:
       - NOTIFICATIONS
       - CUSTOM_OBJECT
       - ASSET
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePreviousActionsWithOutputFieldsGetParametersRequestEntityType
-    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeUpdateRequestFieldsGetParametersType:
-      type: string
-      enum:
-      - QUESTION_REQUEST
-      - SERVICE_REQUEST
-      - INCIDENT_REQUEST
-      - REQUEST
-      - CHANGE
-      - NOTIFICATIONS
-      - CUSTOM_OBJECT
-      - ASSET
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeUpdateRequestFieldsGetParametersType
-    Workflows_getapi_v1_workspaces__workspaceId__request_automations__type__update_request_fields_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__type__update_request_fields_Response_200
-    Workflows_postapi_v1_workspaces__id__request_automations__request_key__clone_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_postapi_v1_workspaces__id__request_automations__request_key__clone_Response_200
-    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsGetParametersType:
-      type: string
-      enum:
-      - QUESTION_REQUEST
-      - SERVICE_REQUEST
-      - INCIDENT_REQUEST
-      - REQUEST
-      - CHANGE
-      - NOTIFICATIONS
-      - CUSTOM_OBJECT
-      - ASSET
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsGetParametersType
-    ? Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields_Response_200
-    : type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields_Response_200
-    ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersTriggerType:
-      type: string
-      enum:
-      - EVENT
-      - SCHEDULED_RECURRING
-      title: ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersTriggerType
-    ? Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__previous_actions_with_output_fields_Response_200
-    : type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__previous_actions_with_output_fields_Response_200
-    Workflows_getapi_v1_workspaces__id__request_automations__type__query_conditions_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__id__request_automations__type__query_conditions_Response_200
-    ? Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields__field_name__options_Response_200
-    : type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields__field_name__options_Response_200
-    ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsGetParametersFilterEntity:
-      type: string
-      enum:
-      - REQUEST
-      - USER
-      - SERVICE_ITEM
-      - ASSET
-      - CHANGE
-      - CHANGE_TEMPLATE
-      - CHANGE_TEMPLATE_OUTPUT
-      - CHANGE_TEMPLATE_ACTION
-      - REQUEST_EVENT
-      - CHANGE_EVENT
-      - IDENTITY_GRANT
-      - IDENTITY_APP
-      - CUSTOM_OBJECT
-      - CUSTOM_OBJECT_EVENT
-      - AUDIT_LOG
-      - RECOMMENDED_POLICIES
-      - MCP_STORE
-      - CODE_SCRIPT
       - EXTERNAL_WEBHOOK
-      - NO_OBJECT
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsGetParametersFilterEntity
-    ApiV1WorkspacesIdRequestAutomationsTypeActionsGetParametersType:
-      type: string
-      enum:
-      - QUESTION_REQUEST
-      - SERVICE_REQUEST
-      - INCIDENT_REQUEST
-      - REQUEST
-      - CHANGE
-      - NOTIFICATIONS
-      - CUSTOM_OBJECT
-      - ASSET
-      title: ApiV1WorkspacesIdRequestAutomationsTypeActionsGetParametersType
-    ? ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsFieldNameOptionsGetParametersRequestEntityType
-    : type: string
-      enum:
-      - QUESTION_REQUEST
-      - SERVICE_REQUEST
-      - INCIDENT_REQUEST
-      - REQUEST
-      - CHANGE
-      - NOTIFICATIONS
-      - CUSTOM_OBJECT
-      - ASSET
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsFieldNameOptionsGetParametersRequestEntityType
-    ? Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__version_id_Response_200
-    : type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__version_id_Response_200
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePreviousActionsWithOutputFieldsGetParametersRequestEntityType
     Workflows_getapi_v1_workspaces__id__request_automations__type_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Workflows_getapi_v1_workspaces__id__request_automations__type_Response_200
-    ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersType:
+    Workflows_postapi_v1_workspaces__id__request_automations__request_key__clone_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_postapi_v1_workspaces__id__request_automations__request_key__clone_Response_200
+    ApiV1WorkspacesIdRequestAutomationsTypeGetParametersType:
       type: string
       enum:
       - QUESTION_REQUEST
@@ -1004,17 +850,10 @@ components:
       - NOTIFICATIONS
       - CUSTOM_OBJECT
       - ASSET
-      title: ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersType
-    Workflows_getapi_v1_workspaces__id__request_automations__type__actions_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__id__request_automations__type__actions_Response_200
-    Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__placeholders_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__placeholders_Response_200
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesIdRequestAutomationsTypeGetParametersType
     ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersContext:
       type: string
       enum:
@@ -1064,6 +903,8 @@ components:
       - EVENT_PLACEHOLDERS
       - EVENT_ADD_TAGS_PLACEHOLDER
       - EVENT_REMOVE_TAGS_PLACEHOLDER
+      - EVENT_BODY_PLACEHOLDERS
+      - EVENT_BODY_FIELDS_PLACEHOLDERS
       - APPROVER_PLACEHOLDER_OPTIONS
       - CHANGE_PEOPLE_PLACEHOLDERS
       - CHANGE_RELATIONSHIP_PLACEHOLDERS
@@ -1076,8 +917,10 @@ components:
       - CUSTOM_OBJECT_TYPE_PLACEHOLDERS
       - CUSTOM_OBJECT_RELATIONSHIP_PLACEHOLDERS
       - ASSET_PLACEHOLDERS
+      - USER_PLACEHOLDERS
+      - WORKSPACE_PLACEHOLDERS
       title: ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersContext
-    ApiV1WorkspacesIdRequestAutomationsTypeGetParametersType:
+    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsVersionIdGetParametersType:
       type: string
       enum:
       - QUESTION_REQUEST
@@ -1088,7 +931,112 @@ components:
       - NOTIFICATIONS
       - CUSTOM_OBJECT
       - ASSET
-      title: ApiV1WorkspacesIdRequestAutomationsTypeGetParametersType
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsVersionIdGetParametersType
+    Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions_Response_200
+    Workflows_getapi_v1_workspaces__id__request_automations__type__query_conditions_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__id__request_automations__type__query_conditions_Response_200
+    ApiV1WorkspacesIdRequestAutomationsTypeGetParametersSortOrder:
+      type: string
+      enum:
+      - CREATED_AT_ASC
+      - CREATED_AT_DESC
+      - UPDATED_AT_ASC
+      - UPDATED_AT_DESC
+      - NAME_ASC
+      - NAME_DESC
+      - PUBLISHED_DESC
+      - UNPUBLISHED_DESC
+      title: ApiV1WorkspacesIdRequestAutomationsTypeGetParametersSortOrder
+    ApiV1WorkspacesIdRequestAutomationsTypeGetParametersTriggerType:
+      type: string
+      enum:
+      - EVENT
+      - SCHEDULED_RECURRING
+      - WEBHOOK
+      title: ApiV1WorkspacesIdRequestAutomationsTypeGetParametersTriggerType
+    ? ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsFieldNameOptionsGetParametersRequestEntityType
+    : type: string
+      enum:
+      - QUESTION_REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT_REQUEST
+      - REQUEST
+      - CHANGE
+      - NOTIFICATIONS
+      - CUSTOM_OBJECT
+      - ASSET
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsFieldNameOptionsGetParametersRequestEntityType
+    ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsGetParametersFilterEntity:
+      type: string
+      enum:
+      - REQUEST
+      - USER
+      - SERVICE_ITEM
+      - ASSET
+      - CHANGE
+      - CHANGE_TEMPLATE
+      - CHANGE_TEMPLATE_OUTPUT
+      - CHANGE_TEMPLATE_ACTION
+      - REQUEST_EVENT
+      - CHANGE_EVENT
+      - IDENTITY_GRANT
+      - IDENTITY_APP
+      - CUSTOM_OBJECT
+      - CUSTOM_OBJECT_EVENT
+      - AUDIT_LOG
+      - RECOMMENDED_POLICIES
+      - MCP_STORE
+      - MCP_TOOL_POLICY
+      - CODE_SCRIPT
+      - EXTERNAL_WEBHOOK
+      - STANDALONE
+      - OBJECT_TYPE
+      - AI_AGENT
+      - AI_AGENT_SKILL
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsGetParametersFilterEntity
+    ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersType:
+      type: string
+      enum:
+      - QUESTION_REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT_REQUEST
+      - REQUEST
+      - CHANGE
+      - NOTIFICATIONS
+      - CUSTOM_OBJECT
+      - ASSET
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersType
+    ApiV1WorkspacesIdRequestAutomationsTypeRequestKeyGetParametersType:
+      type: string
+      enum:
+      - QUESTION_REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT_REQUEST
+      - REQUEST
+      - CHANGE
+      - NOTIFICATIONS
+      - CUSTOM_OBJECT
+      - ASSET
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesIdRequestAutomationsTypeRequestKeyGetParametersType
     ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePlaceholdersGetParametersContext:
       type: string
       enum:
@@ -1138,6 +1086,8 @@ components:
       - EVENT_PLACEHOLDERS
       - EVENT_ADD_TAGS_PLACEHOLDER
       - EVENT_REMOVE_TAGS_PLACEHOLDER
+      - EVENT_BODY_PLACEHOLDERS
+      - EVENT_BODY_FIELDS_PLACEHOLDERS
       - APPROVER_PLACEHOLDER_OPTIONS
       - CHANGE_PEOPLE_PLACEHOLDERS
       - CHANGE_RELATIONSHIP_PLACEHOLDERS
@@ -1150,48 +1100,9 @@ components:
       - CUSTOM_OBJECT_TYPE_PLACEHOLDERS
       - CUSTOM_OBJECT_RELATIONSHIP_PLACEHOLDERS
       - ASSET_PLACEHOLDERS
+      - USER_PLACEHOLDERS
+      - WORKSPACE_PLACEHOLDERS
       title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePlaceholdersGetParametersContext
-    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypePagedGetParametersType:
-      type: string
-      enum:
-      - QUESTION_REQUEST
-      - SERVICE_REQUEST
-      - INCIDENT_REQUEST
-      - REQUEST
-      - CHANGE
-      - NOTIFICATIONS
-      - CUSTOM_OBJECT
-      - ASSET
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypePagedGetParametersType
-    ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsGetParametersRequestEntityType:
-      type: string
-      enum:
-      - QUESTION_REQUEST
-      - SERVICE_REQUEST
-      - INCIDENT_REQUEST
-      - REQUEST
-      - CHANGE
-      - NOTIFICATIONS
-      - CUSTOM_OBJECT
-      - ASSET
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypeActionsActionTypeOutputFieldsGetParametersRequestEntityType
-    ApiV1WorkspacesIdRequestAutomationsTypeGetParametersSortOrder:
-      type: string
-      enum:
-      - CREATED_AT_ASC
-      - CREATED_AT_DESC
-      - UPDATED_AT_ASC
-      - UPDATED_AT_DESC
-      - NAME_ASC
-      - NAME_DESC
-      - PUBLISHED_DESC
-      - UNPUBLISHED_DESC
-      title: ApiV1WorkspacesIdRequestAutomationsTypeGetParametersSortOrder
-    Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions_Response_200
     ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePlaceholdersGetParametersRequestEntityType:
       type: string
       enum:
@@ -1203,7 +1114,144 @@ components:
       - NOTIFICATIONS
       - CUSTOM_OBJECT
       - ASSET
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
       title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePlaceholdersGetParametersRequestEntityType
+    ? Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__previous_actions_with_output_fields_Response_200
+    : type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__previous_actions_with_output_fields_Response_200
+    Workflows_getapi_v1_workspaces__workspaceId__request_automations__type__update_request_fields_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__type__update_request_fields_Response_200
+    ApiV1WorkspacesIdRequestAutomationsTypeActionsGetParametersType:
+      type: string
+      enum:
+      - QUESTION_REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT_REQUEST
+      - REQUEST
+      - CHANGE
+      - NOTIFICATIONS
+      - CUSTOM_OBJECT
+      - ASSET
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesIdRequestAutomationsTypeActionsGetParametersType
+    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeUpdateRequestFieldsGetParametersType:
+      type: string
+      enum:
+      - QUESTION_REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT_REQUEST
+      - REQUEST
+      - CHANGE
+      - NOTIFICATIONS
+      - CUSTOM_OBJECT
+      - ASSET
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeUpdateRequestFieldsGetParametersType
+    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypePagedGetParametersType:
+      type: string
+      enum:
+      - QUESTION_REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT_REQUEST
+      - REQUEST
+      - CHANGE
+      - NOTIFICATIONS
+      - CUSTOM_OBJECT
+      - ASSET
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypePagedGetParametersType
+    Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__placeholders_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__placeholders_Response_200
+    ? Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields_Response_200
+    : type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields_Response_200
+    Workflows_getapi_v1_workspaces__id__request_automations__type__actions_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__id__request_automations__type__actions_Response_200
+    ? Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields__field_name__options_Response_200
+    : type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__workspaceId__request_automations__request_entity_type__actions__action_type__output_fields__field_name__options_Response_200
+    ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePlaceholdersGetParametersTriggerType:
+      type: string
+      enum:
+      - EVENT
+      - SCHEDULED_RECURRING
+      - WEBHOOK
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePlaceholdersGetParametersTriggerType
+    ? ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsCurrentVersionIdDiffOfWorkflowsVersionGetParametersType
+    : type: string
+      enum:
+      - QUESTION_REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT_REQUEST
+      - REQUEST
+      - CHANGE
+      - NOTIFICATIONS
+      - CUSTOM_OBJECT
+      - ASSET
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsCurrentVersionIdDiffOfWorkflowsVersionGetParametersType
+    ? Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__version_id_Response_200
+    : type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__version_id_Response_200
+    ApiV1WorkspacesIdRequestAutomationsTypeGetParametersStatus:
+      type: string
+      enum:
+      - PUBLISHED
+      - DRAFT
+      - ARCHIVED
+      title: ApiV1WorkspacesIdRequestAutomationsTypeGetParametersStatus
+    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsGetParametersType:
+      type: string
+      enum:
+      - QUESTION_REQUEST
+      - SERVICE_REQUEST
+      - INCIDENT_REQUEST
+      - REQUEST
+      - CHANGE
+      - NOTIFICATIONS
+      - CUSTOM_OBJECT
+      - ASSET
+      - EXTERNAL_WEBHOOK
+      - USER
+      - STANDALONE
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsGetParametersType
+    Workflows_getapi_v1_workspaces__id__request_automations__type___request_key_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__id__request_automations__type___request_key_Response_200
+    Workflows_getapi_v1_workspaces__workspace_id__request_automations__type__paged_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Workflows_getapi_v1_workspaces__workspace_id__request_automations__type__paged_Response_200
     ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePreviousActionsWithOutputFieldsGetParametersFilterEntity:
       type: string
       enum:
@@ -1224,57 +1272,28 @@ components:
       - AUDIT_LOG
       - RECOMMENDED_POLICIES
       - MCP_STORE
+      - MCP_TOOL_POLICY
       - CODE_SCRIPT
       - EXTERNAL_WEBHOOK
-      - NO_OBJECT
+      - STANDALONE
+      - OBJECT_TYPE
+      - AI_AGENT
+      - AI_AGENT_SKILL
       title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePreviousActionsWithOutputFieldsGetParametersFilterEntity
-    ApiV1WorkspacesIdRequestAutomationsTypeGetParametersStatus:
-      type: string
-      enum:
-      - PUBLISHED
-      - DRAFT
-      - ARCHIVED
-      title: ApiV1WorkspacesIdRequestAutomationsTypeGetParametersStatus
-    ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePlaceholdersGetParametersTriggerType:
+    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypePagedGetParametersTriggerType:
       type: string
       enum:
       - EVENT
       - SCHEDULED_RECURRING
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsRequestEntityTypePlaceholdersGetParametersTriggerType
-    ApiV1WorkspacesIdRequestAutomationsTypeRequestKeyGetParametersType:
+      - WEBHOOK
+      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypePagedGetParametersTriggerType
+    ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersTriggerType:
       type: string
       enum:
-      - QUESTION_REQUEST
-      - SERVICE_REQUEST
-      - INCIDENT_REQUEST
-      - REQUEST
-      - CHANGE
-      - NOTIFICATIONS
-      - CUSTOM_OBJECT
-      - ASSET
-      title: ApiV1WorkspacesIdRequestAutomationsTypeRequestKeyGetParametersType
-    ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsVersionIdGetParametersType:
-      type: string
-      enum:
-      - QUESTION_REQUEST
-      - SERVICE_REQUEST
-      - INCIDENT_REQUEST
-      - REQUEST
-      - CHANGE
-      - NOTIFICATIONS
-      - CUSTOM_OBJECT
-      - ASSET
-      title: ApiV1WorkspacesWorkspaceIdRequestAutomationsTypeAutomationKeyVersionsVersionIdGetParametersType
-    Workflows_getapi_v1_workspaces__id__request_automations__type___request_key_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__id__request_automations__type___request_key_Response_200
-    ? Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__current_version_id__diff_of_workflows_version_Response_200
-    : type: object
-      properties: {}
-      description: Empty response body
-      title: Workflows_getapi_v1_workspaces__workspace_id__request_automations__type___automation_key__versions__current_version_id__diff_of_workflows_version_Response_200
+      - EVENT
+      - SCHEDULED_RECURRING
+      - WEBHOOK
+      title: ApiV1WorkspacesIdRequestAutomationsTypeQueryConditionsGetParametersTriggerType
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

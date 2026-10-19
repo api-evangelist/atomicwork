@@ -10,7 +10,7 @@ tags:
 paths:
   /api/v1/workspaces/{workspace_id}/agent-groups:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-agent-groups
+      operationId: agentGroups_getapi_v1_workspaces__workspace_id__agent_groups
       summary: Get workspace agent groups
       tags:
       - Agent Groups
@@ -28,12 +28,15 @@ paths:
         required: false
         schema:
           type: string
+          minLength: 1
       - name: page
         in: query
         description: ''
         required: true
         schema:
           type: integer
+          minimum: 1
+          maximum: 100
           default: 1
       - name: per_page
         in: query
@@ -41,6 +44,8 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
+          maximum: 100
           default: 25
       - name: type
         in: query
@@ -48,11 +53,6 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType'
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -65,9 +65,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspace_id}/agent-groups/{agent_group_id}/members:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-agent-groups-agent-group-id-members
+      operationId: agentGroups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members
       summary: Get workspace agent group members
       tags:
       - Agent Groups
@@ -92,12 +94,15 @@ paths:
         required: false
         schema:
           type: string
+          minLength: 1
       - name: page
         in: query
         description: ''
         required: true
         schema:
           type: integer
+          minimum: 1
+          maximum: 100
           default: 1
       - name: per_page
         in: query
@@ -105,6 +110,8 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
+          maximum: 1000
           default: 25
       - name: sort_order
         in: query
@@ -118,11 +125,6 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter'
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -135,8 +137,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200'
+      security:
+      - ApiKeyAuth: []
     post:
-      operationId: postapi-v-1-workspaces-workspace-id-agent-groups-agent-group-id-members
+      operationId: agentGroups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members
       summary: Add workspace agent group member
       tags:
       - Agent Groups
@@ -155,11 +159,6 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -206,9 +205,11 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspace_id}/agent-groups/{agent_group_id}/members/{member_id}:
     delete:
-      operationId: deleteapi-v-1-workspaces-workspace-id-agent-groups-agent-group-id-members-member-id
+      operationId: agentGroups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id
       summary: Delete workspace agent group member
       tags:
       - Agent Groups
@@ -234,11 +235,6 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -251,6 +247,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Agent_Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200'
+      security:
+      - ApiKeyAuth: []
 components:
   schemas:
     Agent_Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200:
@@ -258,6 +256,40 @@ components:
       properties: {}
       description: Empty response body
       title: Agent Groups_deleteapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members__member_id_Response_200
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        roles:
+          type: array
+          items:
+            type: integer
+            format: int64
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems
+    Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
+    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType:
+      type: string
+      enum:
+      - EMPLOYEE
+      - EXTERNAL
+      - AI_EMPLOYEE
+      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType
+    Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200
+    Agent_Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Agent Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
     ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersSortOrder:
       type: string
       enum:
@@ -274,25 +306,6 @@ components:
       - DROPDOWN
       - LIST
       title: ApiV1WorkspacesWorkspaceIdAgentGroupsGetParametersType
-    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType:
-      type: string
-      enum:
-      - EMPLOYEE
-      - EXTERNAL
-      - AI_EMPLOYEE
-      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaType
-    ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        roles:
-          type: array
-          items:
-            type: integer
-            format: int64
-      title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersPostRequestBodyContentApplicationJsonSchemaWorkspacesItems
     ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter:
       type: string
       enum:
@@ -300,21 +313,6 @@ components:
       - ASSIGNABLE
       - NOT_ASSIGNABLE
       title: ApiV1WorkspacesWorkspaceIdAgentGroupsAgentGroupIdMembersGetParametersFilter
-    Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups_Response_200
-    Agent_Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Agent Groups_getapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
-    Agent_Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Agent Groups_postapi_v1_workspaces__workspace_id__agent_groups__agent_group_id__members_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

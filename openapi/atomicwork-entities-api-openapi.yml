@@ -10,7 +10,7 @@ tags:
 paths:
   /api/v1/entities/{entity_type}/{display_id}/links:
     get:
-      operationId: getapi-v-1-entities-entity-type-display-id-links
+      operationId: entities_getapi_v1_entities__entity_type___display_id__links
       summary: Get all linked entities with relationship information
       tags:
       - Entities
@@ -39,6 +39,7 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
           default: 1
       - name: per_page
         in: query
@@ -46,16 +47,13 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
+          maximum: 1000
           default: 10
       - name: search_key
         in: query
         description: Search keyword to filter linked entities by display ID or subject
         required: false
-        schema:
-          type: string
-      - name: X-Api-Key
-        in: header
-        required: true
         schema:
           type: string
       - name: X-Workspace-Id
@@ -70,8 +68,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entities_getapi_v1_entities__entity_type___display_id__links_Response_200'
+      security:
+      - ApiKeyAuth: []
     post:
-      operationId: postapi-v-1-entities-entity-type-display-id-links
+      operationId: entities_postapi_v1_entities__entity_type___display_id__links
       summary: Link multiple entities at once
       description: 'Creates multiple relationships between the source entity and target entities.
 
@@ -88,11 +88,6 @@ paths:
       - name: display_id
         in: path
         description: The display ID of the source entity (e.g. REQ-123, CHG-456)
-        required: true
-        schema:
-          type: string
-      - name: X-Api-Key
-        in: header
         required: true
         schema:
           type: string
@@ -132,46 +127,10 @@ paths:
               required:
               - reference_key
               - entities
+      security:
+      - ApiKeyAuth: []
 components:
   schemas:
-    ApiV1EntitiesEntityTypeDisplayIdLinksPostParametersEntityType:
-      type: string
-      enum:
-      - REQUEST
-      - SERVICE_REQUEST
-      - QUESTION_REQUEST
-      - INCIDENT_REQUEST
-      - INCIDENT
-      - PROBLEM_REQUEST
-      - PROBLEM
-      - USER
-      - SERVICE_ITEM
-      - CUSTOM_FORM
-      - SURVEY
-      - ASSET
-      - CHANGE
-      - CHANGE_TEMPLATE
-      - CUSTOM_OBJECT
-      title: ApiV1EntitiesEntityTypeDisplayIdLinksPostParametersEntityType
-    ApiV1EntitiesEntityTypeDisplayIdLinksGetParametersEntityType:
-      type: string
-      enum:
-      - REQUEST
-      - SERVICE_REQUEST
-      - QUESTION_REQUEST
-      - INCIDENT_REQUEST
-      - INCIDENT
-      - PROBLEM_REQUEST
-      - PROBLEM
-      - USER
-      - SERVICE_ITEM
-      - CUSTOM_FORM
-      - SURVEY
-      - ASSET
-      - CHANGE
-      - CHANGE_TEMPLATE
-      - CUSTOM_OBJECT
-      title: ApiV1EntitiesEntityTypeDisplayIdLinksGetParametersEntityType
     ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItemsEntityType:
       type: string
       enum:
@@ -198,16 +157,58 @@ components:
       - display_ids
       description: A group of entities of the same type to link
       title: ApiV1EntitiesEntityTypeDisplayIdLinksPostRequestBodyContentApplicationJsonSchemaEntitiesItems
-    Entities_postapi_v1_entities__entity_type___display_id__links_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Entities_postapi_v1_entities__entity_type___display_id__links_Response_200
     Entities_getapi_v1_entities__entity_type___display_id__links_Response_200:
       type: object
       properties: {}
       description: Empty response body
       title: Entities_getapi_v1_entities__entity_type___display_id__links_Response_200
+    ApiV1EntitiesEntityTypeDisplayIdLinksGetParametersEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - INCIDENT
+      - PROBLEM_REQUEST
+      - PROBLEM
+      - USER
+      - SERVICE_ITEM
+      - CUSTOM_FORM
+      - SURVEY
+      - ASSET
+      - CHANGE
+      - CHANGE_TEMPLATE
+      - CUSTOM_OBJECT
+      - STANDALONE
+      - EXTERNAL_WEBHOOK
+      title: ApiV1EntitiesEntityTypeDisplayIdLinksGetParametersEntityType
+    Entities_postapi_v1_entities__entity_type___display_id__links_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Entities_postapi_v1_entities__entity_type___display_id__links_Response_200
+    ApiV1EntitiesEntityTypeDisplayIdLinksPostParametersEntityType:
+      type: string
+      enum:
+      - REQUEST
+      - SERVICE_REQUEST
+      - QUESTION_REQUEST
+      - INCIDENT_REQUEST
+      - INCIDENT
+      - PROBLEM_REQUEST
+      - PROBLEM
+      - USER
+      - SERVICE_ITEM
+      - CUSTOM_FORM
+      - SURVEY
+      - ASSET
+      - CHANGE
+      - CHANGE_TEMPLATE
+      - CUSTOM_OBJECT
+      - STANDALONE
+      - EXTERNAL_WEBHOOK
+      title: ApiV1EntitiesEntityTypeDisplayIdLinksPostParametersEntityType
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

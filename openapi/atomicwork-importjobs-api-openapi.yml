@@ -1,0 +1,651 @@
+openapi: 3.2.0
+info:
+  title: Atomicwork Public Import Jobs API
+  version: 1.0.0
+servers:
+- url: https://{tenant}.atomicwork.com
+  description: Your Atomicwork tenant
+tags:
+- name: importJobs
+paths:
+  /api/v1/import-jobs:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs
+      summary: List import jobs
+      tags:
+      - importJobs
+      parameters:
+      - name: entity_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: entity_id
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: source_type
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      - name: created_by
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs_Response_200'
+      security:
+      - ApiKeyAuth: []
+    post:
+      operationId: importJobs_postapi_v1_import_jobs
+      summary: Create an import job and start validation
+      tags:
+      - importJobs
+      parameters:
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_postapi_v1_import_jobs_Response_200'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Source CSV file
+                config:
+                  description: Any type
+              required:
+              - file
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/importable-fields:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs_importable_fields
+      summary: List importable fields for an entity_type / entity_id, with auto-mapping…
+      tags:
+      - importJobs
+      parameters:
+      - name: entity_type
+        in: query
+        description: ''
+        required: true
+        schema:
+          $ref: '#/components/schemas/ApiV1ImportJobsImportableFieldsGetParametersEntityType'
+      - name: entity_id
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs_importable_fields_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/sample-template:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs_sample_template
+      summary: Download a sample CSV template for the given entity type
+      tags:
+      - importJobs
+      parameters:
+      - name: entity_type
+        in: query
+        description: ''
+        required: true
+        schema:
+          $ref: '#/components/schemas/ApiV1ImportJobsSampleTemplateGetParametersEntityType'
+      - name: entity_id
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs_sample_template_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/validate-mapping:
+    post:
+      operationId: importJobs_postapi_v1_import_jobs_validate_mapping
+      summary: Validate adapter_config + CSV headers without uploading the file
+      tags:
+      - importJobs
+      parameters:
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_postapi_v1_import_jobs_validate_mapping_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity_type:
+                  $ref: '#/components/schemas/ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaEntityType'
+                source_type:
+                  $ref: '#/components/schemas/ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaSourceType'
+                adapter_config:
+                  $ref: '#/components/schemas/ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaAdapterConfig'
+                  description: Same shape used by POST /import-jobs.
+                csv_headers:
+                  type: array
+                  items:
+                    type: string
+                  description: Parsed header row. Server strips whitespace and BOM before comparison.
+                validation:
+                  $ref: '#/components/schemas/ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaValidation'
+                  description: Optional; defaults applied when omitted.
+              required:
+              - entity_type
+              - source_type
+              - adapter_config
+              - csv_headers
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs__id
+      summary: Get an import job by id
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs__id_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/validation:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs__id__validation
+      summary: Get import job validation status
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs__id__validation_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/validation/error-file:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs__id__validation_error_file
+      summary: Get import job validation error file download URL
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs__id__validation_error_file_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/dry-run:
+    post:
+      operationId: importJobs_postapi_v1_import_jobs__id__dry_run
+      summary: Start dry-run workflow
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_postapi_v1_import_jobs__id__dry_run_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/input-file:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs__id__input_file
+      summary: Get presigned URL for the originally-uploaded source CSV
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs__id__input_file_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/dry-run/result-file:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs__id__dry_run_result_file
+      summary: Get presigned URL for dry-run result CSV
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs__id__dry_run_result_file_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/execute:
+    post:
+      operationId: importJobs_postapi_v1_import_jobs__id__execute
+      summary: Start execution workflow
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_postapi_v1_import_jobs__id__execute_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/execution:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs__id__execution
+      summary: Get import job execution status
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs__id__execution_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/execution/error-file:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs__id__execution_error_file
+      summary: Get import job execution error file download URL
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs__id__execution_error_file_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/execution/result-file:
+    get:
+      operationId: importJobs_getapi_v1_import_jobs__id__execution_result_file
+      summary: Get presigned URL for execution result CSV
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_getapi_v1_import_jobs__id__execution_result_file_Response_200'
+      security:
+      - ApiKeyAuth: []
+  /api/v1/import-jobs/{id}/cancel:
+    post:
+      operationId: importJobs_postapi_v1_import_jobs__id__cancel
+      summary: Cancel an in-progress import job workflow
+      tags:
+      - importJobs
+      parameters:
+      - name: id
+        in: path
+        description: Workspace ID (numeric). Find yours under Settings → Workspace.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import_Jobs_postapi_v1_import_jobs__id__cancel_Response_200'
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    Import_Jobs_getapi_v1_import_jobs__id__execution_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs__id__execution_Response_200
+    Import_Jobs_getapi_v1_import_jobs__id__dry_run_result_file_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs__id__dry_run_result_file_Response_200
+    ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaSourceType:
+      type: string
+      enum:
+      - CSV
+      title: ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaSourceType
+    Import_Jobs_getapi_v1_import_jobs__id__execution_error_file_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs__id__execution_error_file_Response_200
+    Import_Jobs_getapi_v1_import_jobs__id__input_file_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs__id__input_file_Response_200
+    Import_Jobs_postapi_v1_import_jobs__id__cancel_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_postapi_v1_import_jobs__id__cancel_Response_200
+    Import_Jobs_getapi_v1_import_jobs_importable_fields_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs_importable_fields_Response_200
+    ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaValidation:
+      type: object
+      properties: {}
+      description: Optional; defaults applied when omitted.
+      title: ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaValidation
+    Import_Jobs_getapi_v1_import_jobs__id__validation_error_file_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs__id__validation_error_file_Response_200
+    Import_Jobs_postapi_v1_import_jobs__id__execute_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_postapi_v1_import_jobs__id__execute_Response_200
+    Import_Jobs_getapi_v1_import_jobs__id__execution_result_file_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs__id__execution_result_file_Response_200
+    ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaEntityType:
+      type: string
+      enum:
+      - CUSTOM_OBJECT
+      title: ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaEntityType
+    Import_Jobs_getapi_v1_import_jobs_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs_Response_200
+    ApiV1ImportJobsImportableFieldsGetParametersEntityType:
+      type: string
+      enum:
+      - CUSTOM_OBJECT
+      title: ApiV1ImportJobsImportableFieldsGetParametersEntityType
+    Import_Jobs_postapi_v1_import_jobs_validate_mapping_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_postapi_v1_import_jobs_validate_mapping_Response_200
+    ApiV1ImportJobsSampleTemplateGetParametersEntityType:
+      type: string
+      enum:
+      - CUSTOM_OBJECT
+      title: ApiV1ImportJobsSampleTemplateGetParametersEntityType
+    Import_Jobs_postapi_v1_import_jobs_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_postapi_v1_import_jobs_Response_200
+    Import_Jobs_getapi_v1_import_jobs__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs__id_Response_200
+    Import_Jobs_getapi_v1_import_jobs_sample_template_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs_sample_template_Response_200
+    Import_Jobs_postapi_v1_import_jobs__id__dry_run_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_postapi_v1_import_jobs__id__dry_run_Response_200
+    ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaAdapterConfig:
+      type: object
+      properties: {}
+      description: Same shape used by POST /import-jobs.
+      title: ApiV1ImportJobsValidateMappingPostRequestBodyContentApplicationJsonSchemaAdapterConfig
+    Import_Jobs_getapi_v1_import_jobs__id__validation_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Import Jobs_getapi_v1_import_jobs__id__validation_Response_200
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

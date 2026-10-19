@@ -10,16 +10,11 @@ tags:
 paths:
   /api/v1/assets:
     post:
-      operationId: postapi-v-1-assets
+      operationId: assets_postapi_v1_assets
       summary: Create Asset
       tags:
       - Assets
       parameters:
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -49,9 +44,11 @@ paths:
               required:
               - asset_type_id
               - form_fields
+      security:
+      - ApiKeyAuth: []
   /api/v1/assets/attributes:
     get:
-      operationId: getapi-v-1-assets-attributes
+      operationId: assets_getapi_v1_assets_attributes
       summary: Get List of all Asset attributes
       tags:
       - Assets
@@ -75,6 +72,7 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
           default: 1
       - name: page_size
         in: query
@@ -82,12 +80,8 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
           default: 25
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -100,9 +94,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Assets_getapi_v1_assets_attributes_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/assets/list:
     post:
-      operationId: postapi-v-1-assets-list
+      operationId: assets_postapi_v1_assets_list
       summary: Asset List with views, and filters
       description: '### Filtering
 
@@ -213,12 +209,14 @@ paths:
         required: false
         schema:
           type: string
+          maxLength: 256
       - name: page
         in: query
         description: ''
         required: true
         schema:
           type: integer
+          minimum: 1
           default: 1
       - name: per_page
         in: query
@@ -226,12 +224,9 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
+          maximum: 1000
           default: 25
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -251,9 +246,11 @@ paths:
               type: array
               items:
                 $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems'
+      security:
+      - ApiKeyAuth: []
   /api/v1/assets/users/{user_id}/list:
     get:
-      operationId: getapi-v-1-assets-users-user-id-list
+      operationId: assets_getapi_v1_assets_users__user_id__list
       summary: Get List of Assets for a user
       tags:
       - Assets
@@ -277,6 +274,7 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
           default: 1
       - name: page_size
         in: query
@@ -284,12 +282,8 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
           default: 25
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -302,9 +296,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Assets_getapi_v1_assets_users__user_id__list_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/assets/types/{asset_type_id}/form-fields:
     get:
-      operationId: getapi-v-1-assets-types-asset-type-id-form-fields
+      operationId: assets_getapi_v1_assets_types__asset_type_id__form_fields
       summary: Get Form Fields of an AssetType
       tags:
       - Assets
@@ -330,11 +326,6 @@ paths:
         required: false
         schema:
           type: string
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -347,9 +338,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/assets/{asset_id}:
     get:
-      operationId: getapi-v-1-assets-asset-id
+      operationId: assets_getapi_v1_assets__asset_id
       summary: Get Asset Details
       tags:
       - Assets
@@ -381,11 +374,6 @@ paths:
         required: false
         schema:
           type: string
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -398,8 +386,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Assets_getapi_v1_assets__asset_id_Response_200'
+      security:
+      - ApiKeyAuth: []
     put:
-      operationId: putapi-v-1-assets-asset-id
+      operationId: assets_putapi_v1_assets__asset_id
       summary: Update Asset
       tags:
       - Assets
@@ -411,11 +401,6 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -445,8 +430,10 @@ paths:
               required:
               - asset_type_id
               - form_fields
+      security:
+      - ApiKeyAuth: []
     delete:
-      operationId: deleteapi-v-1-assets-asset-id
+      operationId: assets_deleteapi_v1_assets__asset_id
       summary: Delete Asset
       tags:
       - Assets
@@ -458,11 +445,6 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -475,9 +457,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Assets_deleteapi_v1_assets__asset_id_Response_200'
+      security:
+      - ApiKeyAuth: []
+    patch:
+      operationId: assets_patchapi_v1_assets__asset_id
+      summary: Partially update an asset (RFC 7386 JSON Merge Patch)
+      description: 'Partially updates an asset using JSON Merge Patch semantics (RFC 7386). Send only the
+
+        fields you want to change under `form_fields`: a field present with a value sets it, a field
+
+        present with `null` clears it, and an omitted field is left untouched. Unlike PUT, you do
+
+        not need to resend the entire form. Concurrent updates are guarded by optimistic locking and
+
+        retried automatically.'
+      tags:
+      - Assets
+      parameters:
+      - name: asset_id
+        in: path
+        description: assetId
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: X-Workspace-Id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assets_patchapi_v1_assets__asset_id_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      security:
+      - ApiKeyAuth: []
   /api/v1/assets/{asset_id}/activities:
     get:
-      operationId: getapi-v-1-assets-asset-id-activities
+      operationId: assets_getapi_v1_assets__asset_id__activities
       summary: Get Asset Activities
       tags:
       - Assets
@@ -495,6 +521,7 @@ paths:
         required: true
         schema:
           type: integer
+          minimum: 1
           default: 1
       - name: per_page
         in: query
@@ -502,6 +529,8 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
+          maximum: 100
           default: 25
       - name: next_page_token
         in: query
@@ -525,11 +554,6 @@ paths:
         required: false
         schema:
           type: string
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -542,13 +566,66 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Assets_getapi_v1_assets__asset_id__activities_Response_200'
+      security:
+      - ApiKeyAuth: []
 components:
   schemas:
-    Assets_getapi_v1_assets_users__user_id__list_Response_200:
+    Assets_postapi_v1_assets_list_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Assets_getapi_v1_assets_users__user_id__list_Response_200
+      title: Assets_postapi_v1_assets_list_Response_200
+    ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      title: ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields
+    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        attribute:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
+      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems
+    Assets_putapi_v1_assets__asset_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_putapi_v1_assets__asset_id_Response_200
+    Assets_getapi_v1_assets_attributes_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets_attributes_Response_200
+    Assets_getapi_v1_assets__asset_id__activities_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets__asset_id__activities_Response_200
+    Assets_deleteapi_v1_assets__asset_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_deleteapi_v1_assets__asset_id_Response_200
+    Assets_getapi_v1_assets__asset_id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets__asset_id_Response_200
+    Assets_postapi_v1_assets_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_postapi_v1_assets_Response_200
+    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
+      type: object
+      properties: {}
+      description: 'A bare scalar - number, string or boolean - never a JSON object or array. For relationship, entity-reference, or dropdown attributes pass the numeric option or entity id (e.g. 4009, not {"id": 4009}).'
+      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
     ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator:
       type: string
       enum:
@@ -576,11 +653,29 @@ components:
       - IS_ON_OR_AFTER
       - IS_WITHIN
       title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator
-    Assets_getapi_v1_assets_attributes_Response_200:
+    Assets_getapi_v1_assets_users__user_id__list_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Assets_getapi_v1_assets_attributes_Response_200
+      title: Assets_getapi_v1_assets_users__user_id__list_Response_200
+    ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields:
+      type: object
+      properties: {}
+      title: ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields
+    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
+          description: 'A bare scalar - number, string or boolean - never a JSON object or array. For relationship, entity-reference, or dropdown attributes pass the numeric option or entity id (e.g. 4009, not {"id": 4009}).'
+        nested_filter:
+          description: Any type
+      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
+    Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200
     ApiV1AssetsListPostParametersSortOrder:
       type: string
       enum:
@@ -590,73 +685,11 @@ components:
       - NAME_ASC
       - NAME_DESC
       title: ApiV1AssetsListPostParametersSortOrder
-    Assets_deleteapi_v1_assets__asset_id_Response_200:
+    Assets_patchapi_v1_assets__asset_id_Response_200:
       type: object
       properties: {}
       description: Empty response body
-      title: Assets_deleteapi_v1_assets__asset_id_Response_200
-    Assets_postapi_v1_assets_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_postapi_v1_assets_Response_200
-    Assets_putapi_v1_assets__asset_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_putapi_v1_assets__asset_id_Response_200
-    ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields:
-      type: object
-      properties: {}
-      title: ApiV1AssetsAssetIdPutRequestBodyContentApplicationJsonSchemaFormFields
-    Assets_getapi_v1_assets__asset_id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets__asset_id_Response_200
-    Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets_types__asset_type_id__form_fields_Response_200
-    ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields:
-      type: object
-      properties: {}
-      title: ApiV1AssetsPostRequestBodyContentApplicationJsonSchemaFormFields
-    Assets_postapi_v1_assets_list_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_postapi_v1_assets_list_Response_200
-    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue:
-      type: object
-      properties: {}
-      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue
-    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        attribute:
-          type: string
-        operator:
-          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsOperator'
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems'
-      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItems
-    Assets_getapi_v1_assets__asset_id__activities_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Assets_getapi_v1_assets__asset_id__activities_Response_200
-    ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItemsValue'
-        nested_filter:
-          description: Any type
-      title: ApiV1AssetsListPostRequestBodyContentApplicationJsonSchemaItemsValuesItems
+      title: Assets_patchapi_v1_assets__asset_id_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

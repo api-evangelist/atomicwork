@@ -10,7 +10,7 @@ tags:
 paths:
   /api/v1/workspaces/{workspace_id}/business-hour-config:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-business-hour-config
+      operationId: businessHourConfig_getapi_v1_workspaces__workspace_id__business_hour_config
       summary: Retrieve Business Hour Configurations
       tags:
       - businessHourConfig
@@ -34,6 +34,8 @@ paths:
         required: true
         schema:
           type: integer
+          minimum: 1
+          maximum: 100
           default: 1
       - name: per_page
         in: query
@@ -41,6 +43,8 @@ paths:
         required: false
         schema:
           type: integer
+          minimum: 1
+          maximum: 100
           default: 25
       - name: type
         in: query
@@ -48,11 +52,6 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/ApiV1WorkspacesWorkspaceIdBusinessHourConfigGetParametersType'
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -65,9 +64,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Business_Hour_Config_getapi_v1_workspaces__workspace_id__business_hour_config_Response_200'
+      security:
+      - ApiKeyAuth: []
   /api/v1/workspaces/{workspace_id}/business-hour-config/{id}:
     get:
-      operationId: getapi-v-1-workspaces-workspace-id-business-hour-config-id
+      operationId: businessHourConfig_getapi_v1_workspaces__workspace_id__business_hour_config__id
       summary: Retrieve Business Hour Configurations
       tags:
       - businessHourConfig
@@ -86,11 +87,6 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: X-Api-Key
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-Workspace-Id
         in: header
         required: false
@@ -103,8 +99,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Business_Hour_Config_getapi_v1_workspaces__workspace_id__business_hour_config__id_Response_200'
+      security:
+      - ApiKeyAuth: []
 components:
   schemas:
+    Business_Hour_Config_getapi_v1_workspaces__workspace_id__business_hour_config__id_Response_200:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Business Hour Config_getapi_v1_workspaces__workspace_id__business_hour_config__id_Response_200
     Business_Hour_Config_getapi_v1_workspaces__workspace_id__business_hour_config_Response_200:
       type: object
       properties: {}
@@ -116,11 +119,6 @@ components:
       - DROPDOWN
       - LIST
       title: ApiV1WorkspacesWorkspaceIdBusinessHourConfigGetParametersType
-    Business_Hour_Config_getapi_v1_workspaces__workspace_id__business_hour_config__id_Response_200:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Business Hour Config_getapi_v1_workspaces__workspace_id__business_hour_config__id_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
